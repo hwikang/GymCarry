@@ -22,7 +22,7 @@
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   
-  <a style="margin-left:83%; cursor:pointer"; onclick='closex()'>닫기&times;</a>
+  <a style="margin-left:83%; cursor:pointer;color:black"; onclick='closex()'>닫기&times;</a>
   
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -33,7 +33,7 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active d-flex justify-content-center" >
-      <img src="${path }/resources/danback.png" style="width:300px; height:80px" />
+      <img src="${path }/resources/danback.png" style="width:250px; height:80px" />
       <div class="carousel-caption">
         <a href=https://www.spomax.kr>
        		 보충제는 스포맥스!
@@ -78,14 +78,16 @@
 
 </body>
 <style>
-	.carousel-inner img{position:relative;margin-left:30%;}  /* 이미지 위치 */
-	.carousel-caption{font-size:20px;margin-left:20% } /* 캐로우셀 광고 문구 */
 	body{font-family: 'Jua', sans-serif; }
-	.carousel-inner a{color:;}
-	#mainImg{height: 500px;margin:auto 0px;padding:0px; 
+	.carousel-inner img{position:relative;margin-left:30%;}  /* 광고 이미지 위치 */
+	.carousel-caption{font-size:20px;margin-left:20%; } /*  광고 문구 */
+	.carousel-inner a{color:black}
+	#mainImg{height: 500px;margin:auto 0px;padding:0px;
 			background-image: url("${path }/resources/gigu.jpg");
 			background-repeat: no-repeat;
-			background-size: cover;}
+			background-size: container;
+			background-position:40% 0px;
+			 }
 </style>
 <script>
 	function closex(){  //광고 닫는 함수 
