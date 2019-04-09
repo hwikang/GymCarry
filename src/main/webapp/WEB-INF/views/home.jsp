@@ -81,7 +81,7 @@
 	.carousel-inner img{position:relative;margin-left:30%;}  /* 이미지 위치 */
 	.carousel-caption{font-size:20px;margin-left:20% } /* 캐로우셀 광고 문구 */
 	body{font-family: 'Jua', sans-serif; }
-	.carousel-inner a{color:red;}
+	.carousel-inner a{color:;}
 	#mainImg{height: 500px;margin:auto 0px;padding:0px; 
 			background-image: url("${path }/resources/gigu.jpg");
 			background-repeat: no-repeat;
