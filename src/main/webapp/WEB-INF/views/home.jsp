@@ -3,13 +3,16 @@
 <html>
 <head>
 	<title>Home</title>
+	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
 </head>
 <body>
 <%@ include file="include/menu.jsp" %>
 <h1>
-	Hello world!  
+	
 </h1>
+<div>
 
-<P>  The time on the server is ${serverTime}. </P>
+</div>
 </body>
 </html>

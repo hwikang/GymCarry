@@ -8,7 +8,7 @@
 	<a class="item"><img src="${path }/resources/logo.png"/></a>
   <a class="item active">트레이너찾기 </a>
   <a class="item">공지사항</a>
-  <a class="item">커뮤니티</a>
+  <a href="${path }/community.do" class="item">커뮤니티</a>
   <a class="item">로그인</a>
   <a class="item">로그아웃</a>
   <a class="item">트레이너신청하기</a>
