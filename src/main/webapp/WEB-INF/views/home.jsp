@@ -85,7 +85,7 @@
 	#mainImg{height: 500px;margin:auto 0px;padding:0px;
 			background-image: url("${path }/resources/gigu.jpg");
 			background-repeat: no-repeat;
-			background-size: container;
+			background-size: cover;
 			background-position:40% 0px;
 			 }
 </style>
