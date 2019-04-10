@@ -20,6 +20,7 @@ public class CommunityDAO implements CommunityDAOInterface {
 	@Override
 	public void insertCommunity(CommunityDTO dto) {
 		logger.info("insert community called...");
+		logger.info("dao에서 dto userid"+dto.getUserid());
 		sqlSession.insert("community.insertCommunity" , dto);  //dto 불러온거를 sqlsessiond을 통해 때려받는다
 	}
 

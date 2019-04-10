@@ -2,6 +2,7 @@
 package kr.goott.gymcarry.controller;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.goott.gymcarry.model.dao.CommunityDAOInterface;
 import kr.goott.gymcarry.model.dto.CommunityDTO;
 
 @Controller
 public class CommunityController {
 	private static final Logger logger = LoggerFactory.getLogger(CommunityController.class);
 	
+	
+	@Inject
+	CommunityDAOInterface communityDAO;
 	//@Resource(name="uploadpath")
 	
 	@RequestMapping(value="community.do" , method=RequestMethod.GET)
@@ -29,15 +34,20 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value="community/upload.do")
-	public String insertCommunity(@ModelAttribute CommunityDTO dto) {
-		
+	public String insertCommunity(CommunityDTO dto) {
+		System.out.println("========================");
+		logger.info(dto.getComDes());
+		logger.info(dto.getUserid());
+		logger.info(dto.getComImage());
+		communityDAO.insertCommunity(dto);
+		return "redirect:/community.do";
 	}
 	
 	//@RequestMapping(value="upload/uploadForm" , method=RequestMethod.POST)
 	public ModelAndView upload(MultipartFile file, ModelAndView mav )throws Exception {
-		logger.info("ÆÄÀÏÀÌ¸§=",file.getOriginalFilename());
-		logger.info("ÆÄÀÏÅ©±â=",file.getSize());
-		logger.info("ÄÁÅÙÃ÷Å¸ÀÔ=",file.getContentType());
+		logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½=",file.getOriginalFilename());
+		logger.info("ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½=",file.getSize());
+		logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½=",file.getContentType());
 		String savedName = file.getOriginalFilename();
 		//savedName= uploadFile(savedName,file.getBytes());
 		mav.setViewName("upload/uploadResult");

@@ -65,11 +65,16 @@
 	<div class="ui tiny modal" >
 		<div class="header">업로드</div>
 		<div class="content">
-			<form action="community/upload.do">
+			<form action="${path }/community/upload.do">
 				<input type="file" />
 				<hr/>
 				글내용 <input type="text" name="comDes" style="width:100%;height:300px;"/>
-				<input type="hidden" name="userid"/>
+				<input type="hidden" name="userid" value="khdrogba"/>
+				<input type="hidden" name="comNo" value="0"/>
+				<input type="hidden" name="views" value="0"/>
+				<input type="hidden" name="likes" value="0"/>
+				<input type="hidden" name="replys" value="0"/>
+				
 				<input type="submit" value="게시"/>
 			</form>
 		</div>
@@ -78,7 +83,8 @@
 </body>
 <script>
 	const grid = document.querySelector(".ui.grid");
-	//이미지생성
+	
+	/* //이미지생성 */
 	const createImage = () =>{
 		for(var i=0;i<10;i++){
 			let img = faker.image.avatar(); //이미지불러옴
