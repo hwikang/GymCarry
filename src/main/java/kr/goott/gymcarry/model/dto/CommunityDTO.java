@@ -8,6 +8,7 @@ public class CommunityDTO {
 	private int views;
 	private int likes;
 	private int replys;
+	private String regdate;
 	
 	public CommunityDTO(int comNo,String userid,String comImage, String comDes, int views,int likes,int replys) {
 		this.comNo= comNo;
@@ -19,6 +20,16 @@ public class CommunityDTO {
 		this.replys = replys;		
 		
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "CommunityDTO [comNo=" + comNo + ", userid=" + userid + ", comImage=" + comImage + ", comDes=" + comDes
+				+ ", views=" + views + ", likes=" + likes + ", replys=" + replys + ", regdate=" + regdate + "]";
+	}
+
+
 
 	public int getComNo() {
 		return comNo;
@@ -74,6 +85,14 @@ public class CommunityDTO {
 
 	public void setReplys(int replys) {
 		this.replys = replys;
+	}
+
+	public String getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
 	
 	

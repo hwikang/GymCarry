@@ -65,10 +65,12 @@
 	<div class="ui tiny modal" >
 		<div class="header">업로드</div>
 		<div class="content">
-			<form>
+			<form action="community/upload.do">
 				<input type="file" />
 				<hr/>
-				글내용 <input type="text" name="comdes" style="width:100%;height:300px;"/>
+				글내용 <input type="text" name="comDes" style="width:100%;height:300px;"/>
+				<input type="hidden" name="userid"/>
+				<input type="submit" value="게시"/>
 			</form>
 		</div>
 	</div>
