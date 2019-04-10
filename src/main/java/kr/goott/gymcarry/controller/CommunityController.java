@@ -1,3 +1,4 @@
+
 package kr.goott.gymcarry.controller;
 
 import javax.annotation.Resource;
@@ -45,3 +46,4 @@ public class CommunityController {
 		
 	}
 }
+

@@ -1,3 +1,4 @@
+
 package kr.goott.gymcarry.model.dto;
 
 public class CommunityDTO {
