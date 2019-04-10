@@ -45,9 +45,9 @@ public class CommunityController {
 	
 	//@RequestMapping(value="upload/uploadForm" , method=RequestMethod.POST)
 	public ModelAndView upload(MultipartFile file, ModelAndView mav )throws Exception {
-		logger.info("ÆÄÀÏÀÌ¸§=",file.getOriginalFilename());
-		logger.info("ÆÄÀÏÅ©±â=",file.getSize());
-		logger.info("ÄÁÅÙÃ÷Å¸ÀÔ=",file.getContentType());
+		logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½=",file.getOriginalFilename());
+		logger.info("ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½=",file.getSize());
+		logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½=",file.getContentType());
 		String savedName = file.getOriginalFilename();
 		//savedName= uploadFile(savedName,file.getBytes());
 		mav.setViewName("upload/uploadResult");
