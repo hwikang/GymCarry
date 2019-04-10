@@ -4,25 +4,19 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> <!-- 구글폰트 -->
-<<<<<<< HEAD
+
 <div id="menu"class="ui secondary right menu" style="font-family: 'Jua', sans-serif;font-size:18px;margin:auto 0px;padding:0px;">
   <a class="item"><img src="${path }/resources/logo.png" style="width:300px;"/></a>
   <a id="hi"class="item active">트레이너찾기 </a>
-=======
-<div class="ui secondary right menu" style="font-family: 'Jua', sans-serif;margin:auto 0px;padding:0px;">
-  <a href="${path }" class="item"><img src="${path }/resources/logo.png" style="width:300px;"/></a>
-  <a class="item active">트레이너찾기 </a>
->>>>>>> bfcec34a6e68eb1248c7c5418a2856f176d5eb0a
+
   <a class="item">공지사항</a>
   <a href="${path }/community.do" class="item">커뮤니티</a>
   <a class="item">로그인</a>
   <a class="item">로그아웃</a>
   <a class="item">트레이너신청하기</a>
-<<<<<<< HEAD
+
   <a class="item" style="background-color:#4DD0FA;border-radius: 10px">짐프로틴 사러 가기</a>
-=======
-  <a class="item">Protein구매</a>
->>>>>>> bfcec34a6e68eb1248c7c5418a2856f176d5eb0a
+
   
   </div>
  <style>

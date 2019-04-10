@@ -8,21 +8,25 @@
 	<title>Gym Carry</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
+<script src="semantic/dist/semantic.min.js"></script>
 </head>
 <body>
 
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   
-  <a style="margin-left:83%; cursor:pointer;color:black"; onclick='closex()'>닫기&times;</a>
+  <a style="margin-left:83%; cursor:pointer;color:black"; onclick='closex()'>&times;</a>
   
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -72,10 +76,11 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-<div id="mainImg" >
+<div id="mainImg" onload="imageChange()" >
 <%@ include file="include/menu.jsp" %>
 </div>
 
+<img src = "${path }/resources/protein.jpg" id="pro" >
 </body>
 <style>
 	body{font-family: 'Jua', sans-serif; }
@@ -92,9 +97,14 @@
 <script>
 	function closex(){  //광고 닫는 함수 
 		const closex = document.getElementById('carousel-example-generic');
-		alert(closex)
 		closex.style.display='none';
 	}
+	 function imageChange(){
+		const img1 = document.getElementById('pro');
+		alert(img1);
+		img1.transition('fade right');
+	} 
+	
 </script>
 </html>
 
