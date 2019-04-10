@@ -1,39 +1,33 @@
-package kr.goott.gymcarry.controller;
-
-import javax.annotation.Resource;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-
-@Controller
-public class CommunityController {
-	private static final Logger logger = LoggerFactory.getLogger(CommunityController.class);
-	
-	@Resource(name="uploadpath")
-	
-	@RequestMapping(value="community.do" , method=RequestMethod.GET)
-	public String community(Model model) {
-		String result="yaya";
-		model.addAttribute("result",result);
-		return "community/list";
-	}
-	
-	@RequestMapping(value="upload/uploadForm" , method=RequestMethod.POST)
-	public ModelAndView upload(MultipartFile file, ModelAndView mav )throws Exception {
-		logger.info("ÆÄÀÏÀÌ¸§=",file.getOriginalFilename());
-		logger.info("ÆÄÀÏÅ©±â=",file.getSize());
-		logger.info("ÄÁÅÙÃ÷Å¸ÀÔ=",file.getContentType());
-		String savedName = file.getOriginalFilename();
-		savedName= uploadFile(savedName,file.getBytes());
-		mav.setViewName("upload/uploadResult");
-		mav.addObject("savedName",savedName);
-		return mav;
-		
-	}
-}
+/*
+ * package kr.goott.gymcarry.controller;
+ * 
+ * import javax.annotation.Resource;
+ * 
+ * import org.slf4j.Logger; import org.slf4j.LoggerFactory; import
+ * org.springframework.stereotype.Controller; import
+ * org.springframework.ui.Model; import
+ * org.springframework.web.bind.annotation.RequestMapping; import
+ * org.springframework.web.bind.annotation.RequestMethod; import
+ * org.springframework.web.multipart.MultipartFile; import
+ * org.springframework.web.servlet.ModelAndView;
+ * 
+ * @Controller public class CommunityController { private static final Logger
+ * logger = LoggerFactory.getLogger(CommunityController.class);
+ * 
+ * @Resource(name="uploadpath")
+ * 
+ * @RequestMapping(value="community.do" , method=RequestMethod.GET) public
+ * String community(Model model) { String result="yaya";
+ * model.addAttribute("result",result); return "community/list"; }
+ * 
+ * @RequestMapping(value="upload/uploadForm" , method=RequestMethod.POST) public
+ * ModelAndView upload(MultipartFile file, ModelAndView mav )throws Exception {
+ * logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½=",file.getOriginalFilename());
+ * logger.info("ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½=",file.getSize());
+ * logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½=",file.getContentType()); String savedName =
+ * file.getOriginalFilename(); savedName= uploadFile(savedName,file.getBytes());
+ * mav.setViewName("upload/uploadResult"); mav.addObject("savedName",savedName);
+ * return mav;
+ * 
+ * } }
+ */
