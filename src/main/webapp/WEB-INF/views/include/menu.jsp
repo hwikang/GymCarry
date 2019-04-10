@@ -17,8 +17,7 @@
 
   <a class="item" style="background-color:#4DD0FA;border-radius: 10px">짐프로틴 사러 가기</a>
 
-  
-  </div>
+ </div>
  <style>
  	#menu a{color:white}
  	
