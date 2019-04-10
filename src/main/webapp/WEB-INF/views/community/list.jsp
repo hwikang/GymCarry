@@ -29,6 +29,9 @@
 			<button onClick="clickUploadBtn()">사진올리기</button>
 		</div>
 		<div class="ui grid three column">
+			<c:forEach var="dto" items="${list}">
+				<img src="${uploadPath }/${dto.comImage }" />
+			</c:forEach>
 		<!-- 이미지들어갈곳 -->
 		</div>
 	</div>
@@ -65,18 +68,14 @@
 	<div class="ui tiny modal" >
 		<div class="header">업로드</div>
 		<div class="content">
-			<form action="${path }/community/upload.do">
-				<input type="file" />
-				<hr/>
-				글내용 <input type="text" name="comDes" style="width:100%;height:300px;"/>
-				<input type="hidden" name="userid" value="khdrogba"/>
-				<input type="hidden" name="comNo" value="0"/>
-				<input type="hidden" name="views" value="0"/>
-				<input type="hidden" name="likes" value="0"/>
-				<input type="hidden" name="replys" value="0"/>
-				
-				<input type="submit" value="게시"/>
-			</form>
+			<form action="${path}/community/upload.do" method="post" enctype="multipart/form-data">
+				<input type="file" name="comImage" /><hr/>				
+				글내용 
+				<input type="text" name="comDes" style="width:100%;height:300px;"/>
+				<input type="text" name="userid" value="khdrogba"/>
+				<input type="submit" value="게시"/>	
+			</form>		
+			
 		</div>
 	</div>
 	<!-- 업로드모달 -->
