@@ -10,6 +10,9 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.js"></script>
+
+
+
 <style>
 	img{
 		width:100%;
@@ -22,6 +25,7 @@
 </style>
 </head>
 <%@ include file="../include/menu.jsp" %>
+
 <body>
 	
 	<div class="container">
@@ -30,7 +34,9 @@
 		</div>
 		<div class="ui grid three column">
 			<c:forEach var="dto" items="${list}">
-				<img src="${uploadPath }/${dto.comImage }" />
+			
+				<img src="${path }/community/images/${dto.comImage}" />
+				
 			</c:forEach>
 		<!-- 이미지들어갈곳 -->
 		</div>
@@ -86,8 +92,8 @@
 	/* //이미지생성 */
 	const createImage = () =>{
 		for(var i=0;i<10;i++){
-			let img = faker.image.avatar(); //이미지불러옴
-			//console.log(img);
+			let img = faker.image.avatar(); //이미지불러옴//console.log(img);
+			
 			grid.innerHTML += '<div class="column" onClick="clickImage(event)" ><img src='+img+' /></div>';
 			
 		}

@@ -11,7 +11,7 @@
   <a class="item">공지사항</a>
   <a href="${path }/community.do" class="item">커뮤니티</a>
   <a class="item">로그인</a>
-  <a class="item">로그아웃</a>
+  <a href="${path }/userJoin.do"class="item">회원가입</a>
   <a class="item">트레이너신청하기</a>
   <a class="item" style="background-color:#4DD0FA;border-radius: 10px">짐프로틴 사러 가기</a>
 </div>
