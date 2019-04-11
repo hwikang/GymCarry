@@ -92,8 +92,8 @@
 	/* //이미지생성 */
 	const createImage = () =>{
 		for(var i=0;i<10;i++){
-			let img = faker.image.avatar(); //이미지불러옴
-			//console.log(img);
+			let img = faker.image.avatar(); //이미지불러옴//console.log(img);
+			
 			grid.innerHTML += '<div class="column" onClick="clickImage(event)" ><img src='+img+' /></div>';
 			
 		}

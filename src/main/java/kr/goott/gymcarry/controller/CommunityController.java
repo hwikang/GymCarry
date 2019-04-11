@@ -1,6 +1,4 @@
-
 package kr.goott.gymcarry.controller;
-
 import java.io.File;
 import java.util.List;
 import java.util.UUID;
@@ -39,7 +37,7 @@ public class CommunityController {
 		List<CommunityDTO> list = communityDAO.comList();
 		logger.info(list.get(0).getComImage()+"==========");
 		model.addAttribute("uploadPath", "");
-		model.addAttribute("list", list);  //¸ðµç Ä¿¹Â´ÏÆ¼ ¸®½ºÆ®
+		model.addAttribute("list", list);  //ï¿½ï¿½ï¿½ Ä¿ï¿½Â´ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½Æ®
 		logger.info("get it");
 		return "community/list";
 	}
@@ -67,7 +65,7 @@ public class CommunityController {
 			logger.info("content type="+comImage.getContentType()); 
 		  
 			String savedName = comImage.getOriginalFilename(); //
-			savedName = uploadFile(savedName,comImage.getBytes());   //¾÷·Îµå
+			savedName = uploadFile(savedName,comImage.getBytes());   //ï¿½ï¿½ï¿½Îµï¿½
 			
 			CommunityDTO dto = new CommunityDTO();
 			dto.setUserid(userid);
@@ -98,3 +96,4 @@ public class CommunityController {
 	
 
 }
+
