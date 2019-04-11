@@ -21,7 +21,10 @@
 		width:80%;
 		margin-left:10%;
 	}
-
+	#uploadBtn button{
+		width:100%;
+	}
+	
 </style>
 </head>
 <%@ include file="../include/menu.jsp" %>
@@ -29,16 +32,22 @@
 <body>
 	
 	<div class="container">
-		<div style="margin:20px;">
-			<button onClick="clickUploadBtn()">사진올리기</button>
+		<div style="margin:20px;" id="uploadBtn" class="ui grid">
+			<div class="twelve wide column"></div>
+			<div class="four wide column">
+				<button class="big ui blue button" onClick="clickUploadBtn()">사진올리기</button>
+			</div>
 		</div>
-		<div class="ui grid three column">
+		<!-- 이미지들어갈곳 -->
+		<div class="ui grid three column" id="contentDiv">
 			<c:forEach var="dto" items="${list}">
 			
-				<img src="${path }/community/images/${dto.comImage}" />
+				<div class="column" onClick="clickImage(event)">
+					<img src="${path }/community/images/${dto.comImage}" />
+				</div>
 				
 			</c:forEach>
-		<!-- 이미지들어갈곳 -->
+		
 		</div>
 	</div>
 	
@@ -50,7 +59,7 @@
 		    <img class="ui avatar image" src="/images/avatar/large/elliot.jpg"> Elliot
 		    <span class="right floated">10 views</span>
 		  </div>
-		   <div class="image comImage" >
+		   <div class="image comImage" ><!-- Modal 이미지div -->
 		   	 <img src="" >
 		  </div>
 		  <div class="content">
@@ -75,11 +84,19 @@
 		<div class="header">업로드</div>
 		<div class="content">
 			<form action="${path}/community/upload.do" method="post" enctype="multipart/form-data">
-				<input type="file" name="comImage" /><hr/>				
+				<div>
+					<label for="comImage">
+						<img src="${path}/resources/uploadBtn.png" style="width:50%;margin-left:25%"/>
+					</label>
+					<input type="file" name="comImage" id="comImage" style="display:none;"/>
+				</div>
+				<hr/>				
 				글내용 
 				<input type="text" name="comDes" style="width:100%;height:300px;"/>
-				<input type="text" name="userid" value="khdrogba"/>
-				<input type="submit" value="게시"/>	
+				<input type="hidden" name="userid" value="khdrogba"/>
+				<div>
+					<input type="submit" value="게시" class="ui blue button" style="width:100%"/>	
+				</div>
 			</form>		
 			
 		</div>
@@ -89,24 +106,17 @@
 <script>
 	const grid = document.querySelector(".ui.grid");
 	
-	/* //이미지생성 */
-	const createImage = () =>{
-		for(var i=0;i<10;i++){
-			let img = faker.image.avatar(); //이미지불러옴//console.log(img);
-			
-			grid.innerHTML += '<div class="column" onClick="clickImage(event)" ><img src='+img+' /></div>';
-			
-		}
-		
-	}
-	
 
 	//이미지 클릭 이벤트
 	function clickImage(e){
 		let comImage = document.querySelector(".comImage");
 		//comImage.addEventListener("click",function(){
-			let img = faker.image.avatar(); //모달 이미지불러옴
-			comImage.innerHTML = "<div><img src="+img+" /></div>"
+			console.log(e.target.src)
+			//let img = JSON.parse(e.target)
+			let img = JSON.stringify(e.target);
+			console.log(img);
+			
+			comImage.innerHTML = "<div><img src='"+e.target.src+"'/></div>"
 				
 			
 			$(function(){
@@ -124,7 +134,7 @@
 		
 		
 	function init(){
-		createImage();
+
 
 	}
 	init();
