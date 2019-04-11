@@ -38,7 +38,7 @@ public class CommunityController {
 		logger.info("getting");
 		List<CommunityDTO> list = communityDAO.comList();
 		logger.info(list.get(0).getComImage()+"==========");
-		model.addAttribute("uploadPath", uploadPath);
+		model.addAttribute("uploadPath", "");
 		model.addAttribute("list", list);  //모든 커뮤니티 리스트
 		logger.info("get it");
 		return "community/list";
