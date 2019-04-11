@@ -2,13 +2,15 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!--  parameterType="kr.goott.gymcarry.model.dto.CommunityDTO" -->
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="community">
-	<insert id="insertCommunity">
-		insert into communitytbl(comno,userid,comimage,comdes,views,likes,replys,regdate) values(1,#{userid},'no image',#{comDes},#{views},#{likes},#{replys},sysdate)
+	<insert id="insertCommunity" parameterType="kr.goott.gymcarry.model.dto.CommunityDTO">
+		insert into communitytbl(comno,userid,comimage,comdes,views,likes,replys,regdate) values(comseq.nextval,#{userid},#{comImage},#{comDes},0,0,0,sysdate)
 	</insert>
-	
+	<select id="viewCommunity" resultType="kr.goott.gymcarry.model.dto.CommunityDTO">
+		select * from communitytbl order by comno desc
+	</select>
 </mapper>
 
 

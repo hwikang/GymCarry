@@ -11,6 +11,10 @@ public class CommunityDTO {
 	private int replys;
 	private String regdate;
 	
+	
+	public CommunityDTO() {
+		
+	}
 	public CommunityDTO(int comNo,String userid,String comImage, String comDes, int views,int likes,int replys) {
 		this.comNo= comNo;
 		this.userid = userid;
@@ -21,6 +25,8 @@ public class CommunityDTO {
 		this.replys = replys;		
 		
 	}
+	
+	
 	
 	
 

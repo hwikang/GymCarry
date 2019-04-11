@@ -15,7 +15,10 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/css/**" location="/css/" ></resources>
-
+	<resources mapping="/community/images/**" location="file:///e:/gymcarry/GymCarry/src/main/webapp/resources/community/" />
+	<resources mapping="/mainSlide/css/**" location="/mainSlide/css/" />
+	<resources mapping="/mainSlide/js/**" location="/mainSlide/js/" />
+	<resources mapping="/mainSlide/images/**" location="/mainSlide/images/" />
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -24,12 +27,11 @@
 	
 	<context:component-scan base-package="kr.goott.gymcarry" />
 	
-	<!-- <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolever">
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485760"/>
-
-	</beans:bean> -->
+	</beans:bean> 
 
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="e:/gymcarry/upload"/>
+		<beans:constructor-arg value="e:/gymcarry/GymCarry/src/main/webapp/resources/community"/>
 	</beans:bean>
 </beans:beans>

@@ -1,5 +1,7 @@
 package kr.goott.gymcarry.model.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -22,6 +24,13 @@ public class CommunityDAO implements CommunityDAOInterface {
 		logger.info("insert community called...");
 		logger.info("dao에서 dto userid"+dto.getUserid());
 		sqlSession.insert("community.insertCommunity" , dto);  //dto 불러온거를 sqlsessiond을 통해 때려받는다
+	}
+
+	@Override
+	public List<CommunityDTO> comList() {
+		logger.info("community list called...");
+		return sqlSession.selectList("community.viewCommunity");
+		
 	}
 
 }
