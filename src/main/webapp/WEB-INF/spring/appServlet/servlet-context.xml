@@ -18,6 +18,7 @@
 	<resources mapping="/js/**" location="/js/" ></resources>
 	
 	<resources mapping="/community/images/**" location="file:///e:/gymcarry/GymCarry/src/main/webapp/resources/community/" />
+
 	<resources mapping="/mainSlide/css/**" location="/mainSlide/css/" />
 	<resources mapping="/mainSlide/js/**" location="/mainSlide/js/" />
 
@@ -35,6 +36,6 @@
 	</beans:bean> 
 
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="e:/gymcarry/GymCarry/src/main/webapp/resources/community"/>
+		<beans:constructor-arg value="d:/springwork/GymCarry/src/main/webapp/resources/community"/>
 	</beans:bean>
 </beans:beans>
