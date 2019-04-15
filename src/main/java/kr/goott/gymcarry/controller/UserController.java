@@ -23,9 +23,10 @@ public class UserController{
 	public String userJoin() {
 		return "user/userJoin";
 	}
-	@RequestMapping(value="/login.do",method = {RequestMethod.GET, RequestMethod.POST})
-	public String login(HttpServletResponse res, Model model) {
-		return "user/login";
+	
+	@RequestMapping(value="/user/naverLogin.do")
+	public String naverLogin() {
+		return "user/naverLogin";
 	}
 
 }

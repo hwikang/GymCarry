@@ -1,3 +1,6 @@
+<%@page import="java.math.BigInteger"%>
+<%@page import="java.net.URLEncoder"%>
+<%@page import="java.security.SecureRandom"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -29,9 +32,9 @@
 						<span class="paper-fnt"><b>계정</b>을 만들어요!</span>
 					</div>
 					<div class="join-select">
-						<div class="facebook-ico"><a href="${path }/facebookLogin" ><img src="${path }/resources/facebook-logo.png" width="20px" height="20px"/>페이스북 계정으로 시작하기</a></div>
+						<div class="facebook-ico"><a href="${path }/user/facebookLogin" ><img src="${path }/resources/facebook-logo.png" width="20px" height="20px"/>페이스북 계정으로 시작하기</a></div>
 						<div class="kakao-ico"><a href="#"><img src="${path }/resources/kakao-logo.png" width="20px" height="20px"/>카카오톡 계정으로 시작하기</a></div>
-						<div class="naver-ico"><a href="#"><img src="${path }/resources/naver-ico.png" width="30px" height="30px"/>네이버 계정으로 시작하기</a></div>
+						<div class="naver-ico"><a href="${path }/user/naverLogin"><img src="${path }/resources/naver-ico.png" width="30px" height="30px"/>네이버 계정으로 시작하기</a></div>
 						<div class="paper-bottom">
 							<div class="paper-bottom-1">
 								<span>아니면 그냥,</span>
