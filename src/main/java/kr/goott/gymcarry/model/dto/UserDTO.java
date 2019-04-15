@@ -7,7 +7,11 @@ public class UserDTO {
 	private String username;
 	private String userimage;
 	private int protein;
+	private String naverLogStatus = "N";
+	private String naverid;
+	private String navername;
 	private String regdate;
+	
 	public UserDTO() {}
 	public int getUserno() {
 		return userno;
@@ -50,6 +54,26 @@ public class UserDTO {
 	}
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
+	}
+	
+	public String getNaverLogStatus() {
+		return naverLogStatus;
+	}
+	public void setNaverLogStatus(String naverLogStatus) {
+		this.naverLogStatus = naverLogStatus;
+	}
+	
+	public String getNaverid() {
+		return naverid;
+	}
+	public void setNaverid(String naverid) {
+		this.naverid = naverid;
+	}
+	public String getNavername() {
+		return navername;
+	}
+	public void setNavername(String navername) {
+		this.navername = navername;
 	}
 	@Override
 	public String toString() {
