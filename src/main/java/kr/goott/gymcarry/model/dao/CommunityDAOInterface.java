@@ -11,4 +11,9 @@ public interface CommunityDAOInterface {
 	public List<CommunityDTO> comList();
 	//해당 글 보기
 	public CommunityDTO viewCommunity(int comNo) ;
+	//글수정
+	public CommunityDTO editCommunity(CommunityDTO dto) ;
+	//글삭제
+	public void deleteCommunity(int comNo);
+	
 }

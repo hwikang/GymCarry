@@ -14,6 +14,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="viewCommunity" resultType="kr.goott.gymcarry.model.dto.CommunityDTO">
 		select * from communitytbl where comno=#{comNo}
 	</select>
+	<update id="editCommunity">
+		update communitytbl set comImage=#{comImage}, comDes=#{comDes} where comNo=#{comNo}
+	</update>
+	<delete id="deleteCommunity">
+		delete communitytbl where comno=#{comNo}
+	</delete>
+	
 </mapper>
 
 
