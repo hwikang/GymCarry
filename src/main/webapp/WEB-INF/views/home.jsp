@@ -9,7 +9,6 @@
     	<title>GYM CARRY</title>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  
-        <title>Fullscreen Background Image Slideshow with CSS3ssS</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <meta name="description" content="Fullscreen Background Image Slideshow with CSS3 - A Css-only fullscreen background image slideshow" />
         <meta name="keywords" content="css3, css-only, fullscreen, background, slideshow, images, content" />
@@ -52,9 +51,9 @@
             </div>
             	<!-- 상단 메뉴 -->
              <div id="menu"class="ui secondary right menu " style="font-family: 'Jua', sans-serif;font-size:18px;">
-			  <a class="item"><img src="${path }/resources/gclogo.png" style="width:400px;height:250px"/></a>
+			  <a class="item" href="${path }/"><img src="${path }/resources/gclogo.png" style="width:400px;height:250px"/></a>
 			  <a class="item active">트레이너찾기 </a>
-			  <a class="item">공지사항</a>
+			  <a class="item" href="${path }/notice.do">공지사항</a>
 			  <a href="${path }/community.do" class="item">커뮤니티</a>
 			  <a class="item">로그인</a>
 			  <a href="${path }/userJoin.do"class="item">회원가입</a>
@@ -68,12 +67,12 @@
             <header id="portal">
                 <h1>GYM CARRY <span>이용하는 방법</span></h1>
                 <h2>&nbsp;&nbsp;&nbsp;&nbsp;  버튼을 누르면 해당 페이지로 이동합니다.</h2>
-				<p class="codrops-demos">
-					<a href="index.html">GYM CARRY 이용 방법</a>
-					<a href="index2.html">트레이너가 되어 보세요.</a>  <!-- 트레이너신청하기페이지 -->
-					<a href="index3.html">트레이너를 추천해 드려요!</a>
-					<a href="index4.html">커뮤니티에 글 올리기!</a>
-					<a href="index4.html">생활꿀팁</a>
+				<p>
+					<button onclick="scrollTo1()">GYM CARRY 이용 방법</button>
+					<button onclick="scrollTo2()">트레이너가 되어 보세요.</button>  <!-- 트레이너신청하기페이지 -->
+					<button onclick="scrollTo3()">트레이너를 추천해 드려요!</button>
+					<button onclick="scrollTo4()">커뮤니티에 글 올리기!</button>
+					<button onclick="scrollTo5()">생활꿀팁</button>
 				</p>
             </header>
             
@@ -165,93 +164,154 @@
             <div id="trainers"> <!-- float-frame 과 unit의미없음   -->
        			<div class="container float-unit">
 				  	<img src="${path }/resources/selfi1.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
-				  	<div class="overlay">
+				  		<a href="#"><div class="overlay">
 					    <div class="text"><i class="user circle outline icon"></i>
 					    <span id="email">yslg86@naver.com</span><hr/> <!-- email적는란 -->
 					    <span id="comment">헬스 경력 2년차입니다. 처음 입문하시는 분들께 도움이 되고 싶어요!</span> <!-- 코멘트적는란 -->
 				    	</div>
-				  	</div>
+				  	</div></a>
 				</div>
 				<div class="container float-unit">
 				  	<img src="${path }/resources/selfi2.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
-				  	<div class="overlay">
+				  		<a href="#"><div class="overlay">
 					    <div class="text"><i class="user circle outline icon"></i>
-					    <span id="email">yslg86@naver.com</span><hr/> <!-- email적는란 -->
-					    <span id="comment">헬스 경력 3년차입니다. 처음 입문하시는 분들께 도움이 되고 싶어요!</span> <!-- 코멘트적는란 -->
+					    <span id="email2">yslg86@naver.com</span><hr/> <!-- email적는란 -->
+					    <span id="comment2">헬스 경력 3년차입니다. 처음 입문하시는 분들께 도움이 되고 싶어요!</span> <!-- 코멘트적는란 -->
 				    	</div>
-				  	</div>
+				  	</div></a>
 				</div>
 				<div class="container float-unit">
 				  	<img src="${path }/resources/selfi3.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
-				  	<div class="overlay">
+				  	<a href="#"><div class="overlay">
 					    <div class="text"><i class="user circle outline icon"></i>
-					    <span id="email">yslg86@naver.com</span><hr/> <!-- email적는란 -->
-					    <span id="comment">헬스 경력 4년차입니다. 처음 입문하시는 분들께 도움이 되고 싶어요!</span> <!-- 코멘트적는란 -->
+					    <span id="email3">yslg86@naver.com</span><hr/> <!-- email적는란 -->
+					    <span id="comment3">헬스 경력 4년차입니다. 처음 입문하시는 분들께 도움이 되고 싶어요!</span> <!-- 코멘트적는란 -->
 				    	</div>
-				  	</div>
+				  	</div></a>
 				</div>
 				<div class="container float-unit">
 				  	<img src="${path }/resources/selfi4.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
-				  	<div class="overlay">
+				  		<a href="#"><div class="overlay">
 					    <div class="text"><i class="user circle outline icon"></i>
-					    <span id="email">yslg86@naver.com</span><hr/> <!-- email적는란 -->
-					    <span id="comment">헬스 경력 5년차입니다. 처음 입문하시는 분들께 도움이 되고 싶어요!</span> <!-- 코멘트적는란 -->
+					    <span id="email4">yslg86@naver.com</span><hr/> <!-- email적는란 -->
+					    <span id="comment4">헬스 경력 5년차입니다. 처음 입문하시는 분들께 도움이 되고 싶어요!</span> <!-- 코멘트적는란 -->
 				    	</div>
-				  	</div>
+				  	</div></a>
 				</div>
 				<div class="container float-unit">
 				  	<img src="${path }/resources/selfi5.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
-				  	<div class="overlay">
+				  		<a href="#"><div class="overlay">
 					    <div class="text"><i class="user circle outline icon"></i>
-					    <span id="email">yslg86@naver.com</span><hr/> <!-- email적는란 -->
-					    <span id="comment">헬스 경력 6년차입니다. 처음 입문하시는 분들께 도움이 되고 싶어요!</span> <!-- 코멘트적는란 -->
+					    <span id="email5">yslg86@naver.com</span><hr/> <!-- email적는란 -->
+					    <span id="comment5">헬스 경력 6년차입니다. 처음 입문하시는 분들께 도움이 되고 싶어요!</span> <!-- 코멘트적는란 -->
 				    	</div>
-				  	</div>
+				  	</div></a>
 				</div>
 				<div class="container float-unit">
 				  	<img src="${path }/resources/selfi6.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
-				  	<div class="overlay">
+				  		<a href="#"><div class="overlay">
 					    <div class="text"><i class="user circle outline icon"></i>
-					    <span id="email">yslg86@naver.com</span><hr/> <!-- email적는란 -->
-					    <span id="comment">헬스 경력 2년차입니다. 처음 입문하시는 분들께 도움이 되고 싶어요!</span> <!-- 코멘트적는란 -->
+					    <span id="email6">yslg86@naver.com</span><hr/> <!-- email적는란 -->
+					    <span id="comment6">헬스 경력 2년차입니다. 처음 입문하시는 분들께 도움이 되고 싶어요!</span> <!-- 코멘트적는란 -->
 				    	</div>
-				  	</div>
+				  	</div></a>
 				</div>
 	
         	</div>
         
         	
         	<div id="title4">JOIN COMMUNITY</div>
-        	<div id="com">
-        		
+        	<div id="com" style="border:outset; margin-top:30px; padding:50px 0px 50px 0px">
+        		<h3>1. <a href="#" style="color:red">회원가입 및 로그인.</a><h3/>
+        		<h3>2. <a href="#" style="color:red">GYMCARRY 커뮤니티</a>에 입장!</h3>
+        		<h3>3. 글이나 사진 올리기</h3>
+        		<h3>4. 운동 외적인 글 또는 광고성 글은 제지 당할 수 있습니다.</h3>
         	</div>
         	
-        	<div>
-        		GYM CARYY 꿀팁zzzzzzz
+        	<div id ="title5">GYM CARYY 꿀팁</div>
+        	<div id=honeyTip>
+        		<div class="container float-unit">
+				  	<img src="${path }/resources/tip1.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
+				  	<a href="${path }/honeyTip.do" class="item"><div class="overlay">
+					    <div class="text"><i class="hand point right outline icon"></i>
+					    <span id="report">강휘 기자</span><hr/> <!-- email적는란 -->
+					    <span id="comment">살을 빼기 위해선 절대로 먹어선 안되는 음식 탑 5를 선정해보았습니다.</span> <!-- 코멘트적는란 -->
+				    	</div>
+				  	</div></a>
+				</div>
+				<div class="container float-unit">
+				  	<img src="${path }/resources/tip2.png" alt="Avatar" class="image ui medium rounded" style="height:250px">
+				  	<a href="${path }/honeyTip2.do" class="item"><div class="overlay">
+					    <div class="text"><i class="hand point right outline icon"></i>
+					    <span id="report2">지경호 기자</span><hr/> <!-- email적는란 -->
+					    <span id="comment2">당뇨 극복하기!</span> <!-- 코멘트적는란 -->
+				    	</div>
+				  	</div></a>
+				</div>
+				<div class="container float-unit">
+				  	<img src="${path }/resources/tip3.png" alt="Avatar" class="image ui medium rounded" style="height:250px">
+				  	<a href="${path }/honeyTip3.do" class="item"><div class="overlay">
+					    <div class="text"><i class="hand point right outline icon"></i>
+					    <span id="report3">이윤성 기자</span><hr/> <!-- email적는란 -->
+					    <span id="comment3">연예인들의 다이어트 꿀팁!</span> <!-- 코멘트적는란 -->
+				    	</div>
+				  	</div></a>
+				</div>
+				<div class="container float-unit">
+				  	<img src="${path }/resources/tip4.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
+				  	<a href="${path }/honeyTip4.do" class="item"><div class="overlay">
+					    <div class="text"><i class="hand point right outline icon"></i>
+					    <span id="report3">아이유 기자</span><hr/> <!-- email적는란 -->
+					    <span id="comment3">눈건강과 다이어트를 한번에!</span> <!-- 코멘트적는란 -->
+				    	</div>
+				  	</div></a>
+				</div>
+				<div class="container float-unit">
+				  	<img src="${path }/resources/tip5.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
+				  	<a href="${path }/honeyTip5.do" class="item"><div class="overlay">
+					    <div class="text"><i class="hand point right outline icon"></i>
+					    <span id="report3">강휘 기자</span><hr/> <!-- email적는란 -->
+					    <span id="comment3">3분할 운동 정석.</span> <!-- 코멘트적는란 -->
+				    	</div>
+				  	</div></a>
+				</div>
+
+        	</div>
+        	<div id=blank style="font-size:15px">Gym Carry 
+        	대표:강휘<br/>
+        	공동대표: 지경호, 이윤성<br/>
+        	주소:대한민국 서울시 구로구 구트아카데미 2층<br/>
+        	연락처:010-2200-7646<br/>
+        	이메일: goott@naver.com<br/>
+        	
         	</div>
         	
         	
         	<!-- 따라다니는 버튼 -->
-        	<a href="#">
+        	<a onclick="scrollToTop()">
 	        	<div id="top">
 					<i class= "arrow up icon" style="width:20px" ></i>
 				</div>
 			</a>
-        </div>
-        
-        
+			
+			
+			
+        </div>   
     </body>
     
 <style>
 	body{font-family: 'Jua', sans-serif;color:white }
 	#menu a{color:white}
 	#portal{margin-left:27%}
+	#portal button{border-radius:10px;background:#890422;font-family: 'Jua', sans-serif;color:white; font-size:17px;border-style:inherit;cursor:pointer }
 	#portal a{font-size:15px}	
 	#com{clear:both;} /* float-left 종료시키기 */
 	#trainers{margin-left:220px }
-	#title1, #title2, #title3{text-algin:center;margin-top:400px;margin-bottom:50px;font-size:30px}
+	#honeyTip{margin-left:330px;}
+	#title1, #title2, #title3, #title5{text-algin:center;margin-top:400px;margin-bottom:50px;font-size:30px}
 	#title4{text-algin:center;margin-top:650px;font-size:30px}
-		
+	#blank{margin-top:650px;}
+	
 	.float-unit{float:left;margin-left:10px;margin-bottom:10px;position: relative;width: 200px;}		
 	.image {
 	  display: block;
@@ -275,6 +335,9 @@
 	#trainers .container:hover .overlay {
 	  opacity: 0.7;
 	}
+	#honeyTip .container:hover .overlay {
+	  opacity: 0.7;
+	}
 	
 	.text {
 	  color: white;
@@ -287,13 +350,14 @@
 	  transform: translate(-50%, -50%);
 	  text-align: center;
 	}
-	/* 고정돼있는 버튼 */
+	/* 따라다니는 고정 버튼 */
 	#top{ position:fixed; width:30px;height:20px; 
 		right:20px; /* 창에서 오른쪽 길이 */ 
 		top:97%; /* 창에서 위에서 부터의 높이 */ 
 		border-radius:50%;
 		background-color:white ;
 		color :#890422;
+		cursor:pointer;
 		}
 	
 			
@@ -303,6 +367,24 @@
 	function closex(){  //광고 닫는 함수 
 		const closex = document.getElementById('carousel-example-generic');
 		closex.style.display='none';
+	}
+	function scrollTo1(){
+		window.scrollTo(0,650);	
+	}
+	function scrollTo2(){
+		window.scrollTo(0,1330);	
+	}
+	function scrollTo3(){
+		window.scrollTo(0,2000);	
+	}
+	function scrollTo4(){
+		window.scrollTo(0,2700);	
+	}
+	function scrollTo5(){
+		window.scrollTo(0,3500);	
+	}
+	function scrollToTop(){
+		window.scrollTo(0,0);	
 	}
 	
 </script>
