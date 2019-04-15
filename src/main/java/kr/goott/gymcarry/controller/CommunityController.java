@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,30 +43,9 @@ public class CommunityController {
 		return "community/list";
 	}
 	
-	@RequestMapping(value= "community/view.do", method=RequestMethod.POST)
-	public ModelAndView viewCommunity(@RequestParam("comNo") int comNo,ModelAndView mav) {
-		logger.info("==========comNo="+comNo);
-		
-		CommunityDTO dto = communityDAO.viewCommunity(comNo);
-		logger.info("userid= "+ dto.getUserid());
-		mav.addObject("dto",dto);
-		mav.setViewName("community/view");
-	
-		return mav;
-	}
 
-	
-//	@RequestMapping(value="community/upload.do" , method=RequestMethod.POST)
-//	  public String insertCommunity(CommunityDTO dto) {
-//		  System.out.println("========================");
-//		  logger.info(dto.getComDes());
-//		  logger.info(dto.getUserid());
-//		  logger.info(dto.getComImage());
-//		  
-//		  communityDAO.insertCommunity(dto); 
-//		  return "redirect:/community.do"; 
-//	  }
-//	  
+
+
 	  @RequestMapping(value="community/upload.do" , method=RequestMethod.POST)
 	  public String insertCommunity(@RequestParam("comDes") String comDes , @RequestParam("userid") String userid ,  MultipartFile comImage)throws Exception {
 		  System.out.println("========================");
@@ -77,8 +57,7 @@ public class CommunityController {
 			logger.info("content type="+comImage.getContentType()); 
 		  
 			String savedName = comImage.getOriginalFilename(); //
-			savedName = uploadFile(savedName,comImage.getBytes());   //占쏙옙占싸듸옙
-			
+			savedName = uploadFile(savedName,comImage.getBytes());   //upload file at this time			
 			CommunityDTO dto = new CommunityDTO();
 			dto.setUserid(userid);
 			dto.setComDes(comDes);
@@ -102,7 +81,71 @@ public class CommunityController {
 			
 			return savedName;
 		}
+		
+		public boolean deleteFile(String deleteFilename) {
+			File file = new File(uploadPath,deleteFilename);
+			return file.delete();
+			
+		}
 	
+		
+		@RequestMapping(value= "community/view/{comNo}", method=RequestMethod.POST)
+		public ModelAndView viewCommunity(@PathVariable int comNo ,ModelAndView mav) {
+			logger.info("==========comNo="+comNo);
+			
+			CommunityDTO dto = communityDAO.viewCommunity(comNo);
+			logger.info("userid= "+ dto.getUserid());
+			mav.addObject("dto",dto);
+			mav.setViewName("community/view");
+		
+			return mav;
+		}
+		
+		@RequestMapping(value= "community/view/{comNo}", method=RequestMethod.GET)
+		public ModelAndView viewCommunity2(@PathVariable int comNo ,ModelAndView mav) {
+			logger.info("==========comNo="+comNo);
+			
+			CommunityDTO dto = communityDAO.viewCommunity(comNo);
+			logger.info("userid= "+ dto.getUserid());
+			mav.addObject("dto",dto);
+			mav.setViewName("community/view");
+		
+			return mav;
+		}
+
+		@RequestMapping(value= "community/edit/{comNo}", method=RequestMethod.POST)
+		public String editCommunity(@PathVariable int comNo ,@RequestParam("comDes") String comDes,@RequestParam("priorImage") String priorImage,MultipartFile comImage) throws Exception {
+			logger.info("edit=======comNo="+comNo);
+			logger.info("edit=======comDes="+comDes);
+			logger.info("file name="+comImage.getOriginalFilename());
+			CommunityDTO dto = new CommunityDTO();
+			
+			dto.setComDes(comDes);
+			dto.setComNo(comNo);
+			if(comImage.getOriginalFilename()=="") {
+				//when image doesnt changed
+				dto.setComImage(priorImage);  //set prior image name 
+			}else {
+				//when image and text changed
+				String savedName = comImage.getOriginalFilename(); //
+				savedName = uploadFile(savedName,comImage.getBytes());   //upload file at this time
+				dto.setComImage(savedName);				
+			}			
+			communityDAO.editCommunity(dto); 			
+			return "redirect:/community/view/"+comNo;
+			
+		}
+		
+		@RequestMapping(value="community/delete/{comNo}" ,method=RequestMethod.POST)
+		public String deleteCommunity(@PathVariable int comNo,@RequestParam("comImage") String comImage) {
+			logger.info("delete community called");
+			
+			communityDAO.deleteCommunity(comNo);
+			boolean bool= deleteFile(comImage);
+			logger.info("delete? = "+ bool);
+			return "redirect:/community.do";
+			
+		}
 
 	
 	

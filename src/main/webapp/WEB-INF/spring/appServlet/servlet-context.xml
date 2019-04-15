@@ -15,7 +15,10 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/css/**" location="/css/" ></resources>
-	<resources mapping="/community/images/**" location="file:///d:/springwork/GymCarry/src/main/webapp/resources/community/" />
+	<resources mapping="/js/**" location="/js/" ></resources>
+	
+	<resources mapping="/community/images/**" location="file:///e:/gymcarry/GymCarry/src/main/webapp/resources/community/" />
+
 	<resources mapping="/mainSlide/css/**" location="/mainSlide/css/" />
 	<resources mapping="/mainSlide/js/**" location="/mainSlide/js/" />
 

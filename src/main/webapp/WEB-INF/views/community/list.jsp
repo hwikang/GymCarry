@@ -9,9 +9,6 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.js"></script>
-
-
 
 <style>
 	img{
@@ -42,22 +39,21 @@
 		<div class="ui grid three column" id="contentDiv">
 			<c:forEach var="dto" items="${list}">				
 					<div class="column" >
-						<form action="${path}/community/view.do?comNo=${dto.comNo }" method="post" >
+						<form action="${path}/community/view/${dto.comNo }" method="get" ><!-- path variable -->
 							<label for="submit${dto.comNo}">								
 								<img src="${path }/community/images/${dto.comImage}"/>
 							</label>			
 							<input id="submit${dto.comNo}" type="submit" style="display:none;" />
 						</form>
-					</div>	
-			
+					</div>				
 			</c:forEach>
-		
 		</div>
 		<!--  -->
 	</div>
 
 
 	<!-- 이미지모달 -->
+	
 	<!-- 업로드 모달 -->
 	<div class="ui tiny modal" >
 		<div class="header">업로드</div>
@@ -84,37 +80,13 @@
 </body>
 <script>
 	const grid = document.querySelector(".ui.grid");
-	
 
-	//이미지 클릭 이벤트
-/* 	 function clickImage(e){
-		
-			
-			setTimeout(function(){
-				$(function(){
-					$('.ui.mini.modal').modal('show');						
-				})		
-			},1000)			
-
-	}  */
- 
 	//이미지 업로드 버튼클릭
 	function clickUploadBtn(){
 		$(function(){
 			$('.ui.tiny.modal').modal('show');	
 		})
-	}
-	
-		
-		
-	function init(){
-
-
-	}
-	init();
-
-	
-	
+	}	
 	
 	
 </script>

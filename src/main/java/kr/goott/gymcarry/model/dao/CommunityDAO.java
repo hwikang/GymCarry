@@ -39,4 +39,21 @@ public class CommunityDAO implements CommunityDAOInterface {
 		return sqlSession.selectOne("community.viewCommunity",comNo);
 	}
 
+	@Override
+	public CommunityDTO editCommunity(CommunityDTO dto) {
+		logger.info("edit community called");
+		return sqlSession.selectOne("community.editCommunity",dto);
+
+	}
+
+	@Override
+	public void deleteCommunity(int comNo) {
+		sqlSession.delete("community.deleteCommunity", comNo);
+		
+	}
+	
+	
+
+
+
 }
