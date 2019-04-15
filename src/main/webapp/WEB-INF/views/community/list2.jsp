@@ -42,11 +42,12 @@
 		<div class="ui grid three column" id="contentDiv">
 			<c:forEach var="dto" items="${list}">				
 					<div class="column" >
-						<form action="${path}/community/view.do?comNo=${dto.comNo }" method="post" >
-							<label for="submit${dto.comNo}">								
-								<img src="${path }/community/images/${dto.comImage}"/>
-							</label>			
-							<input id="submit${dto.comNo}" type="submit" style="display:none;" />
+						<form action="${path}/community.do?comNo=${dto.comNo }" method="post" target="iframe1">
+							<label for="submit">								
+								<img src="${path }/community/images/${dto.comImage}" onClick="clickImage(event)" />
+							</label>
+							<!-- <input type="hidden" name="comNo" value="" />		 -->					
+							<input id="submit" type="submit" style="display:none;" />
 						</form>
 					</div>	
 			
@@ -55,8 +56,17 @@
 		</div>
 		<!--  -->
 	</div>
+	
+	<!-- 이미지모달 --><!-- modal 안은 비어있으니  -->
 
-
+	<div id="modalDiv">
+	
+	</div>
+	<div class="ui mini modal" >
+		<iframe name="iframe1" style="width:100%;height:500px;">			
+		</iframe>	 
+	</div>
+	
 	<!-- 이미지모달 -->
 	<!-- 업로드 모달 -->
 	<div class="ui tiny modal" >
@@ -87,16 +97,21 @@
 	
 
 	//이미지 클릭 이벤트
-/* 	 function clickImage(e){
-		
+	 function clickImage(e){
+		//let comImage = document.querySelector(".comImage");
+		//comImage.addEventListener("click",function(){
+			//console.log(e.target.id)			
+			//comImage.innerHTML = "<div><img src='"+e.target.src+"'/></div>"
 			
 			setTimeout(function(){
 				$(function(){
-					$('.ui.mini.modal').modal('show');						
+					$('.ui.mini.modal').modal('show');	
+					
 				})		
-			},1000)			
+			},1000)
+			
 
-	}  */
+	} 
  
 	//이미지 업로드 버튼클릭
 	function clickUploadBtn(){
