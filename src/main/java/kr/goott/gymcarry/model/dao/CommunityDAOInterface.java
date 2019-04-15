@@ -9,4 +9,6 @@ public interface CommunityDAOInterface {
 	public void insertCommunity(CommunityDTO dto); 
 	//다보기
 	public List<CommunityDTO> comList();
+	//해당 글 보기
+	public CommunityDTO viewCommunity(int comNo) ;
 }

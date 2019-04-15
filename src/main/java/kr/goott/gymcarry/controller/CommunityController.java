@@ -37,9 +37,21 @@ public class CommunityController {
 		List<CommunityDTO> list = communityDAO.comList();
 		logger.info(list.get(0).getComImage()+"==========");
 		model.addAttribute("uploadPath", "");
-		model.addAttribute("list", list);  //��� Ŀ�´�Ƽ ����Ʈ
+		model.addAttribute("list", list);  //占쏙옙占� 커占승댐옙티 占쏙옙占쏙옙트
 		logger.info("get it");
 		return "community/list";
+	}
+	
+	@RequestMapping(value= "community/view.do", method=RequestMethod.POST)
+	public ModelAndView viewCommunity(@RequestParam("comNo") int comNo,ModelAndView mav) {
+		logger.info("==========comNo="+comNo);
+		
+		CommunityDTO dto = communityDAO.viewCommunity(comNo);
+		logger.info("userid= "+ dto.getUserid());
+		mav.addObject("dto",dto);
+		mav.setViewName("community/view");
+	
+		return mav;
 	}
 
 	
@@ -65,7 +77,7 @@ public class CommunityController {
 			logger.info("content type="+comImage.getContentType()); 
 		  
 			String savedName = comImage.getOriginalFilename(); //
-			savedName = uploadFile(savedName,comImage.getBytes());   //���ε�
+			savedName = uploadFile(savedName,comImage.getBytes());   //占쏙옙占싸듸옙
 			
 			CommunityDTO dto = new CommunityDTO();
 			dto.setUserid(userid);
