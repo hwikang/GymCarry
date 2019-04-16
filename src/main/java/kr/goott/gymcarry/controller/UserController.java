@@ -1,20 +1,20 @@
 package kr.goott.gymcarry.controller;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.goott.gymcarry.auth.SNSLogin;
 import kr.goott.gymcarry.auth.SnsValue;
-import kr.goott.gymcarry.model.dao.UserDAO;
+import kr.goott.gymcarry.model.dao.UserDAOInterface;
 import kr.goott.gymcarry.model.dto.UserDTO;
 
 @Controller
@@ -22,7 +22,7 @@ public class UserController{
 	final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@Inject
-	UserDAO userDAO;
+	UserDAOInterface userDAO;
 	
 	@Inject
 	private SnsValue naverSns;
@@ -34,6 +34,16 @@ public class UserController{
 		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
 		System.out.println(snsLogin.getNaverAuthURL());
 		return "user/userJoin";
+	}
+	
+	@RequestMapping(value="/login.do")
+	public String userLogin() {
+		return "user/userLogin";
+	}
+	
+	@RequestMapping(value="/user/loginChk.do", method =RequestMethod.POST)
+	public String userLoginChk() {
+		return "";
 	}
 	
 	@RequestMapping(value="/user/naverLogin.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -51,8 +61,28 @@ public class UserController{
 		return "user/naverLogin";
 	}
 	
-	@RequestMapping(value="/user/emailLogin.do")
+	@RequestMapping(value="/user/registerEmail.do")
 	public String emailLogin() {
-		return "user/emailLogin";
+		return "user/registerEmail";
+	}
+	
+	@RequestMapping(value="/user/direct.do", method = RequestMethod.POST)
+	public String registerEmail(@ModelAttribute UserDTO dto) {
+		userDAO.insertUser(dto);
+		return "user/registerDone";
+	}
+	
+	@RequestMapping(value="/user/regAddInfo.do")
+	public String regAddInfo() {
+		return "user/regAddInfo";
+	}
+	
+	@RequestMapping(value="/user/findId.do")
+	public String findId() {
+		return "user/findId";
+	}
+	@RequestMapping(value="/user/findPwd.do")
+	public String findPwd() {
+		return "user/findPwd";
 	}
 }
