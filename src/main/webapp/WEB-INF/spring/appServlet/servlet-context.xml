@@ -18,8 +18,10 @@
 	<resources mapping="/js/**" location="/js/" ></resources>
 	
 	<resources mapping="/community/images/**" location="file:///d:/spring/GymCarry/src/main/webapp/resources/community/" />
-	
+
+
 	<!-- 메인화면 css -->
+
 	<resources mapping="/mainSlide/css/**" location="/mainSlide/css/" />
 	<resources mapping="/mainSlide/js/**" location="/mainSlide/js/" />
 	<resources mapping="/mainSlide/images/**" location="/mainSlide/images/" />
