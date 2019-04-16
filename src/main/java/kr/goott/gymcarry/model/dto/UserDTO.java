@@ -1,13 +1,19 @@
 package kr.goott.gymcarry.model.dto;
 
+import java.util.Date;
+
 public class UserDTO {
 	private int userno;
 	private String userid;
 	private String userpwd;
 	private String username;
+	private String useremail;
+	private String userphone;
+	private String presentid;
 	private String userimage;
 	private int protein;
-	private String regdate;
+	private Date regdate;
+	
 	public UserDTO() {}
 	public int getUserno() {
 		return userno;
@@ -45,15 +51,36 @@ public class UserDTO {
 	public void setProtein(int protein) {
 		this.protein = protein;
 	}
-	public String getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(String regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
+	}
+	
+	public String getUseremail() {
+		return useremail;
+	}
+	public void setUseremail(String useremail) {
+		this.useremail = useremail;
+	}
+	public String getUserphone() {
+		return userphone;
+	}
+	public void setUserphone(String userphone) {
+		this.userphone = userphone;
+	}
+	public String getPresentid() {
+		return presentid;
+	}
+	public void setPresentid(String presentid) {
+		this.presentid = presentid;
 	}
 	@Override
 	public String toString() {
-		return "UserDTO [userid="+userid+"username="+username;
-		
+		return "UserDTO [userno=" + userno + ", userid=" + userid + ", userpwd=" + userpwd + ", username=" + username
+				+ ", useremail=" + useremail + ", userphone=" + userphone + ", presentid=" + presentid + ", userimage="
+				+ userimage + ", protein=" + protein + ", regdate=" + regdate + "]";
 	}
+	
 }

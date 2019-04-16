@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"/>
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> <!-- 구글폰트 -->
-<link rel="stylesheet" href="${path }/css/userJoin.css" type="text/css">
+<link rel="stylesheet" href="${path }/css/findPwd.css" type="text/css">
 </head>
 <body>
 <header>
@@ -24,25 +24,7 @@
 			<div class="col-xs-4 col-sm-4 col-md-4"></div>
 			<div class="col-xs-4 col-sm-4 col-md-4">
 				<div class="paper">
-					<div class="paper-top">
-						<strong>GYM CARRY</strong><span class="paper-fnt">회원가입</span><br>
-						<span class="paper-fnt"><b>계정</b>을 만들어요!</span>
-					</div>
-					<div class="join-select">
-						<div class="facebook-ico"><a href="${path }/user/facebookLogin.do" ><img src="${path }/resources/user/facebook-logo.png" width="20px" height="20px"/>페이스북 계정으로 시작하기</a></div>
-						<div class="kakao-ico"><a href="#"><img src="${path }/resources/user/kakao-logo.png" width="20px" height="20px"/>카카오톡 계정으로 시작하기</a></div>
-						<div class="naver-ico"><a href="${naver_url }"><img src="${path }/resources/user/naver-ico.png" width="30px" height="30px"/>네이버 계정으로 시작하기</a></div>
-						<div class="paper-bottom">
-							<div class="paper-bottom-1">
-								<span>아니면 그냥,</span>
-							</div>							
-							<div class="email-ico"><a href="${path }/user/registerEmail.do">이메일로 시작하기</a></div>
-							<div class="paper-bottom-2">이미 계정이 있으신가요? <a class="login-ico" href="#">로그인 하기</a></div>
-						</div>						
-					</div>
-					<div style="text-align:center;">
-						<img src="${path }/resources/logoct.png" width="70px" height="70px"/>		
-					</div>			
+				비밀번호를 찾아달라규		
 				</div>
 			</div>
 			<div class="col-xs-4 col-sm-4 col-md-4"></div>
