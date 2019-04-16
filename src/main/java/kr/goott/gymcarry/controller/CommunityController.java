@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.goott.gymcarry.model.dao.CommunityDAOInterface;
+import kr.goott.gymcarry.model.dao.CommunityDAO;
+import kr.goott.gymcarry.model.dao.CommunityReplyDAO;
 import kr.goott.gymcarry.model.dto.CommunityDTO;
 
 @Controller
@@ -27,7 +28,9 @@ public class CommunityController {
 	private static final Logger logger = LoggerFactory.getLogger(CommunityController.class);
 
 	@Inject
-	CommunityDAOInterface communityDAO;
+	CommunityDAO communityDAO;
+	@Inject 
+	CommunityReplyDAO communityReplyDao;
 	
 	@Resource(name="uploadPath")
 	String uploadPath;
@@ -89,12 +92,11 @@ public class CommunityController {
 		}
 	
 		
-		@RequestMapping(value= "community/view/{comNo}", method=RequestMethod.POST)
+		//@RequestMapping(value= "community/view/{comNo}", method=RequestMethod.POST)
 		public ModelAndView viewCommunity(@PathVariable int comNo ,ModelAndView mav) {
-			logger.info("==========comNo="+comNo);
-			
+
 			CommunityDTO dto = communityDAO.viewCommunity(comNo);
-			logger.info("userid= "+ dto.getUserid());
+			
 			mav.addObject("dto",dto);
 			mav.setViewName("community/view");
 		
@@ -103,11 +105,16 @@ public class CommunityController {
 		
 		@RequestMapping(value= "community/view/{comNo}", method=RequestMethod.GET)
 		public ModelAndView viewCommunity2(@PathVariable int comNo ,ModelAndView mav) {
-			logger.info("==========comNo="+comNo);
+//			logger.info("==========comNo="+comNo);
 			
-			CommunityDTO dto = communityDAO.viewCommunity(comNo);
-			logger.info("userid= "+ dto.getUserid());
+			CommunityDTO dto = communityDAO.viewCommunity(comNo); 
+//			logger.info("userid= "+ dto.getUserid());
 			mav.addObject("dto",dto);
+			//reply
+			mav.addObject("replyList",communityReplyDao.viewReply(comNo));
+			
+			
+			
 			mav.setViewName("community/view");
 		
 			return mav;
@@ -115,8 +122,8 @@ public class CommunityController {
 
 		@RequestMapping(value= "community/edit/{comNo}", method=RequestMethod.POST)
 		public String editCommunity(@PathVariable int comNo ,@RequestParam("comDes") String comDes,@RequestParam("priorImage") String priorImage,MultipartFile comImage) throws Exception {
-			logger.info("edit=======comNo="+comNo);
-			logger.info("edit=======comDes="+comDes);
+//			logger.info("edit=======comNo="+comNo);
+//			logger.info("edit=======comDes="+comDes);
 			logger.info("file name="+comImage.getOriginalFilename());
 			CommunityDTO dto = new CommunityDTO();
 			

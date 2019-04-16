@@ -17,7 +17,7 @@
 	<resources mapping="/css/**" location="/css/" ></resources>
 	<resources mapping="/js/**" location="/js/" ></resources>
 	
-	<resources mapping="/community/images/**" location="file:///e:/gymcarry/GymCarry/src/main/webapp/resources/community/" />
+	<resources mapping="/community/images/**" location="file:///d:/spring/GymCarry/src/main/webapp/resources/community/" />
 
 	<resources mapping="/mainSlide/css/**" location="/mainSlide/css/" />
 	<resources mapping="/mainSlide/js/**" location="/mainSlide/js/" />
@@ -37,7 +37,7 @@
 
 	<!-- oauth2 login -->
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="d:/springwork/GymCarry/src/main/webapp/resources/community"/>
+		<beans:constructor-arg value="d:/spring/GymCarry/src/main/webapp/resources/community"/>
 	</beans:bean>
 	<beans:bean id="naverClientID" class="java.lang.String">
 		<beans:constructor-arg value="BeYVCP07cxMmbpBrcYcg"/>
