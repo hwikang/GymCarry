@@ -27,7 +27,7 @@ public class UserDAO implements UserDAOInterface {
 
 	@Override
 	public void insertUser(UserDTO vo) {
-		// TODO Auto-generated method stub
+		sqlSession.insert("user.insertUser",vo);
 
 	}
 

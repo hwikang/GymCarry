@@ -1,16 +1,18 @@
 package kr.goott.gymcarry.model.dto;
 
+import java.util.Date;
+
 public class UserDTO {
 	private int userno;
 	private String userid;
 	private String userpwd;
 	private String username;
+	private String useremail;
+	private String userphone;
+	private String presentid;
 	private String userimage;
 	private int protein;
-	private String naverLogStatus = "N";
-	private String naverid;
-	private String navername;
-	private String regdate;
+	private Date regdate;
 	
 	public UserDTO() {}
 	public int getUserno() {
@@ -49,35 +51,36 @@ public class UserDTO {
 	public void setProtein(int protein) {
 		this.protein = protein;
 	}
-	public String getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(String regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
 	
-	public String getNaverLogStatus() {
-		return naverLogStatus;
+	public String getUseremail() {
+		return useremail;
 	}
-	public void setNaverLogStatus(String naverLogStatus) {
-		this.naverLogStatus = naverLogStatus;
+	public void setUseremail(String useremail) {
+		this.useremail = useremail;
 	}
-	
-	public String getNaverid() {
-		return naverid;
+	public String getUserphone() {
+		return userphone;
 	}
-	public void setNaverid(String naverid) {
-		this.naverid = naverid;
+	public void setUserphone(String userphone) {
+		this.userphone = userphone;
 	}
-	public String getNavername() {
-		return navername;
+	public String getPresentid() {
+		return presentid;
 	}
-	public void setNavername(String navername) {
-		this.navername = navername;
+	public void setPresentid(String presentid) {
+		this.presentid = presentid;
 	}
 	@Override
 	public String toString() {
-		return "UserDTO [userid="+userid+"username="+username;
-		
+		return "UserDTO [userno=" + userno + ", userid=" + userid + ", userpwd=" + userpwd + ", username=" + username
+				+ ", useremail=" + useremail + ", userphone=" + userphone + ", presentid=" + presentid + ", userimage="
+				+ userimage + ", protein=" + protein + ", regdate=" + regdate + "]";
 	}
+	
 }
