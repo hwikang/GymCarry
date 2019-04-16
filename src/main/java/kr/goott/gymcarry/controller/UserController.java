@@ -35,6 +35,17 @@ public class UserController{
 		System.out.println(snsLogin.getNaverAuthURL());
 		return "user/userJoin";
 	}
+	
+	@RequestMapping(value="/login.do")
+	public String userLogin() {
+		return "user/userLogin";
+	}
+	
+	@RequestMapping(value="/user/loginChk.do", method =RequestMethod.POST)
+	public String userLoginChk() {
+		return "";
+	}
+	
 	@RequestMapping(value="/user/naverLogin.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String naverLogin(Model model, @RequestParam String code) throws Exception {
 		//1. code를 이용해서 access_token 받기
@@ -64,5 +75,14 @@ public class UserController{
 	@RequestMapping(value="/user/regAddInfo.do")
 	public String regAddInfo() {
 		return "user/regAddInfo";
+	}
+	
+	@RequestMapping(value="/user/findId.do")
+	public String findId() {
+		return "user/findId";
+	}
+	@RequestMapping(value="/user/findPwd.do")
+	public String findPwd() {
+		return "user/findPwd";
 	}
 }
