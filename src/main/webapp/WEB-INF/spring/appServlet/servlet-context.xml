@@ -17,11 +17,11 @@
 	<resources mapping="/css/**" location="/css/" ></resources>
 	<resources mapping="/js/**" location="/js/" ></resources>
 	
-	<resources mapping="/community/images/**" location="file:///e:/gymcarry/GymCarry/src/main/webapp/resources/community/" />
-
+	<resources mapping="/community/images/**" location="file:///d:/spring/GymCarry/src/main/webapp/resources/community/" />
+	
+	<!-- 메인화면 css -->
 	<resources mapping="/mainSlide/css/**" location="/mainSlide/css/" />
 	<resources mapping="/mainSlide/js/**" location="/mainSlide/js/" />
-
 	<resources mapping="/mainSlide/images/**" location="/mainSlide/images/" />
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -36,6 +36,6 @@
 	</beans:bean> 
 
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="d:/springwork/GymCarry/src/main/webapp/resources/community"/>
+		<beans:constructor-arg value="d:/spring/GymCarry/src/main/webapp/resources/community"/>
 	</beans:bean>
 </beans:beans>
