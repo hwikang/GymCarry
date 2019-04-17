@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -104,15 +106,21 @@ public class CommunityController {
 		}
 		
 		@RequestMapping(value= "community/view/{comNo}", method=RequestMethod.GET)
-		public ModelAndView viewCommunity2(@PathVariable int comNo ,ModelAndView mav) {
+		public ModelAndView viewCommunity2(@PathVariable int comNo ,ModelAndView mav,HttpSession session) {
 //			logger.info("==========comNo="+comNo);
 			
+		
+			//get dto values
 			CommunityDTO dto = communityDAO.viewCommunity(comNo); 
-//			logger.info("userid= "+ dto.getUserid());
+//			
 			mav.addObject("dto",dto);
-			//reply
-			mav.addObject("replyList",communityReplyDao.viewReply(comNo));
-			
+			//get reply dto values
+			mav.addObject("replyList",communityReplyDao.viewReply(comNo)); 
+			//view count++
+			communityDAO.viewCount(comNo);
+			//check like
+			 
+			//communityDAO.checkLike(comNo,userid)
 			
 			
 			mav.setViewName("community/view");
@@ -153,7 +161,19 @@ public class CommunityController {
 			return "redirect:/community.do";
 			
 		}
-
+		
+		@PostMapping(value="community/like/{comNo}")
+		public String likeCount(@PathVariable int comNo,@RequestParam("userid") String userid) {
+			communityDAO.likeCount(comNo);
+			communityDAO.insertLike(comNo, userid);
+			return "redirect:/community/view/"+comNo;
+		}
+		@PostMapping(value="community/unlike/{comNo}")
+		public String unlikeCount(@PathVariable int comNo,@RequestParam("userid") String userid) {
+			communityDAO.likeCountSub(comNo);
+			communityDAO.deleteLike(comNo, userid);
+			return "redirect:/community/view/"+comNo;
+		}
 	
 	
 
