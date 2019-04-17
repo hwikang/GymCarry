@@ -16,9 +16,11 @@
 
 </style>
 <body>
+<!-- (글을 보는)사용자의 액션 -->
 <form name="form" method="post" >
 	<%-- <input type="hidden" name="comNo" value="${dto.comNo}"> --%>
 	<input type="hidden" name="comImage" value="${dto.comImage}">
+	<input type="hidden" name="userid" value="khdrogba"/> <!-- 보는 userid -->
 	
 </form>
 
@@ -34,7 +36,7 @@
 			    	<span>${dto.userid }</span>
 			  	</div>
 			    <div class="ui four wide column"></div>
-			    <span class="ui four wide column">10 views</span>
+			    <span class="ui four wide column">${dto.views } views</span>
 			    <div class="two wide column"></div>
 		    </div>
 		    <div class="ui divider"></div>
@@ -69,12 +71,12 @@
 			    </div>
 			   
 			    <div class="five wide column">
-				    <div class="ui labeled button" tabindex="0">
+				    <div class="ui labeled button" tabindex="0" onclick="clickLike()">
 					  <div class="ui red button">
-					    <i class="heart icon"></i> Like
+					    <i class="heart outline icon"  id="likeIcon"></i> Like
 					  </div>
 					  <a class="ui basic red left pointing label">
-					    1,048
+					    <span>${dto.likes }</span>
 					  </a>
 				    </div>
 				</div>
@@ -85,7 +87,7 @@
 					   <i class="comment icon"></i> Reply
 					  </div>
 					  <a class="ui basic blue left pointing label">
-					   <span>3</sapn>		
+					   <span>${dto.replys }</sapn>		
 					  </a>
 				    </div>
 			     	
@@ -173,6 +175,25 @@
 <script>
 //const replyEdit = document.querySelectorAll("#replyEdit");  //수정버튼
 
+console.log("${path}")
+const clickLike = () =>{
+	const likeIcon = document.querySelector("#likeIcon");
+	
+	//likeIcon.classList.toggle("outline") //하트모양바꾸기
+	
+	if(likeIcon.classList.contains("outline")){
+		//like
+		document.form.action="${path}/community/like/${dto.comNo}"
+		document.form.submit();
+		
+	}else{
+		//여기는 unlike
+		document.form.action="${path}/community/unlike/${dto.comNo}"
+		document.form.submit();
+	}
+	
+	
+}
 
 const editInputAppear = (event) =>{
 	console.log(event)

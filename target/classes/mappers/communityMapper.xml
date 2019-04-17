@@ -20,6 +20,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteCommunity">
 		delete communitytbl where comno=#{comNo}
 	</delete>
+	<update id="viewCount">
+		update communitytbl set views=views+1 where comno=#{comno}
+	</update>
+	<update id="replyCount">
+		update communitytbl set replys=replys+1 where comno=#{comno}
+	</update>
+	<update id="likeCount">
+		update communitytbl set likes=likes+1 where comno=#{comno}
+	</update>
+	<update id="replyCountSub">
+		update communitytbl set replys=replys-1 where comno=#{comno}
+	</update>
+	<update id="likeCountSub">
+		update communitytbl set likes=likes-1 where comno=#{comno}
+	</update>
+	<insert id="insertLike">
+		insert into communitylike values(comlikeseq.nextval,#{userid},#{comNo})
+	</insert>
+	<delete id="deleteLike">
+		delete communitylike where comno=#{comNo} and userid=#{userid}
+	</delete>
 	
 </mapper>
 

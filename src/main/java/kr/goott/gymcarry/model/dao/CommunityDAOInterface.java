@@ -15,5 +15,19 @@ public interface CommunityDAOInterface {
 	public CommunityDTO editCommunity(CommunityDTO dto) ;
 	//글삭제
 	public void deleteCommunity(int comNo);
+	// view 수 들리기
+	public void viewCount(int comNo);
+	//reply 수늘리기
+	public void replyCount(int comNo);
+	//like 늘리기
+	public void likeCount(int comNo);
+	//reply빼기
+	public void replyCountSub(int comNo);
+	//like 빼기
+	public void likeCountSub(int comNo);
 	
+	//like table 에 추가
+	public void insertLike(int comNo,String userid);
+	//like table 에 삭제
+	public void deleteLike(int comNo,String userid);
 }
