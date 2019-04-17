@@ -28,13 +28,13 @@
 						<span class="paper-fnt">좋아요!</span><br>
 						<span class="paper-fnt">지금부터 <b>계정</b>을 만들게요!</span>
 					</div>
-					<form action="${path}/user/direct.do" method="post">
+					<form id="directFrm" action="${path}/user/direct.do" method="post">
 						<div class="row form-frm">
 							<div class="col-xs-6 col-sm-6 col-md-6 form-frm-left">
-								<div><input class="form-input" type="text" placeholder="아이디" name="userid" maxlength="24" autocomplete="off" /></div>
-								<div><input class="form-input" type="password" placeholder="비밀번호" name="userpwd" maxlength="24" autocomplete="off"/></div>
-								<div><input class="form-input" type="email" placeholder="이메일" name="useremail" maxlength="24" autocomplete="off"/></div>
-								<div><input class="form-input" type="text" placeholder="이름" name="username" maxlength="24" autocomplete="off"/></div>
+								<div><input class="form-input" type="text" placeholder="아이디" id="userid" name="userid" maxlength="24" autocomplete="off" /></div>
+								<div><input class="form-input" type="password" placeholder="비밀번호" id="userpwd" name="userpwd" maxlength="24" autocomplete="off"/></div>
+								<div><input class="form-input" type="email" placeholder="이메일" id="useremail" name="useremail" maxlength="24" autocomplete="off"/></div>
+								<div><input class="form-input" type="text" placeholder="이름" id="username" name="username" maxlength="24" autocomplete="off"/></div>
 							</div>	
 							<div class="col-xs-6 col-sm-6 col-md-6 form-frm-right">			
 								<div>
@@ -44,7 +44,7 @@
 								</div>				
 								<div class="form-input-tel">
 									<input class="form-input-tel-in" type="tel" name="userphone" id="userphone" placeholder="휴대전화 번호를 숫자만 입력" maxlength="24"/>
-									<button>인증문자 발송</button>
+									<button type="button">인증문자 발송</button>
 								</div>
 								<div>
 									<strong class="form-strong-fnt">추천인 아이디 입력하기</strong>
@@ -63,7 +63,7 @@
 										<span>수신동의 여부 및 설정은 회원정보 수정에서 확인할 수 있습니다.</span>
 									</div>
 								</div>
-								<input type="submit" value="회원 가입"/>
+								<button type="button" onclick="javascript:submitBtn();">회원 가입</button>
 							</div>					
 						</div>	
 					</form>	
@@ -75,6 +75,15 @@
 			<div class="col-xs-2 col-sm-2 col-md-2"></div>
 		</div>
 	</div>
+<script>
+	function submitBtn(){
+		const userid = document.querySelector('#userid').value;
+		const userpwd = document.querySelector('#userpwd').value;
+		const useremail = document.querySelector('#useremail').value;
+		const username = document.querySelector('#username').value;		
+		document.querySelector('#directFrm').submit();
+	}
+</script>
 </header>
 <footer>
 	<div>

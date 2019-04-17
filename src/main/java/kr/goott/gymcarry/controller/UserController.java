@@ -127,13 +127,15 @@ public class UserController {
 			} 
 	}
 	
-
 	@RequestMapping(value = "findId.do")
 	public String findId() {
 		logger.info("findId page view...");
 		return "user/findId";
 	}
-
+	@RequestMapping(value = "findIdSuccess.do")
+	public String findIdSuccess(@ModelAttribute UserDTO dto) {
+		return "";
+	}
 	@RequestMapping(value = "findPwd.do")
 	public String findPwd() {
 		logger.info("findPwd page view...");

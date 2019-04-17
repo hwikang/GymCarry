@@ -37,7 +37,7 @@ header{
     padding: 0;
 }
 .form-input-tel-in:focus{
-	outline:0;
+	outline:0;	
 }
 
 .form-input-tel:hover{
@@ -70,7 +70,9 @@ header{
     -webkit-appearance: none;
 }
 .form-input:focus{
-	outline:0;
+	outline:0;		
+	box-shadow:none;	
+	border-bottom: 3px solid #888;
 }
 .form-input:hover{
 	border-bottom: 2px solid #888;
@@ -78,7 +80,7 @@ header{
 }
 .form-strong-fnt{
 	color:#89283e;
-	font-family:'Jua', sans-serif;
+	font-family:'Jua', sans-serif;	
 }
 .paper-top{
 	line-height:20px;

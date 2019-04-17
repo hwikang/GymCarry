@@ -21,13 +21,25 @@
 	<a href="${path }/"><img src="${path }/resources/logo.png" width="300px" height="200px"/></a>
 	<div class="container">
 		<div class="row">			
-			<div class="col-xs-4 col-sm-4 col-md-4"></div>
-			<div class="col-xs-4 col-sm-4 col-md-4">
-				<div class="paper">
-				아이디를 찾아달라규		
+			<div class="col-xs-3 col-sm-3 col-md-3"></div>
+				<div class="col-xs-6 col-sm-6 col-md-6">
+					<div class="paper">
+						<span>아이디 찾기<br>
+						걱정마세요! 잊어버린 아이디를 찾아드려요.</span>
+						<form method="post" action="${path }/user/findIdSuccess.do">
+							<label>
+								<span>이름</span>
+								<input type="text" placeholder="가입하신 분의 이름을 입력하세요"/>
+							</label>
+							<label>
+								<span>이메일</span>
+								<input type="email" placeholder="이메일 주소를 입력하세요"/>
+							</label>
+							<button type="submit">아이디를 찾아주세요!</button>
+						</form>
+					</div>
 				</div>
-			</div>
-			<div class="col-xs-4 col-sm-4 col-md-4"></div>
+			<div class="col-xs-3 col-sm-3 col-md-3"></div>
 		</div>
 	</div>
 </header>
