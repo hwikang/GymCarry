@@ -12,9 +12,85 @@ public class UserDTO {
 	private String presentid;
 	private String userimage;
 	private int protein;
+	private String birthYear;
+	private String birthMonth;
+	private String birthDay;	
+	private String birthDate;
+	private String gender;
+	private int userheight;
+	private int userweight;
+	private String purposeExe; // 운동 목적
+	private String stateExe; // 평소 운동량
+	private String goalExe; // 목표 체중
 	private Date regdate;
 	
 	public UserDTO() {}
+	
+	
+	public String getBirthYear() {
+		return birthYear;
+	}
+	public void setBirthYear(String birthYear) {
+		this.birthYear = birthYear;
+		setBirthDate(birthYear,this.birthMonth,this.birthDay);
+	}
+	public String getBirthMonth() {
+		return birthMonth;
+	}
+	public void setBirthMonth(String birthMonth) {
+		this.birthMonth = birthMonth;
+		setBirthDate(this.birthYear,birthMonth,this.birthDay);
+	}
+	public String getBirthDay() {
+		return birthDay;
+	}
+	public void setBirthDay(String birthDay) {
+		this.birthDay = birthDay;
+		setBirthDate(this.birthYear,this.birthMonth,birthDay);
+	}
+	public String getBirthDate() {
+		return birthDate;
+	}
+	public void setBirthDate(String birthYear, String birthMonth, String birthDay) {
+		this.birthDate = birthYear+birthMonth+birthDay;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public int getUserheight() {
+		return userheight;
+	}
+	public void setUserheight(int userheight) {
+		this.userheight = userheight;
+	}
+	public int getUserweight() {
+		return userweight;
+	}
+	public void setUserweight(int userweight) {
+		this.userweight = userweight;
+	}
+	public String getPurposeExe() {
+		return purposeExe;
+	}
+	public void setPurposeExe(String purposeExe) {
+		this.purposeExe = purposeExe;
+	}
+	public String getStateExe() {
+		return stateExe;
+	}
+	public void setStateExe(String stateExe) {
+		this.stateExe = stateExe;
+	}
+	public String getGoalExe() {
+		return goalExe;
+	}
+	public void setGoalExe(String goalExe) {
+		this.goalExe = goalExe;
+	}
+/* ~ 추가 회원 정보 기입 DTO */
 	public int getUserno() {
 		return userno;
 	}
@@ -76,11 +152,12 @@ public class UserDTO {
 	public void setPresentid(String presentid) {
 		this.presentid = presentid;
 	}
+	
 	@Override
 	public String toString() {
 		return "UserDTO [userno=" + userno + ", userid=" + userid + ", userpwd=" + userpwd + ", username=" + username
 				+ ", useremail=" + useremail + ", userphone=" + userphone + ", presentid=" + presentid + ", userimage="
-				+ userimage + ", protein=" + protein + ", regdate=" + regdate + "]";
+				+ userimage + "protein=" + protein + ", regdate=" + regdate + "]";
 	}
 	
 }

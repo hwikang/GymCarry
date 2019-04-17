@@ -20,6 +20,66 @@ header{
 	border-radius:5px;
 	box-shadow:10px 10px #BDBDBD;
 }
+.form-input-tel{	
+	width:100%;	
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 0;
+}
+.form-input-tel-in{		
+	width:65%;
+    border: 0 none;
+    border-radius: 0;
+    background: none;    
+    -webkit-appearance: none;
+    height: 45px;    
+    padding: 0;
+}
+.form-input-tel-in:focus{
+	outline:0;
+}
+
+.form-input-tel:hover{
+	border-bottom: 2px solid #888;
+	transition:0.1s;
+}
+.form-input-tel button{
+	position:absolute;
+	margin-top:7px;
+	right:10px;
+	border: 1px solid #89283e;
+	background: rgba(255,255,255,0.9);
+	color: #89283e;
+	font-size: 14px;
+	font-family:'Jua', sans-serif;
+	padding:6px 10px;
+	font-weight:600;
+	border-radius: 2px;
+}
+.form-input{
+	width:100%;
+    border: 0 none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    background: none;
+    font-size: 15px;
+    font-weight: 400;
+    height: 45px;
+    padding: 0;
+    -webkit-appearance: none;
+}
+.form-input:focus{
+	outline:0;
+}
+.form-input:hover{
+	border-bottom: 2px solid #888;
+	transition:0.1s;
+}
+.form-strong-fnt{
+	color:#89283e;
+	font-family:'Jua', sans-serif;
+}
 .paper-top{
 	line-height:20px;
 }

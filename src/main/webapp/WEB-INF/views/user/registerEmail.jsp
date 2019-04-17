@@ -31,29 +31,29 @@
 					<form action="${path}/user/direct.do" method="post">
 						<div class="row form-frm">
 							<div class="col-xs-6 col-sm-6 col-md-6 form-frm-left">
-								<div class="form-input"><input type="text" placeholder="아이디" name="userid"/></div>
-								<div class="form-input"><input type="password" placeholder="비밀번호" name="userpwd"/></div>
-								<div class="form-input"><input type="email" placeholder="이메일" name="useremail"/></div>
-								<div><input type="text" placeholder="이름" name="username"/></div>
+								<div><input class="form-input" type="text" placeholder="아이디" name="userid" maxlength="24" autocomplete="off" /></div>
+								<div><input class="form-input" type="password" placeholder="비밀번호" name="userpwd" maxlength="24" autocomplete="off"/></div>
+								<div><input class="form-input" type="email" placeholder="이메일" name="useremail" maxlength="24" autocomplete="off"/></div>
+								<div><input class="form-input" type="text" placeholder="이름" name="username" maxlength="24" autocomplete="off"/></div>
 							</div>	
 							<div class="col-xs-6 col-sm-6 col-md-6 form-frm-right">			
 								<div>
-									<strong>휴대전화번호 인증하기</strong>
+									<strong class="form-strong-fnt">휴대전화번호 인증하기</strong><br>
 									<span>전화번호 입력 후 인증문자 발송 버튼을 누르세요.</span><br>
 									<span>6자리 인증번호 문자를 보내드릴께요.</span>
 								</div>				
-								<div>
-									<input type="tel" name="userphone" id="userphone" placeholder="휴대전화 번호를 숫자만 입력"/>
+								<div class="form-input-tel">
+									<input class="form-input-tel-in" type="tel" name="userphone" id="userphone" placeholder="휴대전화 번호를 숫자만 입력" maxlength="24"/>
 									<button>인증문자 발송</button>
 								</div>
 								<div>
-									<strong>추천인 아이디 입력하기</strong>
+									<strong class="form-strong-fnt">추천인 아이디 입력하기</strong>
 									<span>소개해 준 분의 아이디를 입력해 주세요. 없다면 비워두셔도 됩니다.</span>
-									<input type="text" id="presentid" name="presentid" placeholder="추천인 아이디"/>
+									<div><input class="form-input" type="text" id="presentid" name="presentid" placeholder="추천인 아이디"/></div>
 								</div>
 								<div>
 									<div>
-										<strong>약관 동의</strong><br>
+										<strong class="form-strong-fnt">약관 동의</strong><br>
 										<input type="checkbox" id="checkAll"/> 아래 약관에 모두 동의 합니다.								
 									</div>
 									<div>
