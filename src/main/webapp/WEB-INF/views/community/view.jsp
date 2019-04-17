@@ -93,54 +93,47 @@
 			    </div>
 			</div>
 	 	  <div class="ui text container"><!-- 댓글DIV -->
-		    dafsdafsdf
+		   
 		      <p>${dto.comDes }</p>
 		    
 	  	  </div>
 	 	  <div class="ui divider"></div>
 			<!-- 댓글 입력 DIV -->
-		    <div class="ui huge transparent input" style="width:70%">
-		      <i class="heart outline icon"></i>
-		      <input type="text" placeholder="Add Comment..." style="width:">
-		    </div>
+			<form method="post" action="${path }/community/reply/${dto.comNo}">
+			    <div class="ui huge transparent input" style="width:100%">
+			      <i class="heart outline icon"></i>
+			      <input type="text" placeholder="Add Comment..." name="replyDes" style="width:80%;">
+			      <input type="hidden" name="comNo" value="${dto.comNo }"/>
+			      <input type="hidden" name="userid" value="khdrogba"/>  <!-- 접속자 아이디-->
+			      <input type="submit" value="Submit">
+			    </div>
+			    
+		    </form>
 			<!-- 댓글 리스트 -->
 			<div class="ui list">
-			  <div class="item">
-			    <img class="ui avatar image" src="/images/avatar2/small/rachel.png">
-			    <div class="content">
-			      <a class="header">Rachel</a>
-			      <div class="description">Last seen watching <a><b>Arrested Development</b></a> just now.</div>
-			    </div>
-			  </div>
-			  <div class="item">
-			    <img class="ui avatar image" src="/images/avatar2/small/lindsay.png">
-			    <div class="content">
-			      <a class="header">Lindsay</a>
-			      <div class="description">Last seen watching <a><b>Bob's Burgers</b></a> 10 hours ago.</div>
-			    </div>
-			  </div>
-			  <div class="item">
-			    <img class="ui avatar image" src="/images/avatar2/small/matthew.png">
-			    <div class="content">
-			      <a class="header">Matthew</a>
-			      <div class="description">Last seen watching <a><b>The Godfather Part 2</b></a> yesterday.</div>
-			    </div>
-			  </div>
-			  <div class="item">
-			    <img class="ui avatar image" src="/images/avatar/small/jenny.jpg">
-			    <div class="content">
-			      <a class="header">Jenny Hess</a>
-			      <div class="description">Last seen watching <a><b>Twin Peaks</b></a> 3 days ago.</div>
-			    </div>
-			  </div>
-			  <div class="item">
-			    <img class="ui avatar image" src="/images/avatar/small/veronika.jpg">
-			    <div class="content">
-			      <a class="header">Veronika Ossi</a>
-			      <div class="description">Has not watched anything recently</div>
-			    </div>
-			  </div>
-			</div>
+			  <c:forEach var="dto" items="${replyList}">
+				  	<div class="item">
+				    	<img class="ui avatar image" src="${path}/resources/profile.png">
+						<div class="content">
+						    <a class="header">${dto.userid}</a>
+						    <a id=replyEdit onclick="editInputAppear(event)">수정</a>
+						    <a onClick="replyDeleteBtn(event)">삭제</a>
+						    <div class="description">
+						    	<p id="replyDes">${dto.replyDes }</p>
+						    	<div id="replyDesInput" style="display:none;">
+						    		<form name="form2" method="post" id="form2" onSubmit="replyEditBtn(event)">
+							    		<input type="text" name="replyDes" value="${dto.replyDes }" />
+							    		<input type="hidden" name="replyNo" value="${dto.replyNo}"/>
+							    		<input type="hidden" name="comNo" value="${dto.comNo}"/>
+							    		<input type="submit" value="수정" onclick="replyEditBtn(event)"/>								    								    									    		
+						    		</form>
+						    	</div>
+						    	
+						    </div>
+						    <span>${dto.regdate}</span>
+				   		</div>
+			  		</div>			  
+			  </c:forEach>			 
 			<!-- 댓글 리스트 -->
 	  </div>
 	</div>
@@ -163,6 +156,7 @@
 				<hr/>				
 				글 내용 
 				<input type="text" name="comDes" style="width:100%;height:300px;" value="${dto.comDes}"/>
+				
 				<input type="hidden" name="userid" value="${dto.userid }"/>
 				<input type="hidden" name="priorImage" value="${dto.comImage}"/>				
 				<div>
@@ -177,6 +171,27 @@
 
 <script src="${path}/js/view.js"></script>
 <script>
+//const replyEdit = document.querySelectorAll("#replyEdit");  //수정버튼
+
+
+const editInputAppear = (event) =>{
+	console.log(event)
+	console.log(event.target.parentElement)
+	const editInputDiv = event.target.parentElement;
+	
+	const replyDes = editInputDiv.querySelector("#replyDes");		//댓글내용
+	const replyDesInput = editInputDiv.querySelector("#replyDesInput"); //수정인풋
+	
+	console.log(replyDes)
+	if(replyDes.style.display==="none"){
+		replyDes.style.display="block";
+		replyDesInput.style.display="none";
+	}else{
+		replyDes.style.display="none";
+		replyDesInput.style.display="block";
+	} 
+}
+
 
 const clickEditBtn = () =>{
 	console.log("edit btn clicked");
@@ -195,6 +210,24 @@ const clickDeleteBtn = () =>{
 	}
 }
 
+ const replyEditBtn = (event) =>{
+	console.log("btn 호출")
+	event.preventDefault()
+	const eventForm =event.target.parentElement
+	eventForm.action="${path}/community/replyEdit"
+	eventForm.submit();
+}
+ 
+const replyDeleteBtn = (event) =>{
+	if(confirm("진짜 삭제할거에여?")){
+		console.log(event.target.parentElement)
+		const eventForm = event.target.parentElement.querySelector("#form2");
+		eventForm.action="${path}/community/replyDelete"
+		eventForm.submit();
+	
+	}	
+
+}
 
 
 
