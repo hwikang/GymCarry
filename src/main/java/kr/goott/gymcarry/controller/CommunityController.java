@@ -22,8 +22,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.goott.gymcarry.model.dao.CommunityDAO;
+import kr.goott.gymcarry.model.dao.CommunityDAOInterface;
+import kr.goott.gymcarry.model.dao.CommunityLikeDAO;
 import kr.goott.gymcarry.model.dao.CommunityReplyDAO;
 import kr.goott.gymcarry.model.dto.CommunityDTO;
+import kr.goott.gymcarry.model.dto.CommunityLikeDTO;
 
 @Controller
 public class CommunityController {
@@ -33,6 +36,8 @@ public class CommunityController {
 	CommunityDAO communityDAO;
 	@Inject 
 	CommunityReplyDAO communityReplyDao;
+	@Inject
+	CommunityLikeDAO communityLikeDAO;
 	
 	@Resource(name="uploadPath")
 	String uploadPath;
@@ -119,8 +124,11 @@ public class CommunityController {
 			//view count++
 			communityDAO.viewCount(comNo);
 			//check like
-			 
-			//communityDAO.checkLike(comNo,userid)
+			String userid = (String) session.getAttribute("userid"); 
+			int like = communityLikeDAO.checkLike(comNo,userid);
+			mav.addObject("like",like);
+
+			
 			
 			
 			mav.setViewName("community/view");
@@ -163,15 +171,17 @@ public class CommunityController {
 		}
 		
 		@PostMapping(value="community/like/{comNo}")
-		public String likeCount(@PathVariable int comNo,@RequestParam("userid") String userid) {
+		public String likeCount(@PathVariable int comNo,HttpSession session) {
 			communityDAO.likeCount(comNo);
-			communityDAO.insertLike(comNo, userid);
+			String userid = (String) session.getAttribute("userid");
+			communityLikeDAO.insertLike(comNo, userid);
 			return "redirect:/community/view/"+comNo;
 		}
 		@PostMapping(value="community/unlike/{comNo}")
-		public String unlikeCount(@PathVariable int comNo,@RequestParam("userid") String userid) {
+		public String unlikeCount(@PathVariable int comNo,HttpSession session) {
 			communityDAO.likeCountSub(comNo);
-			communityDAO.deleteLike(comNo, userid);
+			String userid = (String) session.getAttribute("userid");
+			communityLikeDAO.deleteLike(comNo, userid);
 			return "redirect:/community/view/"+comNo;
 		}
 	

@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listNotice" resultType="kr.goott.gymcarry.model.dto.NoticeDTO">
 		select * from noticeTbl order by noticeno desc
 	</select>
-	<!-- <insert id="submitNotice" parameterType="kr.goott.gymcarry.model.dto.NoticeDTO">
+	<insert id="submitNotice" parameterType="kr.goott.gymcarry.model.dto.NoticeDTO">
 		insert into noticeTbl(noticeno,title,des,views,regdate, noticeImg) values(noticeSq.nextval,#{title},#{des},0,sysdate, #{noticeImg})
 	</insert>
 	<select id="viewNotice" resultType="kr.goott.gymcarry.model.dto.NoticeDTO">
@@ -19,6 +19,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<delete id="deleteNotice">
 		delete noticeTbl where noticeno=#{noticeno}
-	</delete> -->
+	</delete>
 	
 </mapper>

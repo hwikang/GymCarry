@@ -73,7 +73,13 @@
 			    <div class="five wide column">
 				    <div class="ui labeled button" tabindex="0" onclick="clickLike()">
 					  <div class="ui red button">
-					    <i class="heart outline icon"  id="likeIcon"></i> Like
+					  	<c:if test="${like==1}">
+					  		<i class="heart icon"  id="likeIcon"></i> Like
+					  	</c:if>
+					  	<c:if test="${like==0 }">
+					  		<i class="heart outline icon"  id="likeIcon" ></i> Like
+					  	</c:if>
+					    
 					  </div>
 					  <a class="ui basic red left pointing label">
 					    <span>${dto.likes }</span>

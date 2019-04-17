@@ -2,6 +2,9 @@ package kr.goott.gymcarry.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
 import kr.goott.gymcarry.model.dto.CommunityDTO;
 
 public interface CommunityDAOInterface {
@@ -26,8 +29,8 @@ public interface CommunityDAOInterface {
 	//like 빼기
 	public void likeCountSub(int comNo);
 	
-	//like table 에 추가
-	public void insertLike(int comNo,String userid);
-	//like table 에 삭제
-	public void deleteLike(int comNo,String userid);
+
+	
+	
+	
 }
