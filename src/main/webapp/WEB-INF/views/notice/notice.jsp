@@ -38,8 +38,7 @@
 				<span class = label style="background:#4DD0FA;font-size:15px;">${dto.noticeno }</span>
 				<div class="wordCut" style="margin-top:10px">${dto.title }<i class = "chevron right icon" style=float:right></i></div>
 				<div style="color:#99999B;font-size:10px;margin-top:10px ">${dto.regdate }</div>
-				
-			  
+
 			  </div>
 			</form>
 		</c:forEach>

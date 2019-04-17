@@ -14,4 +14,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values (user_Sq.nextVal, #{userid}, #{username}, #{userpwd}, #{useremail}, #{userphone},
 		#{presentid}, null, 0, sysdate)
 	</insert>
+	<select id="login_check" resultType="userDto">
+		select userid, username from userTbl
+		where userid=#{userid} and userpwd=#{userpwd}
+	</select>
+	<select id="user_info" resultType="userDto">
+		select * from userTbl
+		where userid=#{userid}
+	</select>
+	<update id="addInfo_user" parameterType="userDto">
+		update userTbl set birthdate=#{birthDate}, gender=#{gender}, userheight=#{userheight},
+		userweight=#{userweight}, purposeExe=#{purposeExe}, stateExe=#{stateExe}, goalExe=#{goalExe}, regdate=sysdate where userid=#{userid}
+	</update>
 </mapper>

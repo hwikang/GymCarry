@@ -26,8 +26,8 @@ public class UserDAO implements UserDAOInterface {
 	}
 
 	@Override
-	public void insertUser(UserDTO vo) {
-		sqlSession.insert("user.insertUser",vo);
+	public void insertUser(UserDTO dto) {
+		sqlSession.insert("user.insertUser",dto);
 
 	}
 
@@ -54,5 +54,22 @@ public class UserDAO implements UserDAOInterface {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public UserDTO loginCheck(UserDTO dto) {
+		return sqlSession.selectOne("user.login_check", dto);
+	}
+
+	@Override
+	public UserDTO userInfo(String userid) {		
+		return sqlSession.selectOne("user.user_info",userid);
+	}
+
+	
+	@Override 
+	public int addInfoUser(UserDTO dto) { 
+		return	sqlSession.update("user.addInfo_user", dto); 
+	}
+	
 
 }

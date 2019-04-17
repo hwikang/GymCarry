@@ -2,6 +2,9 @@ package kr.goott.gymcarry.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
 import kr.goott.gymcarry.model.dto.CommunityDTO;
 
 public interface CommunityDAOInterface {
@@ -15,5 +18,19 @@ public interface CommunityDAOInterface {
 	public CommunityDTO editCommunity(CommunityDTO dto) ;
 	//±Û»èÁ¦
 	public void deleteCommunity(int comNo);
+	// view ¼ö µé¸®±â
+	public void viewCount(int comNo);
+	//reply ¼ö´Ã¸®±â
+	public void replyCount(int comNo);
+	//like ´Ã¸®±â
+	public void likeCount(int comNo);
+	//reply»©±â
+	public void replyCountSub(int comNo);
+	//like »©±â
+	public void likeCountSub(int comNo);
+	
+
+	
+	
 	
 }

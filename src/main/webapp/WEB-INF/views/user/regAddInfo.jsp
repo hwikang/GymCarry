@@ -26,9 +26,10 @@
 				<div class="paper">
 					<div class="paper-top">
 						체질량 지수(BMI), 그리고 적정 섭취 칼로리를 계산해드립니다.<br>
-						아래의 정보를 입력해 주세요.
+						${userDTO.userid }님 아래의 정보를 입력해 주세요.
 					</div>
 					<form action="${path}/user/regAddDone.do" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="userid" value="${userDTO.userid }"/>
 						<div class="row form-frm">
 							<div class="col-xs-6 col-sm-6 col-md-6 form-frm-left">
 								<span>안심하세요!<br>입력하시는 정보는 아무에게도 공개되지 않습니다.</span>

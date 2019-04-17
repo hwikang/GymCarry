@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,8 +22,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.goott.gymcarry.model.dao.CommunityDAO;
+import kr.goott.gymcarry.model.dao.CommunityDAOInterface;
+import kr.goott.gymcarry.model.dao.CommunityLikeDAO;
 import kr.goott.gymcarry.model.dao.CommunityReplyDAO;
 import kr.goott.gymcarry.model.dto.CommunityDTO;
+import kr.goott.gymcarry.model.dto.CommunityLikeDTO;
 
 @Controller
 public class CommunityController {
@@ -31,6 +36,8 @@ public class CommunityController {
 	CommunityDAO communityDAO;
 	@Inject 
 	CommunityReplyDAO communityReplyDao;
+	@Inject
+	CommunityLikeDAO communityLikeDAO;
 	
 	@Resource(name="uploadPath")
 	String uploadPath;
@@ -104,14 +111,23 @@ public class CommunityController {
 		}
 		
 		@RequestMapping(value= "community/view/{comNo}", method=RequestMethod.GET)
-		public ModelAndView viewCommunity2(@PathVariable int comNo ,ModelAndView mav) {
+		public ModelAndView viewCommunity2(@PathVariable int comNo ,ModelAndView mav,HttpSession session) {
 //			logger.info("==========comNo="+comNo);
 			
+		
+			//get dto values
 			CommunityDTO dto = communityDAO.viewCommunity(comNo); 
-//			logger.info("userid= "+ dto.getUserid());
+//			
 			mav.addObject("dto",dto);
-			//reply
-			mav.addObject("replyList",communityReplyDao.viewReply(comNo));
+			//get reply dto values
+			mav.addObject("replyList",communityReplyDao.viewReply(comNo)); 
+			//view count++
+			communityDAO.viewCount(comNo);
+			//check like
+			String userid = (String) session.getAttribute("userid"); 
+			int like = communityLikeDAO.checkLike(comNo,userid);
+			mav.addObject("like",like);
+
 			
 			
 			
@@ -153,7 +169,21 @@ public class CommunityController {
 			return "redirect:/community.do";
 			
 		}
-
+		
+		@PostMapping(value="community/like/{comNo}")
+		public String likeCount(@PathVariable int comNo,HttpSession session) {
+			communityDAO.likeCount(comNo);
+			String userid = (String) session.getAttribute("userid");
+			communityLikeDAO.insertLike(comNo, userid);
+			return "redirect:/community/view/"+comNo;
+		}
+		@PostMapping(value="community/unlike/{comNo}")
+		public String unlikeCount(@PathVariable int comNo,HttpSession session) {
+			communityDAO.likeCountSub(comNo);
+			String userid = (String) session.getAttribute("userid");
+			communityLikeDAO.deleteLike(comNo, userid);
+			return "redirect:/community/view/"+comNo;
+		}
 	
 	
 

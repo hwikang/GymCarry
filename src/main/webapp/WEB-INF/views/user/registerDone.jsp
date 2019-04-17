@@ -14,9 +14,14 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"/>
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> <!-- 구글폰트 -->
-<link rel="stylesheet" href="${path }/css/userJoin2.css" type="text/css">
+<link rel="stylesheet" href="${path }/css/registerDone.css" type="text/css">
 </head>
 <body>
+<script>
+	function regAddInfo(){
+		document.querySelector('#regAddFrm').submit();
+	}
+</script>
 <header>
 	<a href="${path }/"><img src="${path }/resources/logo.png" width="300px" height="200px"/></a>
 	<div class="container">
@@ -27,11 +32,14 @@
 					<div class="paper-fnt"><span>감사합니다!<br>
 					이제 </span><b>계정</b><span>이 만들어졌습니다!</span><br><br>
 					지금, 몇가지만 더 알려 주실 수 있으세요?</div>
-					<div class="paper-fnt2">당신의 체질량 지수 (BMI), 목표 체중에 필요한 칼로리 등을 알려드리겠습니다.</div>
+					<div class="paper-fnt2"><strong>${userid }</strong>님! 당신의 체질량 지수 (BMI), 목표 체중에 필요한 칼로리 등을 알려드리겠습니다.</div>
 					<br><br>
 					<div class="paper-fnt3">30초면 됩니다.</div><br><br>
 					<div>
-						<a href="${path }/user/regAddInfo.do" class="yesAt">네:)</a><a href="${path }/" class="nextAt">다음에 할게요.:(</a>		
+						<form id="regAddFrm" method="post" action="${path }/user/regAddInfo.do">
+							<input type="hidden" id="userid" name="userid" value="${userid}"/>
+						</form>
+						<a href="#" class="yesAt" onclick="javascript:regAddInfo();">네:)</a><a href="${path }/" class="nextAt">다음에 할게요.:(</a>		
 					</div>			
 				</div>
 				<div style="text-align:center;margin-top:50px">
