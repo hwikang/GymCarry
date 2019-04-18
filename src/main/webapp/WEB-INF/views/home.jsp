@@ -378,16 +378,16 @@
 		window.scrollTo(0,650);	
 	}
 	function scrollTo2(){
-		window.scrollTo(0,1330);	
+		window.scrollTo(0,1430);	
 	}
 	function scrollTo3(){
-		window.scrollTo(0,2000);	
+		window.scrollTo(0,2300);	
 	}
 	function scrollTo4(){
-		window.scrollTo(0,2700);	
+		window.scrollTo(0,2900);	
 	}
 	function scrollTo5(){
-		window.scrollTo(0,3500);	
+		window.scrollTo(0,3800);	
 	}
 	function scrollToTop(){
 		window.scrollTo(0,0);	

@@ -6,7 +6,9 @@ public class NoticeDTO {
 	private String des;
 	private int views; 
 	private String regdate;
-	private String noticeImg;
+	
+	
+	
 	
 	public NoticeDTO() {};
 	
@@ -41,11 +43,10 @@ public class NoticeDTO {
 		this.regdate = regdate;
 	}
 
-	public String getNoticeImg() {
-		return noticeImg;
-	}
+	
 
-	public void setNoticeImg(String noticeImg) {
-		this.noticeImg = noticeImg;
-	}
+	
+	
+	
+	
 }
