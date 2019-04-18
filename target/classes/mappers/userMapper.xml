@@ -24,6 +24,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from userTbl
 		where naverid=#{naverid}
 	</select>
+	<select id="id_check_count" parameterType="String" resultType="Integer">
+		select count(*) from userTbl
+		where userid = #{userid}	
+	</select>
 	<insert id="insertUser">
 		insert into userTbl (userno, userid, username, userpwd, useremail, userphone, 
 		presentid, userimage, protein, regdate) 

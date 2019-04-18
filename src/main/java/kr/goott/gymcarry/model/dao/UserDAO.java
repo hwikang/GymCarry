@@ -86,6 +86,11 @@ public class UserDAO implements UserDAOInterface {
 		sqlSession.insert("user.insert_naver_user",dto);
 		
 	}
+
+	@Override
+	public int idCheckCount(String userid) {		
+		return sqlSession.selectOne("user.id_check_count", userid);
+	}
 	
 
 }
