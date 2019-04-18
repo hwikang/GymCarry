@@ -33,7 +33,7 @@
 							<div class="join-select">
 								<div class="facebook-ico"><a href="#" ><img src="${path }/resources/user/facebook-logo.png" width="20px" height="20px"/>페이스북으로 로그인</a></div>
 								<div class="kakao-ico"><a href="#"><img src="${path }/resources/user/kakao-logo.png" width="20px" height="20px"/>카카오톡으로 로그인</a></div>
-								<div class="naver-ico"><a href="#"><img src="${path }/resources/user/naver-ico.png" width="30px" height="30px"/>네이버로 로그인</a></div>					
+								<div class="naver-ico"><a href="${url }"><img src="${path }/resources/user/naver-ico.png" width="30px" height="30px"/>네이버로 로그인</a></div>					
 							</div>	
 						</div>
 						<div class="col-xs-6 col-sm-6 col-md-6">
@@ -42,7 +42,7 @@
 							<label><input type="checkbox" name="remember_login" value="1"/>나를 기억해 주세요.</label>
 							<input type="submit" value="로그인"/>
 							<div>
-								<span>아직 계정이 없으신가요?</span><a href="${path }/userJoin.do">회원가입하기</a><br>
+								<span>아직 계정이 없으신가요?</span><a href="${path }/user/userJoin.do">회원가입하기</a><br>
 								<span>아이디, 비밀번호가 생각나지 않으세요?</span><br>
 								<a href="${path }/user/findId.do">아이디 찾기</a><a href="${path }/user/findPwd.do">비밀번호 찾기</a>
 								

@@ -1,5 +1,8 @@
 package kr.goott.gymcarry.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -8,13 +11,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.goott.gymcarry.auth.SNSLogin;
-import kr.goott.gymcarry.auth.SnsValue;
+import com.github.scribejava.core.model.OAuth2AccessToken;
+
+import kr.goott.gymcarry.auth.NaverLoginBO;
 import kr.goott.gymcarry.model.dao.UserDAOInterface;
 import kr.goott.gymcarry.model.dto.UserDTO;
 
@@ -22,41 +28,72 @@ import kr.goott.gymcarry.model.dto.UserDTO;
 @RequestMapping("/user/*")
 public class UserController {
 	final Logger logger = LoggerFactory.getLogger(UserController.class);
-
+	
+	
 	@Inject
 	UserDAOInterface userDAO;
-
 	@Inject
-	private SnsValue naverSns;
-
-	@RequestMapping(value = "userJoin.do", method = RequestMethod.GET)
-	public String userJoin(Model model) {
-		logger.info("login GET ...");
-		SNSLogin snsLogin = new SNSLogin(naverSns);
-		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
-		System.out.println(snsLogin.getNaverAuthURL());
-		return "user/userJoin";
+	NaverLoginBO naverLoginBO;
+	
+	@RequestMapping(value = "userJoin.do")
+	public ModelAndView userJoin(HttpSession session) {
+		logger.info("userjoin page view...");
+		/* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);		
+		return new ModelAndView("user/userJoin","url",naverAuthUrl);
 	}
 
 	@RequestMapping(value = "login.do")
-	public String userLogin() {
+	public ModelAndView userLogin(HttpSession session) {
 		logger.info("userLogin page view...");
-		return "user/userLogin";
+		/* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);	
+		return new ModelAndView("user/userLogin","url",naverAuthUrl);
 	}
-
+	
+	@RequestMapping(value = "naverLogin.do")
+	public ModelAndView naverLogin(@RequestParam String code, @RequestParam String state, HttpSession session) throws Exception{
+		
+		/* 네이버 아이디로 로그인 인증이 끝나면 callback 처리 과정에서 AccessToken을 발급 받을 수 있다.*/
+		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
+		/* 발급 받은 AccessToken을 이용하여 현재 로그인한 네이버의 사용자 프로필 정보를 조회할 수 있다. */
+		UserDTO naverUser = naverLoginBO.getUserProfile(oauthToken);
+		/* 네이버 사용자 프로필 정보를 이용하여 가입되어 있는 사용자를 DB에서 조회하여 가져온다. */
+		UserDTO naverid = userDAO.naverIdCheck(naverUser);
+		if(naverid!=null) { //기존 사용자가 존재하면 강제 로그인!
+			session.setAttribute("userid", naverid.getUserid());
+			session.setAttribute("username", naverid.getUsername());
+			session.setAttribute("loginCheck", "Y");
+			return new ModelAndView("/home");			
+		}else {//아이디값이 null이면 아이디 생성해야지			
+			return new ModelAndView("user/registerNaver", "naverUser", naverUser);
+		}		
+	}
+	
+	@RequestMapping(value ="naverRegister.do", method = RequestMethod.POST)
+	public ModelAndView naverRegister(@ModelAttribute UserDTO dto) {
+		logger.info("naverRegister -> registerDone page view...");
+		userDAO.insertNaverUser(dto);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("userid", dto.getUserid());
+		System.out.println(dto.getUserid());
+		mav.setViewName("user/registerDone");
+		return mav;
+	}
+	
 	@RequestMapping(value = "loginChk.do", method = RequestMethod.POST)
-	public ModelAndView userLoginChk(UserDTO dto, HttpSession session) {
+	public ModelAndView userLoginChk(@ModelAttribute UserDTO dto, HttpSession session) {
 		logger.info("loginCheck page view...");
 		// 일치하면 이름이 넘어오고 틀리면 null이 넘어옴
 		UserDTO dto2 = userDAO.loginCheck(dto);
-		if (dto2.getUsername() != null) { // 맞으면
+		if (dto2!= null) { // 맞으면
 			// 세션변수 등록
 			session.setAttribute("userid", dto2.getUserid());
 			session.setAttribute("username", dto2.getUsername());
 			session.setAttribute("loginCheck", "Y");
 			return new ModelAndView("/home");
-		} else {
-			return new ModelAndView("user/userLogin");
+		}else {
+			return new ModelAndView("redirect:login.do");
 		}
 	}
 
@@ -65,21 +102,6 @@ public class UserController {
 		logger.info("logout success...");
 		session.invalidate();
 		return "/home";
-	}
-
-	@RequestMapping(value = "naverLogin.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String naverLogin(Model model, @RequestParam String code) throws Exception {
-		// 1. code를 이용해서 access_token 받기
-		// 2. access_token을 이용해서 사용자 profile 정보 가져오기
-		SNSLogin snsLogin = new SNSLogin(naverSns);
-		UserDTO profile = snsLogin.getAccessToken(code);
-		System.out.println("profile" + profile);
-		model.addAttribute("result", profile);
-		// model.addAttribute("result",profile);
-		// 3. DB 해당 유저가 존재하는 체크 (naverid 컬럼 추가)
-		// User
-		// 4. 존재하면 강제 로그인, 미존재시 가입페이지로!
-		return "user/naverLogin";
 	}
 
 	@RequestMapping(value = "registerEmail.do")
@@ -127,16 +149,35 @@ public class UserController {
 			} 
 	}
 	
-
 	@RequestMapping(value = "findId.do")
 	public String findId() {
 		logger.info("findId page view...");
 		return "user/findId";
 	}
-
+	@RequestMapping(value = "findIdresult.do")
+	public ModelAndView findIdSuccess(@ModelAttribute UserDTO dto) {
+		logger.info("findIdresult page view");
+		String userid = userDAO.findId(dto);
+		if(userid!=null) {			
+			return new ModelAndView("user/findIdSuccess","userid",userid);
+		}else {
+			return new ModelAndView("user/findIdFail");
+		}
+	}
 	@RequestMapping(value = "findPwd.do")
 	public String findPwd() {
 		logger.info("findPwd page view...");
 		return "user/findPwd";
+	}
+	
+	@RequestMapping(value="idcheck.do")
+	@ResponseBody
+	public Map<Object, Object> idcheck(@RequestBody String userid){
+		int cnt = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		cnt = userDAO.idCheckCount(userid);
+		map.put("cnt", cnt);
+		
+		return map;
 	}
 }
