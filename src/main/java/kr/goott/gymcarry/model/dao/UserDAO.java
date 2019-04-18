@@ -70,6 +70,22 @@ public class UserDAO implements UserDAOInterface {
 	public int addInfoUser(UserDTO dto) { 
 		return	sqlSession.update("user.addInfo_user", dto); 
 	}
+
+	@Override
+	public String findId(UserDTO dto) {		
+		return sqlSession.selectOne("user.find_id", dto);
+	}
+
+	@Override
+	public UserDTO naverIdCheck(UserDTO dto) {
+		return sqlSession.selectOne("user.naver_id_check",dto);
+	}
+
+	@Override
+	public void insertNaverUser(UserDTO dto) {
+		sqlSession.insert("user.insert_naver_user",dto);
+		
+	}
 	
 
 }

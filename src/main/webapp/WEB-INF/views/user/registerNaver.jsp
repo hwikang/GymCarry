@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"/>
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> <!-- 구글폰트 -->
-<link rel="stylesheet" href="${path }/css/registerEmail.css" type="text/css">
+<link rel="stylesheet" href="${path }/css/registerNaver.css" type="text/css">
 </head>
 <body>
 <header>
@@ -28,13 +28,13 @@
 						<span class="paper-fnt">좋아요!</span><br>
 						<span class="paper-fnt">지금부터 <b>계정</b>을 만들게요!</span>
 					</div>
-					<form id="directFrm" action="${path}/user/direct.do" method="post">
+					<form id="directFrm" action="${path}/user/naverRegister.do" method="post">
 						<div class="row form-frm">
 							<div class="col-xs-6 col-sm-6 col-md-6 form-frm-left">
 								<div><input class="form-input" type="text" placeholder="아이디" id="userid" name="userid" maxlength="24" autocomplete="off" /></div>
-								<div><input class="form-input" type="password" placeholder="비밀번호" id="userpwd" name="userpwd" maxlength="24" autocomplete="off"/></div>
-								<div><input class="form-input" type="email" placeholder="이메일" id="useremail" name="useremail" maxlength="24" autocomplete="off"/></div>
+								<div><input class="form-input" type="email" placeholder="이메일" id="useremail" name="useremail" value="${naverUser.naverid }" maxlength="24" autocomplete="off"/></div>
 								<div><input class="form-input" type="text" placeholder="이름" id="username" name="username" maxlength="24" autocomplete="off"/></div>
+								<input type="hidden" id="naverid" name="naverid" value="${naverUser.naverid }"/>
 							</div>	
 							<div class="col-xs-6 col-sm-6 col-md-6 form-frm-right">			
 								<div>
@@ -63,7 +63,7 @@
 										<span class="form-span-fnt3">수신동의 여부 및 설정은 회원정보 수정에서 확인할 수 있습니다.</span>
 									</div>
 								</div>
-								<button type="button" onclick="javascript:submitBtn();">회원 가입</button>
+								<button type="submit">회원 가입</button>
 							</div>					
 						</div>	
 					</form>	
@@ -81,8 +81,6 @@ function submitBtn(){
 	const userpwd = document.querySelector('#userpwd').value;
 	const useremail = document.querySelector('#useremail').value;
 	const username = document.querySelector('#username').value;
-
-	document.querySelector('#directFrm').submit();
 	}
 
 	function checkbox_click(){

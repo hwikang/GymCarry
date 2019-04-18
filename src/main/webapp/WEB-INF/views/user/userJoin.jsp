@@ -31,13 +31,13 @@
 					<div class="join-select">
 						<div class="facebook-ico"><a href="${path }/user/facebookLogin.do" ><img src="${path }/resources/user/facebook-logo.png" width="20px" height="20px"/>페이스북 계정으로 시작하기</a></div>
 						<div class="kakao-ico"><a href="#"><img src="${path }/resources/user/kakao-logo.png" width="20px" height="20px"/>카카오톡 계정으로 시작하기</a></div>
-						<div class="naver-ico"><a href="${naver_url }"><img src="${path }/resources/user/naver-ico.png" width="30px" height="30px"/>네이버 계정으로 시작하기</a></div>
+						<div class="naver-ico"><a href="${url }"><img src="${path }/resources/user/naver-ico.png" width="30px" height="30px"/>네이버 계정으로 시작하기</a></div>
 						<div class="paper-bottom">
 							<div class="paper-bottom-1">
 								<span>아니면 그냥,</span>
 							</div>							
 							<div class="email-ico"><a href="${path }/user/registerEmail.do">이메일로 시작하기</a></div>
-							<div class="paper-bottom-2">이미 계정이 있으신가요? <a class="login-ico" href="#">로그인 하기</a></div>
+							<div class="paper-bottom-2">이미 계정이 있으신가요? <a class="login-ico" href="${path }/user/login.do">로그인 하기</a></div>
 						</div>						
 					</div>
 					<div style="text-align:center;">

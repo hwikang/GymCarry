@@ -23,10 +23,18 @@ public class UserDTO {
 	private String stateExe; // 평소 운동량
 	private String goalExe; // 목표 체중
 	private Date regdate;
+	private Date modifyDate;
+	private String naverid;//네이버로 로그인 할 시 아이디
 	
 	public UserDTO() {}
+
 	
-	
+	public String getNaverid() {
+		return naverid;
+	}
+	public void setNaverid(String naverid) {
+		this.naverid = naverid;
+	}
 	public String getBirthYear() {
 		return birthYear;
 	}
@@ -152,12 +160,26 @@ public class UserDTO {
 	public void setPresentid(String presentid) {
 		this.presentid = presentid;
 	}
-	
+		
+	public Date getModifyDate() {
+		return modifyDate;
+	}
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+
+
 	@Override
 	public String toString() {
 		return "UserDTO [userno=" + userno + ", userid=" + userid + ", userpwd=" + userpwd + ", username=" + username
 				+ ", useremail=" + useremail + ", userphone=" + userphone + ", presentid=" + presentid + ", userimage="
-				+ userimage + "protein=" + protein + ", regdate=" + regdate + "]";
+				+ userimage + ", protein=" + protein + ", birthYear=" + birthYear + ", birthMonth=" + birthMonth
+				+ ", birthDay=" + birthDay + ", birthDate=" + birthDate + ", gender=" + gender + ", userheight="
+				+ userheight + ", userweight=" + userweight + ", purposeExe=" + purposeExe + ", stateExe=" + stateExe
+				+ ", goalExe=" + goalExe + ", regdate=" + regdate + ", modifyDate=" + modifyDate + ", naverid="
+				+ naverid + "]";
 	}
+
+	
 	
 }

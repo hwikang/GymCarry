@@ -8,12 +8,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from usertbl
 		order by userid
 	</select>	
-	<insert id="insertUser">
-		insert into userTbl (userno, userid, username, userpwd, useremail, userphone, 
-		presentid, userimage, protein, regdate) 
-		values (user_Sq.nextVal, #{userid}, #{username}, #{userpwd}, #{useremail}, #{userphone},
-		#{presentid}, null, 0, sysdate)
-	</insert>
 	<select id="login_check" resultType="userDto">
 		select userid, username from userTbl
 		where userid=#{userid} and userpwd=#{userpwd}
@@ -22,8 +16,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from userTbl
 		where userid=#{userid}
 	</select>
+	<select id="find_id" resultType="string" parameterType="userDto">
+		select userid from userTbl
+		where username=#{username} and useremail=#{useremail}
+	</select>
+	<select id="naver_id_check" resultType="userDto" parameterType="userDto">
+		select * from userTbl
+		where naverid=#{naverid}
+	</select>
+	<insert id="insertUser">
+		insert into userTbl (userno, userid, username, userpwd, useremail, userphone, 
+		presentid, userimage, protein, regdate) 
+		values (user_Sq.nextVal, #{userid}, #{username}, #{userpwd}, #{useremail}, #{userphone},
+		#{presentid}, null, 0, sysdate)
+	</insert>
+	<insert id="insert_naver_user">
+		insert into userTbl (userno, userid, username, useremail, userphone, 
+		presentid, userimage, protein, regdate, naverid) 
+		values (user_Sq.nextVal, #{userid}, #{username}, #{useremail}, #{userphone},
+		#{presentid}, null, 0, sysdate, #{naverid})
+	</insert>
 	<update id="addInfo_user" parameterType="userDto">
 		update userTbl set birthdate=#{birthDate}, gender=#{gender}, userheight=#{userheight},
-		userweight=#{userweight}, purposeExe=#{purposeExe}, stateExe=#{stateExe}, goalExe=#{goalExe}, regdate=sysdate where userid=#{userid}
+		userweight=#{userweight}, purposeExe=#{purposeExe}, stateExe=#{stateExe}, goalExe=#{goalExe}, modifyDate=sysdate where userid=#{userid}
 	</update>
+	
 </mapper>
