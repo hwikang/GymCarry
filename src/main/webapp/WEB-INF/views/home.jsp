@@ -40,11 +40,11 @@
                 </a>
                 <span class="right">
                     <a href="#" target="_blank">GYM CARRY 앱 설치</a>
-                    <a href="https://www.facebook.com/‎" target="_blank">
-                    	<img src="${path }/resources/facebook.png"> <strong>페이스북</strong>
+                    <a href="https://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.com" target="_blank">
+                    	<img src="${path }/resources/naver.png" style="width:25px"> <strong>네이버</strong>
                     </a>
-                    <a href="https://www.instagram.com/?hl=ko/">
-                        <img src="${path }/resources/insta.png"> <strong>인스타그램</strong>
+                    <a href="https://www.facebook.com/">
+                        <img src="${path }/resources/facebook.png"> <strong>페이스북</strong>
                     </a>
                 </span>
                 <div class="clr"></div>
@@ -52,7 +52,7 @@
             	<!-- 상단 메뉴 -->
              <div id="menu"class="ui secondary right menu " style="font-family: 'Jua', sans-serif;font-size:18px;">
 			  <a class="item" href="${path }/"><img src="${path }/resources/gclogo.png" style="width:400px;height:250px"/></a>
-			  <a class="item active">트레이너찾기 </a>
+			  <a class="item active">파트너찾기 </a>
 			  <a class="item" href="${path }/notice.do">공지사항</a>
 			  <a href="${path }/community.do" class="item">커뮤니티</a>
 			  <c:if test="${loginCheck==null}">
@@ -62,8 +62,7 @@
 			  <c:if test="${loginCheck=='Y'}">			  
 			 	 <a class="item" href="${path }/user/logout.do">로그아웃</a>
 			 	 <a class="item" href="${path }/user/myProfile.do">내 정보</a>			 	 
-			 	 <a class="item">짐프로틴 사러 가기</a>
-			 	 <a class="item" style="background-color:#890422;border-radius: 10px; border-style:inherit;">트레이너신청하기</a>
+			 	 <a class="item" style="background-color:#890422;border-radius: 10px; border-style:inherit;">파트너신청하기</a>
 			  </c:if>
 			  
 			</div>

@@ -42,7 +42,6 @@ public class NoticeController{
 		logger.info("notice Mapping go");
 		List<NoticeDTO> list = noticeDAO.noticeList();
 
-		logger.info(list.get(0).getTitle()+"=========");
 		model.addAttribute("list", list);
 		
 		logger.info("notice Mapping get");

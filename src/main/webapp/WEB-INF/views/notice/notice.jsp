@@ -17,8 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> <!-- 구글폰트 -->
 <style>
-	*{font-family:font-family: 'Jua', sans-serif}
-	span{font-family:font-family: 'Jua', sans-serif}
+	*{font-family: 'Jua', sans-serif}
 	.row{text-align:center}
 	.wordCut{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 	A:link{text-decoration: none; color:black}
@@ -34,8 +33,10 @@
   	<div class=list-group style="font-size:23px">
   		<div style="font-size:40px;">공지사항 </div><br/>
   		<span>이벤트와 새로운 알림을 확인하세요! 
+  		 <c:if test="${loginCheck=='Y'}">
   		<!-- 글쓰기버튼 -->
   		<button class="ui primary button" data-toggle="modal" data-target="#myModal" style="margin-left:690px;margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">Write</button>
+  		</c:if>
   		</span><br/><br/><br/>
   		<c:forEach var="dto" items="${list}">
   			<form action="${path}/notice/view/${dto.noticeno}" id="submit${dto.noticeno}" method="get" >
@@ -70,7 +71,7 @@
 		<div class="modal fade" id="myModal" role="dialog">
 	    <div class="modal-dialog">
 	    
-	      <!-- Modal content-->
+
 	      <div class="modal-content">
 	      <form action="${path}/notice/submit.do" method="post">
 	        <div class="modal-header">
@@ -83,8 +84,8 @@
 	        	<textarea id="content" name="des" style="width:100%;height:300px;" placeholer='공지사항 입력'></textarea>
 	        </div>
 	        <div class="modal-footer">
-	        	<input type="submit" value="게시" class="btn btn-default" style="width:80%;background:#890422;color:white"/>
-	          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+	        	<input type="submit" value="Submit" class="btn btn-default" style="width:80%;background:#890422;color:white"/>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        </div>
 	        </form>
 	      </div>

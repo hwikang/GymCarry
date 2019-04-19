@@ -23,11 +23,11 @@
 	<input type="hidden" name="userid" value="khdrogba"/> <!-- 보는 userid -->
 	
 </form>
-
+<!-- 왼쪽 -->
 <div class="ui grid">
-	<div class="three wide column"></div>
+	<div class="one wide column"></div>
 	
-	<div class="eight wide column">
+	<div class="five wide column">
 		<div class="ui container left aligned" >
 			<div class="ui grid" style="margin-top:10px;">	    
 			    <div class="two wide column"></div>
@@ -41,40 +41,41 @@
 		    </div>
 		    <div class="ui divider"></div>
 		    <div class="ui container center aligned" ><!-- Modal 이미지div -->
-		  		<img src="/gymcarry/community/images/${dto.comImage}" style="width:100%" >
+		  		<img src="/gymcarry/community/images/${dto.comImage}" style="width:100%;border-radius:15px" >
 		    </div>
 		    
 		    <div class="ui divider"></div>
-		    
-			<div class="ui grid right aligned" >			    
-			    <div class="three wide column" onClick="clickEditBtn()">
+		</div>
+	</div>
+<!-- 오른쪽 -->	
+ 	<div class="ten wide column" style="margin-top:4%">
+ 		<div class="ui grid right aligned" >			    
+			    <div class="two wide column" onClick="clickEditBtn()">
 			    	<div class="ui labeled button" tabindex="0">
 					  <div class="ui teal button">
-					   	<i class="edit icon"></i>			     		
+					   	<i class="edit icon"></i>Edit			     		
 					  </div>
 					  <a class="ui basic teal left pointing label">
-					  	 <span>Edit</span>	
+					  	 <span>수정</span>	
 					  </a>
 				    </div>		    	
 			    </div>
-			    <div class="three wide column"  onClick="clickDeleteBtn()">
+			    <div class="two wide column"  onClick="clickDeleteBtn()">
 				    <div class="ui labeled button" tabindex="0">
 						  <div class="ui grey button">
-						   	<i class="eraser icon"></i>		     		
+						   	<i class="eraser icon" style="width:10px"></i>Delete		     		
 						  </div>
 						  <a class="ui basic grey left pointing label">
-						  	 <span>Delete</span>			
+						  	 <span>삭제</span>			
 						  </a>
-					    </div>
-			    	
-			     	    	
+					    </div>	    	
 			    </div>
 			   
-			    <div class="five wide column">
+			    <div class="two wide column">
 				    <div class="ui labeled button" tabindex="0" onclick="clickLike()">
 					  <div class="ui red button">
 					  	<c:if test="${like==1}">
-					  		<i class="heart icon"  id="likeIcon"></i> Like
+					  		<i class="heart icon"  id="likeIcon" ></i> Like			  
 					  	</c:if>
 					  	<c:if test="${like==0 }">
 					  		<i class="heart outline icon"  id="likeIcon" ></i> Like
@@ -87,7 +88,7 @@
 				    </div>
 				</div>
 
-			    <div class="four wide column">
+			    <div class="two wide column">
 			    	<div class="ui labeled button" tabindex="0">
 					  <div class="ui blue button">
 					   <i class="comment icon"></i> Reply
@@ -100,9 +101,9 @@
 		   				     	
 			    </div>
 			</div>
-	 	  <div class="ui text container"><!-- 댓글DIV -->
+	 	  <div style="margin-top:50px"><!-- 댓글DIV -->
 		   
-		      <p>${dto.comDes }</p>
+		      ${dto.comDes }
 		    
 	  	  </div>
 	 	  <div class="ui divider"></div>
@@ -113,7 +114,7 @@
 			      <input type="text" placeholder="Add Comment..." name="replyDes" style="width:80%;">
 			      <input type="hidden" name="comNo" value="${dto.comNo }"/>
 			      <input type="hidden" name="userid" value="khdrogba"/>  <!-- 접속자 아이디-->
-			      <input type="submit" value="Submit">
+			      <input type="submit" value="Add">
 			    </div>
 			    
 		    </form>
@@ -138,15 +139,17 @@
 						    	</div>
 						    	
 						    </div>
+						    <div class="ui divider"></div>
 						    <span>${dto.regdate}</span>
 				   		</div>
 			  		</div>			  
 			  </c:forEach>			 
 			<!-- 댓글 리스트 -->
-	  </div>
-	</div>
 	
-	<div class="three wide column"></div>
+	  </div>
+	  
+ 	</div>
+	
 </div>
 
 
