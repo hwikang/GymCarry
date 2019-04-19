@@ -57,4 +57,12 @@
 		<beans:constructor-arg ref="naverClientSecret"/>
 		<beans:constructor-arg ref="naverRedirectUrl"/>
 	</beans:bean>
+	
+	<beans:bean id="loginInterceptor" class="kr.goott.gymcarry.interceptor.LoginInterceptor"></beans:bean>
+	<interceptors>
+		<interceptor>
+			<mapping path="/community.do"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+	</interceptors>
 </beans:beans>
