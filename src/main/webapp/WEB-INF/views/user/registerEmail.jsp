@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>GYM CARRY - Join - Email</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js" type="text/javascript"></script>
@@ -32,39 +32,61 @@
 					<form id="directFrm" action="${path}/user/direct.do" method="post">
 						<div class="row form-frm">
 							<div class="col-xs-6 col-sm-6 col-md-6 form-frm-left">
-								<div><input class="form-input" type="text" placeholder="아이디" id="userid" name="userid" maxlength="24" autocomplete="off" onblur="onblurtest('${path}')"/></div>
-								<div><input class="form-input" type="password" placeholder="비밀번호" id="userpwd" name="userpwd" maxlength="24" autocomplete="off"/></div>
-								<div><input class="form-input" type="email" placeholder="이메일" id="useremail" name="useremail" maxlength="24" autocomplete="off"/></div>
-								<div><input class="form-input" type="text" placeholder="이름" id="username" name="username" maxlength="24" autocomplete="off"/></div>
+								<div class="form-div">
+									<label class="form-label" id="id-label" style="display:none;">아이디</label>
+									<input class="form-input" type="text" placeholder="아이디" id="userid" name="userid" maxlength="24" autocomplete="off" onblur="idCheck('${path}');" alt="id-label" onkeyup="kuEvent(this);"/>
+									<label class="warn-label" id="id-label1" style="display:none">아이디는 영문소문자,숫자로 구성된 6-15자리 입니다.</label>
+									<label class="warn-label" id="id-label2" style="display:none">중복된 아이디입니다.</label>
+									<label class="succ-label" id="id-label3" style="display:none">사용가능한 아이디입니다.</label>
+									<label class="warn-label" id="id-label4" style="display:none">아이디를 입력해주세요.</label>
+								</div>
+								<div class="form-div">
+									<label class="form-label" id="pwd-label" style="display:none;">비밀번호</label>
+									<input class="form-input" type="password" placeholder="비밀번호" id="userpwd" name="userpwd" maxlength="24" autocomplete="off" onblur="pwdCheck();" alt="pwd-label" onkeyup="kuEvent(this);"/>
+									<label class="warn-label" id="pwd-label1" style="display:none;font-size:10px;">비밀번호는 영문 대/소문자/숫자로 특수문자는 한 자리 이상 포함된 6~20자리입니다.</label>
+									<label class="succ-label" id="pwd-label2" style="display:none;">안전한 비밀번호입니다.</label>
+								</div>
+								<div class="form-div">
+									<label class="form-label" id="email-label" style="display:none;">이메일</label>
+									<input class="form-input" type="email" placeholder="이메일" id="useremail" name="useremail" maxlength="24" autocomplete="off" onblur="emailCheck();" alt="email-label" onkeyup="kuEvent(this);"/>
+								</div>
+								<div class="form-div">
+									<label class="form-label" id="name-label" style="display:none;">이름</label>
+									<input class="form-input" type="text" placeholder="이름" id="username" name="username" maxlength="24" autocomplete="off" onblur="nameCheck();" alt="name-label" onkeyup="kuEvent(this);"/>
+								</div>
 							</div>	
 							<div class="col-xs-6 col-sm-6 col-md-6 form-frm-right">			
-								<div>
+								<div style="margin-bottom: 10px;">
 									<strong class="form-strong-fnt">휴대전화번호 인증하기</strong><br>
-									<span>전화번호 입력 후 인증문자 발송 버튼을 누르세요.</span><br>
-									<span>6자리 인증번호 문자를 보내드릴께요.</span>
+									<span class="form-span-fnt">전화번호 입력 후 인증문자 발송 버튼을 누르세요.</span><br>
+									<span class="form-span-fnt">6자리 인증번호 문자를 보내드릴께요.</span>
 								</div>				
 								<div class="form-input-tel">
-									<input class="form-input-tel-in" type="tel" name="userphone" id="userphone" placeholder="휴대전화 번호를 숫자만 입력" maxlength="24"/>
+									<label class="form-label" id="phone-label" style="display:none;">휴대전화 번호를 숫자만 입력</label>
+									<input class="form-input-tel-in" type="tel" name="userphone" id="userphone" placeholder="휴대전화 번호를 숫자만 입력" maxlength="24" alt="phone-label" onkeyup="kuEvent(this);"/>
 									<button type="button">인증문자 발송</button>
 								</div>
 								<div>
-									<strong class="form-strong-fnt">추천인 아이디 입력하기</strong>
-									<span>소개해 준 분의 아이디를 입력해 주세요. 없다면 비워두셔도 됩니다.</span>
-									<div><input class="form-input" type="text" id="presentid" name="presentid" placeholder="추천인 아이디"/></div>
+									<div class="form-strong-fnt"><strong>추천인 아이디 입력하기</strong></div>
+									<span class="form-span-fnt">소개해 준 분의 아이디를 입력해 주세요.<br> 없다면 비워두셔도 됩니다.</span>
+									<div style="margin-top:10px;">
+										<label class="form-label" id="present-label" style="display:none;">추천인 아이디</label>
+										<input class="form-input" type="text" id="presentid" name="presentid" placeholder="추천인 아이디" alt="present-label" onkeyup="kuEvent(this);"/>
+									</div>
 								</div>
 								<div class="ui card">
 									<div class="content">
 										<div style="font-size:12px;margin-bottom:10px;"><strong>약관 동의</strong></div>
-										<input type="checkbox" id="allChk" class="checkbox-mg"/><b class="form-strong-fnt"> <a id="chk0">아래 약관에 모두 동의 합니다.</a></b>						
+										<div class="form-strong-fnt2"><input type="checkbox" id="terms0" class="checkbox-mg" onclick="allCheck();"/><b> <a id="chk0">아래 약관에 모두 동의 합니다.</a></b></div>						
 									</div>
 									<div class="content">
-										<div class="form-span-fnt2"><input type="checkbox" id="terms1" class="checkbox-mg"/> <a id="chk1"><ins>이용약관</ins> 동의 (필수)</a></div>
-										<div class="form-span-fnt2"><input type="checkbox" id="terms2" class="checkbox-mg"/> <a id="chk2"><ins>개인정보취급방침</ins> 동의 (필수)</a></div>
-										<div class="form-span-fnt2"><input type="checkbox" id="terms3" class="checkbox-mg"/> <a id="chk3">마케팅 정보 수신 동의 (선택)</a></div>
+										<div class="form-span-fnt2"><input type="checkbox" id="terms1" name="terms" class="checkbox-mg"/> <a id="chk1"><ins>이용약관</ins> 동의 (필수)</a></div>
+										<div class="form-span-fnt2"><input type="checkbox" id="terms2" name="terms" class="checkbox-mg"/> <a id="chk2"><ins>개인정보취급방침</ins> 동의 (필수)</a></div>
+										<div class="form-span-fnt2"><input type="checkbox" id="terms3" name="terms" class="checkbox-mg"/> <a id="chk3">마케팅 정보 수신 동의 (선택)</a></div>
 										<span class="form-span-fnt3">수신동의 여부 및 설정은 회원정보 수정에서 확인할 수 있습니다.</span>
 									</div>
 								</div>
-								<button type="submit">회원 가입</button>
+								<button type="button" onclick="directSubmit();">회원 가입</button>
 							</div>					
 						</div>	
 					</form>	
@@ -77,17 +99,19 @@
 		</div>
 	</div>
 <script>
-function submitBtn(){
-	const userid = document.querySelector('#userid').value;
-	const userpwd = document.querySelector('#userpwd').value;
-	const useremail = document.querySelector('#useremail').value;
-	const username = document.querySelector('#username').value;
-	}
 
-let idck = 0; //id체크 0=중복, 1=중복X
-$(function(){
-	function onblurtest(path){
-		const userid = document.querySelector('#userid').value;
+let id_error_cnt = 0; 	//id 에러 체크 0=통과, 0<submit 안됨.
+let pwd_error_cnt = 0; //pwd 에러 체크
+let email_error_cnt = 0; //email 에러 체크
+
+
+function idCheck(path){	//id 체크
+const userid = document.querySelector('#userid').value;
+if(userid.search( /^[a-z0-9_]{6,15}$/)){
+	$('#id-label2').css('display','none');$('#id-label3').css('display','none');
+	$('#id-label1').css('display','block');
+	id_error_cnt++;
+	}else{
 		$.ajax({
 			async: true,
 			type : 'POST',
@@ -97,9 +121,11 @@ $(function(){
 			contentType : "application/json; charset=UTF-8",
 			success : function(data){
 				if(data.cnt>0){
-					alert('아이디가 존재합니다잉');
+					$('#id-label1').css('display','none');$('#id-label3').css('display','none');
+					$('#id-label2').css('display','block');id_error_cnt++;
 				}else{
-					alert('사용가능한 아이디입니다잉');
+					$('#id-label1').css('display','none');$('#id-label2').css('display','none');
+					$('#id-label3').css('display','block');id_error_cnt=0;
 				}
 			},
 			error : function(error){
@@ -107,37 +133,75 @@ $(function(){
 			}
 		});	
 	}
-});
+}
 
+function pwdCheck(){ //pwd 체크
+	const userpwd = document.querySelector('#userpwd').value;
+	if(userpwd.search(/^(?=.*[a-zA-Z0-9])(?=.*\W).{6,20}$/)){
+		//alert('비밀번호는 영문 대/소문자+숫자로 구성, 특수문자 한 자리 이상 들어간 총 6~20자리입니다.');
+		$('#pwd-label1').css('display','block');$('#pwd-label2').css('display','none');
+		pwd_error_cnt++;
+	}else{
+		//alert('훌륭하군');
+		$('#pwd-label2').css('display','block');$('#pwd-label1').css('display','none');
+		pwd_error_cnt=0;
+	}
+}
+function nameCheck(){
+	const username = document.querySelector('#username').value;
+}
 
-
-function checkbox_click(){
-const chk0 = document.querySelector('#chk0');
-const chk1 = document.querySelector('#chk1');
-const chk2 = document.querySelector('#chk2');
-const chk3 = document.querySelector('#chk3');
-
-
-let allChk = document.querySelector('#allChk');
-let terms1 = document.querySelector('#terms1');
-let terms2 = document.querySelector('#terms2');
-let terms3 = document.querySelector('#terms3');
-
-	chk0.onclick = function(){
-		if(allChk.checked===false||terms1.checked===false||terms2.checked===false||terms3.checked===false){
-			allChk.checked=true;terms1.checked=true;terms2.checked=true;terms3.checked=true;
-		}else{
-			allChk.checked=false;terms1.checked=false;terms2.checked=false;terms3.checked=false;
-		}
+function emailCheck(){ //email 체크
+	const useremail = document.querySelector('#useremail').value;
+	if(useremail.search(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)){
+		//alert('올바른 이메일 형식이 아닙니다.');
+		email_error_cnt++;
+	}else{
+		email_error_cnt=0;
 	}
 }
 
-
-function init(){
-checkbox_click();
+function directSubmit(){ //submit 제어
+	let idLength = $('#userid').val().length;
+	let pwdLength = $('#userpwd').val().length;
+	let emailLength = $('#useremail').val().length;
+	let nameLength = $('#username').val().length;
+	if(id_error_cnt+pwd_error_cnt+email_error_cnt>0){
+		alert('크네');
+		return false;
+	}else if(idLength===0 || pwdLength===0 || emailLength===0 || nameLength===0){
+		if(idLength===0){
+			$('#id-label2').css('display','none');$('#id-label3').css('display','none');$('#id-label1').css('display','block');
+			return false;
+		}else if(pwdLength===0){
+			return false;
+		}
+	}else if($('#terms1').prop('checked')===false || $('#terms2').prop('checked')===false){
+		alert('체크할껀 하자잉');
+		return false;
+	}else{
+		alert('통과');
+		//document.querySelector('#directFrm').submit();
+		return true;
+	}	
 }
 
-init();
+function allCheck(){ // 약관 동의 전체 체크 선택/해제
+	if($('#terms0').is(':checked')){
+		$('input[name=terms]').prop('checked',true);
+	}else{
+		$('input[name=terms]').prop('checked',false);
+	}
+}
+
+function kuEvent(c){
+	if($('#'+c.id).val().length>0){
+		$('#'+c.alt).css('display','block');
+	}else{
+		$('#'+c.alt).css('display','none');
+	}
+}
+
 </script>
 </header>
 <footer>
