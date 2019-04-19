@@ -12,9 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
 
-<style>
 
-</style>
 <body>
 <!-- (글을 보는)사용자의 액션 -->
 <form name="form" method="post" >
@@ -48,8 +46,14 @@
 		</div>
 	</div>
 <!-- 오른쪽 -->	
- 	<div class="ten wide column" style="margin-top:4%">
- 		<div class="ui grid right aligned" >			    
+ 	<div class="nine wide column" style="margin-top:3%">
+ 			<div class="ui divider"></div>
+ 			Writer's Comment
+ 			<div class="ui raised very padded text segment" style="background:#FFF6B2">			  
+			  <p> ${dto.comDes }</p>
+			</div>	
+ 		<div class="ui grid right aligned" >	
+ 				    
 			    <div class="two wide column" onClick="clickEditBtn()">
 			    	<div class="ui labeled button" tabindex="0">
 					  <div class="ui teal button">
@@ -60,7 +64,7 @@
 					  </a>
 				    </div>		    	
 			    </div>
-			    <div class="two wide column"  onClick="clickDeleteBtn()">
+			    <div class="two wide column"  onClick="clickDeleteBtn()" >
 				    <div class="ui labeled button" tabindex="0">
 						  <div class="ui grey button">
 						   	<i class="eraser icon" style="width:10px"></i>Delete		     		
@@ -71,7 +75,7 @@
 					    </div>	    	
 			    </div>
 			   
-			    <div class="two wide column">
+			    <div class="two wide column" style="margin-left:20px">
 				    <div class="ui labeled button" tabindex="0" onclick="clickLike()">
 					  <div class="ui red button">
 					  	<c:if test="${like==1}">
@@ -88,7 +92,7 @@
 				    </div>
 				</div>
 
-			    <div class="two wide column">
+			    <div class="two wide column" >
 			    	<div class="ui labeled button" tabindex="0">
 					  <div class="ui blue button">
 					   <i class="comment icon"></i> Reply
@@ -101,10 +105,8 @@
 		   				     	
 			    </div>
 			</div>
-
-	 	  <div class="ui raised very padded text segment">			  
-			  <p>글내용 : ${dto.comDes }</p>
-			</div>
+			
+	 	  
 
 
 	 	  <div class="ui divider"></div>
@@ -116,7 +118,7 @@
 			      <input type="hidden" name="comNo" value="${dto.comNo }"/>
 
 			      <input type="hidden" name="userid" value="${userid}"/>  <!-- 접속자 아이디-->
-			      <input type="submit" value="Submit">
+			      <input type="submit" value="Add">
 
 			    </div>
 			    
