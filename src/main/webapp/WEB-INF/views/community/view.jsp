@@ -20,7 +20,7 @@
 <form name="form" method="post" >
 	<%-- <input type="hidden" name="comNo" value="${dto.comNo}"> --%>
 	<input type="hidden" name="comImage" value="${dto.comImage}">
-	<input type="hidden" name="userid" value="khdrogba"/> <!-- 보는 userid -->
+	<input type="hidden" name="userid" value="${userid }"/> <!-- 보는 userid -->
 	
 </form>
 <!-- 왼쪽 -->
@@ -101,11 +101,12 @@
 		   				     	
 			    </div>
 			</div>
-	 	  <div style="margin-top:50px"><!-- 댓글DIV -->
-		   
-		      ${dto.comDes }
-		    
-	  	  </div>
+
+	 	  <div class="ui raised very padded text segment">			  
+			  <p>글내용 : ${dto.comDes }</p>
+			</div>
+
+
 	 	  <div class="ui divider"></div>
 			<!-- 댓글 입력 DIV -->
 			<form method="post" action="${path }/community/reply/${dto.comNo}">
@@ -113,8 +114,10 @@
 			      <i class="heart outline icon"></i>
 			      <input type="text" placeholder="Add Comment..." name="replyDes" style="width:80%;">
 			      <input type="hidden" name="comNo" value="${dto.comNo }"/>
-			      <input type="hidden" name="userid" value="khdrogba"/>  <!-- 접속자 아이디-->
-			      <input type="submit" value="Add">
+
+			      <input type="hidden" name="userid" value="${userid}"/>  <!-- 접속자 아이디-->
+			      <input type="submit" value="Submit">
+
 			    </div>
 			    
 		    </form>
@@ -125,8 +128,10 @@
 				    	<img class="ui avatar image" src="${path}/resources/profile.png">
 						<div class="content">
 						    <a class="header">${dto.userid}</a>
-						    <a id=replyEdit onclick="editInputAppear(event)">수정</a>
-						    <a onClick="replyDeleteBtn(event)">삭제</a>
+						    <c:if test="${dto.userid==userid}">
+							    <a id=replyEdit onclick="editInputAppear(event)">수정</a>
+							    <a onClick="replyDeleteBtn(event)">삭제</a>
+						    </c:if>
 						    <div class="description">
 						    	<p id="replyDes">${dto.replyDes }</p>
 						    	<div id="replyDesInput" style="display:none;">
@@ -225,19 +230,26 @@ const editInputAppear = (event) =>{
 
 const clickEditBtn = () =>{
 	console.log("edit btn clicked");
-	$(function(){
-		$('.ui.tiny.modal').modal('show');	
-	});
+	if("${userid}"==="${dto.userid}"){
+		$(function(){
+			$('.ui.tiny.modal').modal('show');	
+		});
+	}else{
+		alert("니 글이 아니잔니?");
+	}
+
 }
 const clickDeleteBtn = () =>{
 	console.log("elete btn clicked");
-	if(confirm("are you sure?")){
-		document.form.action="${path}/community/delete/${dto.comNo}";
-		
-		document.form.submit();
+	if("${userid}"==="${dto.userid}"){
+		if(confirm("are you sure?")){
+			document.form.action="${path}/community/delete/${dto.comNo}";		
+			document.form.submit();
+		}
 	}else{
-		
+		alert("니 글이 아니잔니?");
 	}
+
 }
 
  const replyEditBtn = (event) =>{
