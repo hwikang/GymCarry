@@ -16,8 +16,8 @@
  <c:if test="${loginCheck=='Y'}">			  
 	 <a class="item" href="${path }/user/logout.do">로그아웃</a>
 	 <a class="item" href="${path }/user/myProfile.do">내 정보</a>			 	 
-	 <a class="item">짐프로틴 사러 가기</a>
-	 <a class="item" style="background-color:#890422;border-radius: 10px; border-style:inherit;">트레이너신청하기</a>
+	 
+	 <a class="item" style="background-color:#890422;border-radius: 10px; border-style:inherit; color:white">파트너신청하기</a>
  </c:if>
 </div>
  

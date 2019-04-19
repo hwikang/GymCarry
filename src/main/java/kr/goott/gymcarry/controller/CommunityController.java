@@ -99,17 +99,7 @@ public class CommunityController {
 		}
 	
 		
-		//@RequestMapping(value= "community/view/{comNo}", method=RequestMethod.POST)
-		public ModelAndView viewCommunity(@PathVariable int comNo ,ModelAndView mav) {
 
-			CommunityDTO dto = communityDAO.viewCommunity(comNo);
-			
-			mav.addObject("dto",dto);
-			mav.setViewName("community/view");
-		
-			return mav;
-		}
-		
 		@RequestMapping(value= "community/view/{comNo}", method=RequestMethod.GET)
 		public ModelAndView viewCommunity2(@PathVariable int comNo ,ModelAndView mav,HttpSession session) {
 //			logger.info("==========comNo="+comNo);
@@ -125,6 +115,8 @@ public class CommunityController {
 			communityDAO.viewCount(comNo);
 			//check like
 			String userid = (String) session.getAttribute("userid"); 
+			logger.info("userid=="+userid);
+			mav.addObject("userid",userid); //login ID
 			int like = communityLikeDAO.checkLike(comNo,userid);
 			mav.addObject("like",like);
 

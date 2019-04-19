@@ -20,14 +20,14 @@
 <form name="form" method="post" >
 	<%-- <input type="hidden" name="comNo" value="${dto.comNo}"> --%>
 	<input type="hidden" name="comImage" value="${dto.comImage}">
-	<input type="hidden" name="userid" value="khdrogba"/> <!-- 보는 userid -->
+	<input type="hidden" name="userid" value="${userid }"/> <!-- 보는 userid -->
 	
 </form>
-
+<!-- 왼쪽 -->
 <div class="ui grid">
-	<div class="three wide column"></div>
+	<div class="one wide column"></div>
 	
-	<div class="eight wide column">
+	<div class="five wide column">
 		<div class="ui container left aligned" >
 			<div class="ui grid" style="margin-top:10px;">	    
 			    <div class="two wide column"></div>
@@ -41,40 +41,41 @@
 		    </div>
 		    <div class="ui divider"></div>
 		    <div class="ui container center aligned" ><!-- Modal 이미지div -->
-		  		<img src="/gymcarry/community/images/${dto.comImage}" style="width:100%" >
+		  		<img src="/gymcarry/community/images/${dto.comImage}" style="width:100%;border-radius:15px" >
 		    </div>
 		    
 		    <div class="ui divider"></div>
-		    
-			<div class="ui grid right aligned" >			    
-			    <div class="three wide column" onClick="clickEditBtn()">
+		</div>
+	</div>
+<!-- 오른쪽 -->	
+ 	<div class="ten wide column" style="margin-top:4%">
+ 		<div class="ui grid right aligned" >			    
+			    <div class="two wide column" onClick="clickEditBtn()">
 			    	<div class="ui labeled button" tabindex="0">
 					  <div class="ui teal button">
-					   	<i class="edit icon"></i>			     		
+					   	<i class="edit icon"></i>Edit			     		
 					  </div>
 					  <a class="ui basic teal left pointing label">
-					  	 <span>Edit</span>	
+					  	 <span>수정</span>	
 					  </a>
 				    </div>		    	
 			    </div>
-			    <div class="three wide column"  onClick="clickDeleteBtn()">
+			    <div class="two wide column"  onClick="clickDeleteBtn()">
 				    <div class="ui labeled button" tabindex="0">
 						  <div class="ui grey button">
-						   	<i class="eraser icon"></i>		     		
+						   	<i class="eraser icon" style="width:10px"></i>Delete		     		
 						  </div>
 						  <a class="ui basic grey left pointing label">
-						  	 <span>Delete</span>			
+						  	 <span>삭제</span>			
 						  </a>
-					    </div>
-			    	
-			     	    	
+					    </div>	    	
 			    </div>
 			   
-			    <div class="five wide column">
+			    <div class="two wide column">
 				    <div class="ui labeled button" tabindex="0" onclick="clickLike()">
 					  <div class="ui red button">
 					  	<c:if test="${like==1}">
-					  		<i class="heart icon"  id="likeIcon"></i> Like
+					  		<i class="heart icon"  id="likeIcon" ></i> Like			  
 					  	</c:if>
 					  	<c:if test="${like==0 }">
 					  		<i class="heart outline icon"  id="likeIcon" ></i> Like
@@ -87,7 +88,7 @@
 				    </div>
 				</div>
 
-			    <div class="four wide column">
+			    <div class="two wide column">
 			    	<div class="ui labeled button" tabindex="0">
 					  <div class="ui blue button">
 					   <i class="comment icon"></i> Reply
@@ -100,11 +101,12 @@
 		   				     	
 			    </div>
 			</div>
-	 	  <div class="ui text container"><!-- 댓글DIV -->
-		   
-		      <p>${dto.comDes }</p>
-		    
-	  	  </div>
+
+	 	  <div class="ui raised very padded text segment">			  
+			  <p>글내용 : ${dto.comDes }</p>
+			</div>
+
+
 	 	  <div class="ui divider"></div>
 			<!-- 댓글 입력 DIV -->
 			<form method="post" action="${path }/community/reply/${dto.comNo}">
@@ -112,8 +114,10 @@
 			      <i class="heart outline icon"></i>
 			      <input type="text" placeholder="Add Comment..." name="replyDes" style="width:80%;">
 			      <input type="hidden" name="comNo" value="${dto.comNo }"/>
-			      <input type="hidden" name="userid" value="khdrogba"/>  <!-- 접속자 아이디-->
+
+			      <input type="hidden" name="userid" value="${userid}"/>  <!-- 접속자 아이디-->
 			      <input type="submit" value="Submit">
+
 			    </div>
 			    
 		    </form>
@@ -124,8 +128,10 @@
 				    	<img class="ui avatar image" src="${path}/resources/profile.png">
 						<div class="content">
 						    <a class="header">${dto.userid}</a>
-						    <a id=replyEdit onclick="editInputAppear(event)">수정</a>
-						    <a onClick="replyDeleteBtn(event)">삭제</a>
+						    <c:if test="${dto.userid==userid}">
+							    <a id=replyEdit onclick="editInputAppear(event)">수정</a>
+							    <a onClick="replyDeleteBtn(event)">삭제</a>
+						    </c:if>
 						    <div class="description">
 						    	<p id="replyDes">${dto.replyDes }</p>
 						    	<div id="replyDesInput" style="display:none;">
@@ -138,15 +144,17 @@
 						    	</div>
 						    	
 						    </div>
+						    <div class="ui divider"></div>
 						    <span>${dto.regdate}</span>
 				   		</div>
 			  		</div>			  
 			  </c:forEach>			 
 			<!-- 댓글 리스트 -->
-	  </div>
-	</div>
 	
-	<div class="three wide column"></div>
+	  </div>
+	  
+ 	</div>
+	
 </div>
 
 
@@ -222,19 +230,26 @@ const editInputAppear = (event) =>{
 
 const clickEditBtn = () =>{
 	console.log("edit btn clicked");
-	$(function(){
-		$('.ui.tiny.modal').modal('show');	
-	});
+	if("${userid}"==="${dto.userid}"){
+		$(function(){
+			$('.ui.tiny.modal').modal('show');	
+		});
+	}else{
+		alert("니 글이 아니잔니?");
+	}
+
 }
 const clickDeleteBtn = () =>{
 	console.log("elete btn clicked");
-	if(confirm("are you sure?")){
-		document.form.action="${path}/community/delete/${dto.comNo}";
-		
-		document.form.submit();
+	if("${userid}"==="${dto.userid}"){
+		if(confirm("are you sure?")){
+			document.form.action="${path}/community/delete/${dto.comNo}";		
+			document.form.submit();
+		}
 	}else{
-		
+		alert("니 글이 아니잔니?");
 	}
+
 }
 
  const replyEditBtn = (event) =>{

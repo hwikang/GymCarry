@@ -8,9 +8,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
-
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> <!-- 구글폰트 -->
 
 <style>
+	*{font-family: 'Jua', sans-serif}
 	img{
 		width:100%;
 	}
@@ -29,19 +30,18 @@
 <body>
 	
 	<div class="container">
-		<div style="margin:20px;" id="uploadBtn" class="ui grid">
-			<div class="twelve wide column"></div>
-			<div class="four wide column">
-				<button class="big ui blue button" onClick="clickUploadBtn()">사진올리기</button>
-			</div>
-		</div>
+	<div class=list-group style="font-size:23px;margin-bottom:50px">
+  		<div style="font-size:40px;margin-bottom:25px">Gym Carry 커뮤니티</div><br/>
+  		<span>유익한 정보를 공유하거나 프로필을 업로드해 자신을 어필해 보세요!</span>
+			<button class="ui blue button" onClick="clickUploadBtn()" style="background-color:#890422;">Go!</button>
+	</div>
 		<!-- 이미지들어갈곳 -->
-		<div class="ui grid three column" id="contentDiv">
+		<div class="ui grid four column" id="contentDiv" >
 			<c:forEach var="dto" items="${list}">				
 					<div class="column" >
 						<form action="${path}/community/view/${dto.comNo }" method="get" ><!-- path variable -->
 							<label for="submit${dto.comNo}">								
-								<img src="${path }/community/images/${dto.comImage}"/>
+								<img src="${path }/community/images/${dto.comImage}" style="width:330px;height:400px;border-radius:15px"/>
 							</label>			
 							<input id="submit${dto.comNo}" type="submit" style="display:none;" />
 						</form>
