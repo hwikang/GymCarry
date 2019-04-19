@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> <!-- 구글폰트 -->
 <div id="menu"class="ui secondary right menu " style="font-family: 'Jua', sans-serif;font-size:18px;">
  <a class="item" href="${path }/"><img src="${path }/resources/gclogo.png" style="width:400px;height:250px"/></a>
- <a class="item active">트레이너찾기 </a>
+ <a class="item active">파트너찾기 </a>
  <a class="item" href="${path }/notice.do">공지사항</a>
  <a href="${path }/community.do" class="item">커뮤니티</a>
  <c:if test="${loginCheck==null}">

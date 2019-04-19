@@ -14,5 +14,8 @@ public interface UserDAOInterface {
 	public UserDTO loginCheck(UserDTO dto);
 	public UserDTO userInfo(String userid);
 	public int addInfoUser(UserDTO dto);
-	
+	public String findId(UserDTO dto);
+	public UserDTO naverIdCheck(UserDTO dto);//네이버아이디체크
+	public void insertNaverUser(UserDTO dto); //네이버아이디로 계정생성
+	public int idCheckCount(String userid); //아이디 비동기식 중복 검사
 }

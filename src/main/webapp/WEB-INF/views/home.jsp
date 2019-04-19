@@ -314,7 +314,7 @@
 	#com{clear:both;} /* float-left 종료시키기 */
 	#trainers{margin-left:220px }
 	#honeyTip{margin-left:330px;}
-	#title1, #title2, #title3, #title5{text-algin:center;margin-top:400px;margin-bottom:50px;font-size:30px}
+	#title1, #title2, #title3, #title5{text-algin:center;margin-top:500px;margin-bottom:50px;font-size:30px}
 	#title4{text-algin:center;margin-top:650px;font-size:30px}
 	#blank{margin-top:650px;}
 	
@@ -378,16 +378,16 @@
 		window.scrollTo(0,650);	
 	}
 	function scrollTo2(){
-		window.scrollTo(0,1330);	
+		window.scrollTo(0,1430);	
 	}
 	function scrollTo3(){
-		window.scrollTo(0,2000);	
+		window.scrollTo(0,2300);	
 	}
 	function scrollTo4(){
-		window.scrollTo(0,2700);	
+		window.scrollTo(0,2900);	
 	}
 	function scrollTo5(){
-		window.scrollTo(0,3500);	
+		window.scrollTo(0,3800);	
 	}
 	function scrollToTop(){
 		window.scrollTo(0,0);	

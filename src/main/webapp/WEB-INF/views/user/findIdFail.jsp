@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"/>
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> <!-- 구글폰트 -->
-<link rel="stylesheet" href="${path }/css/findId.css" type="text/css">
+<link rel="stylesheet" href="${path }/css/findIdFail.css" type="text/css">
 </head>
 <body>
 <header>
@@ -37,6 +37,7 @@
 							</label>
 							<button type="submit">아이디를 찾아주세요!</button>
 						</form>
+						아이디 못찼음...
 					</div>
 				</div>
 			<div class="col-xs-3 col-sm-3 col-md-3"></div>

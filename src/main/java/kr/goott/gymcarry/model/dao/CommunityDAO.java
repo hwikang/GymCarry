@@ -22,8 +22,8 @@ public class CommunityDAO implements CommunityDAOInterface {
 	@Override
 	public void insertCommunity(CommunityDTO dto) {
 		logger.info("insert community called...");
-		logger.info("dao¿¡¼­ dto userid"+dto.getUserid());
-		sqlSession.insert("community.insertCommunity" , dto);  //dto ºÒ·¯¿Â°Å¸¦ sqlsessiondÀ» ÅëÇØ ¶§·Á¹Þ´Â´Ù
+		logger.info("daoï¿½ï¿½ï¿½ï¿½ dto userid"+dto.getUserid());
+		sqlSession.insert("community.insertCommunity" , dto);  //dto ï¿½Ò·ï¿½ï¿½Â°Å¸ï¿½ sqlsessiondï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Þ´Â´ï¿½
 	}
 
 	@Override
@@ -81,10 +81,18 @@ public class CommunityDAO implements CommunityDAOInterface {
 		sqlSession.update("community.likeCountSub", comNo);
 		
 	}
-
-
-	
-	
+/*
+	@Override
+	public void insertLike(int comNo, String userid) {
+		sqlSession.insert("community.insertLike", comNo,userid);
+		
+	}
+	@Override
+	public void deleteLike(int comNo, String userid) {
+		sqlSession.delete("community.deletetLike", comNo,userid);
+		
+	}
+*/	
 
 
 

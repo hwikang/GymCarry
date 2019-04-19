@@ -37,6 +37,7 @@
 							</label>
 							<button type="submit">아이디를 찾아주세요!</button>
 						</form>
+						응 아이디 찾음 ${userid }
 					</div>
 				</div>
 			<div class="col-xs-3 col-sm-3 col-md-3"></div>

@@ -24,7 +24,7 @@ public class NoticeDAO implements NoticeDAOInterface{
 		logger.info("notice list called");
 		return sqlSession.selectList("notice.listNotice");
 	}
-
+	
 	@Override
 	public void submitNotice(NoticeDTO dto) {
 		logger.info("notice submit called");
