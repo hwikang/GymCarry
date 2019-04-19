@@ -182,3 +182,9 @@ header {
 .form-div{
 	margin-bottom:21px;
 }
+.modal-content{
+	text-align:center;
+}
+.modal{
+	top:20%;
+}

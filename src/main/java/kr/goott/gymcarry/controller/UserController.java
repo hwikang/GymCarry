@@ -65,7 +65,8 @@ public class UserController {
 			session.setAttribute("username", naverid.getUsername());
 			session.setAttribute("loginCheck", "Y");
 			return new ModelAndView("/home");			
-		}else {//아이디값이 null이면 아이디 생성해야지			
+		}else {//아이디값이 null이면 아이디 생성해야지		
+			logger.info("registerNaver page view loading..");
 			return new ModelAndView("user/registerNaver", "naverUser", naverUser);
 		}		
 	}

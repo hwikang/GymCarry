@@ -97,6 +97,30 @@
 			</div>
 			<div class="col-xs-2 col-sm-2 col-md-2"></div>
 		</div>
+	<!-- check box modal 구현 -->
+	<!-- The Modal -->
+  <button type="button" class="btn btn-primary" id="modal-btn" hidden="hidden" data-toggle="modal" data-target="#myModal">
+   Open modal
+  </button>
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">약관 동의</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>        
+        <!-- Modal body -->
+        <div class="modal-body">
+        	필수 약관에 동의해주세요!
+        </div>        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+        </div>        
+      </div>
+    </div>
+  </div>
 	</div>
 <script>
 
@@ -177,7 +201,7 @@ function directSubmit(){ //submit 제어
 			return false;
 		}
 	}else if($('#terms1').prop('checked')===false || $('#terms2').prop('checked')===false){
-		alert('체크할껀 하자잉');
+		$('#modal-btn').trigger('click');
 		return false;
 	}else{
 		alert('통과');
