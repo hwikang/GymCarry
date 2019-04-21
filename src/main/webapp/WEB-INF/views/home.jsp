@@ -52,7 +52,7 @@
             	<!-- 상단 메뉴 -->
              <div id="menu"class="ui secondary right menu " style="font-family: 'Jua', sans-serif;font-size:18px;">
 			  <a class="item" href="${path }/"><img src="${path }/resources/gclogo.png" style="width:400px;height:250px"/></a>
-			  <a class="item" style="background-color:#890422;border-radius: 10px; border-style:inherit";>파트너찾기 </a>
+			  <a href="${path }/partner.do" class="item" style="background-color:#890422;border-radius: 10px; border-style:inherit";>파트너찾기 </a>
 			  <a class="item" href="${path }/notice.do">공지사항</a>
 			  <a href="${path }/community.do" class="item">커뮤니티</a>
 			  <c:if test="${loginCheck==null}">

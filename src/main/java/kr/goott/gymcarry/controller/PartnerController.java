@@ -20,9 +20,9 @@ public class PartnerController {
 	@GetMapping(value="partner.do")
 	public ModelAndView viewPartner(ModelAndView mav) {
 		mav.setViewName("partner/partnerList");
-		List<UserDTO> list = partnerDAO.getAllUser();
+		//List<UserDTO> list = partnerDAO.getAllUser();
 		
-		mav.addObject("list",list);
+		//mav.addObject("list",list);
 		return mav;
 	}
 }
