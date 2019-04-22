@@ -1,3 +1,4 @@
+
 /*
  * package kr.goott.gymcarry.controller;
  * 
@@ -22,3 +23,4 @@
  * 
  * mav.addObject("list",list); return mav; } }
  */
+
