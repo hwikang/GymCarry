@@ -118,8 +118,7 @@
 			      <input type="hidden" name="comNo" value="${dto.comNo }"/>
 
 			      <input type="hidden" name="userid" value="${userid}"/>  <!-- 접속자 아이디-->
-			      <input type="submit" value="Add">
-
+			      <input type="submit" value="Add" style="color:#890422">
 			    </div>
 			    
 		    </form>
