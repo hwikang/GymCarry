@@ -57,6 +57,7 @@ public class CommunityController {
 		return "community/list";
 	}
 	
+	
 
 
 

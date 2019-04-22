@@ -16,54 +16,112 @@
 <body>
 <div class="ui placeholder segment">
  <div class="ui two column very relaxed stackable grid">
-	<div class="column" style="width:30%">
+	<div class="column" style="width:30%;height:730px;overflow:scroll" >
+		<div>
+			<form action="${path }/partner/locationApply" id="locationApplyForm">
+				<input type="submit" value="내위치 등록"/>				
+			</form>
+		</div>
+		
+		<div class="ui middle aligned animated list">
+			<c:forEach var="dto" items="${list}">
+				<div class="ui style fluid accordion">
+					<div class="title">
+						<div class="item">
+							<img class="ui avatar image" src="" />
+							<div class="content">
+								<div class="header">{dto.username}</div>
+								<div class="meta">{dto.gender}</div>
+							</div>					
+						</div>
+					</div>
+				</div>
+				<!-- dropdown -->
+				<div class="content">
+					<img src="" style="width:100%;"/>
+				</div>
+			</c:forEach>
+		</div>
+			
 		
 	</div>
-	<div class="middle aligned column" style="width:70%">
+	<div class="top aligned column" style="width:70%">
 		<div id="map" style="width:100%;height:700px;"></div>
-		<div style="width:100px;height:100px;position:absolute;bottom:100px;right:100px;z-index:3;display:none" class="modal modal1">
-			<div class="ui card">
-				<div class="content">
-					<div class="right floated" onClick="closeModal(1)">X</div>
-					<p>이미지</p>
-					<p>이름</p>
-					<p>운동목적</p>
-					<p>경력</p>
-					<p>연락처</p>					
-				</div>
-			</div>		
-		</div>
+		<c:forEach var="dto" items="${list}">
+			<div style="width:25%;height:150px;position:absolute;bottom:300px;right:50px;z-index:3;display:none" class="modal modal${dto.userno}">
+				<div class="ui card">
+					<div class="content">
+						<div class="right floated" onClick="closeModal(${dto.userno})">X</div>						
+						<a class="header">${dto.userid}</a>
+						<div class="meta">${dto.gender}</div>
+					</div>
+					<div class="extra content">
+						
+							<p class="header">운동목적 : </p>
+							<div class="description">
+								<c:if test="${dto.purposeExe eq 'purpose1'}">
+								체력과 건강을 위해
+								</c:if>
+								<c:if test="${dto.purposeExe eq 'purpose2'}">
+								다이어트 , 몸매 관리를위해
+								</c:if>	
+								<c:if test="${dto.purposeExe eq 'purpose3'}">
+								스트레스 해소를 위해
+								</c:if>
+							</div>
+							<p class="header">평소 운동량 : </p>
+							<div class="description">
+								<c:if test="${dto.stateExe  eq 'state1'}">
+								전혀 운동하지 않음
+								</c:if>
+								<c:if test="${dto.stateExe eq 'state2'}">
+								가벼운 운동 (주 1~3일)
+								</c:if>	
+								<c:if test="${dto.stateExe eq 'state3'}">
+								적당한 운동 (주 3~5일)
+								</c:if>
+								<c:if test="${dto.stateExe eq 'state4'}">
+								열심히 운동(주 6~7일)
+								</c:if>
+								<c:if test="${dto.stateExe eq 'state5'}">
+								아주 열심히 운동(매일 2회 이상)
+								</c:if>
+							</div>
+							<p class="header">목표 체중 : </p>				
+							<div class="description">
+								<c:if test="${dto.goalExe  eq 'goal1'}">
+								1주일에 1kg 감량
+								</c:if>
+								<c:if test="${dto.goalExe  eq 'goal2'}">
+								1주일에 0.5kg 감량
+								</c:if>
+								<c:if test="${dto.goalExe  eq 'goal3'}">
+								1주일에 0.25kg 감량
+								</c:if>
+								<c:if test="${dto.goalExe  eq 'goal4'}">
+								현재 체중 유지
+								</c:if>
+								<c:if test="${dto.goalExe  eq 'goal5'}">
+								1주일에 0.25kg 찌우기
+								</c:if>
+								<c:if test="${dto.goalExe  eq 'goal6'}">
+								1주일에 0.5kg 찌우기
+								</c:if>
+								<c:if test="${dto.goalExe  eq 'goal7'}">
+								1주일에 1kg 찌우기
+								</c:if>
+							</div>
+					</div>
+					
+				</div>		
+			</div>
+		</c:forEach>
 		
-		<div style="width:100px;height:100px;position:absolute;bottom:100px;right:100px;z-index:3;display:none" class="modal modal2">
-			<div class="ui card">
-				<div class="content">
-					<div class="right floated" onClick="closeModal(2)">X</div>
-					<p>이미지2</p>
-					<p>이름2</p>
-					<p>운동목적2</p>
-					<p>경력2</p>
-					<p>연락처2</p>					
-				</div>
-			</div>		
-		</div>
-		
-		<div style="width:100px;height:100px;position:absolute;bottom:100px;right:100px;z-index:3;display:none" class="modal modal0">
-			<div class="ui card">
-				<div class="content">
-					<div class="right floated" onClick="closeModal(0)">X</div>
-					<p>이미지0</p>
-					<p>이름0</p>
-					<p>운동목적0</p>
-					<p>경력0</p>
-					<p>연락처0</p>					
-				</div>
-			</div>		
-		</div>
 		
 	</div>
 	
 	 <div class="ui vertical divider"></div>
-	 </div>
+  </div>
 </div>
 
 
@@ -71,11 +129,35 @@
 
 <script>
 	
-	let userLat =0;
-	let userLong = 0;
-	
+let userLat =0;
+let userLong = 0;
+let partnersLat =0;
+let partnersLong = 0;
+let partnersId ="";
 	console.log("${list}")
 	let list ="${list}";
+	list = list.split("UserDTO");
+	console.log(list)
+	let locationArr = [];
+	
+	for(let i =1; i<list.length;i++){
+		//"37.ddd,...."
+		partnersLat = list[i].substr(list[i].indexOf("userLat=")+8);
+		partnersLat = partnersLat.substr(0,partnersLat.indexOf(","))
+		//console.log(partnersLat);
+		partnersLong = list[i].substr(list[i].indexOf("userLong=")+9);
+		partnersLong = partnersLong.substr(0,partnersLong.indexOf("]"))
+		//console.log(partnersLong);
+		partnersId = list[i].substr(list[i].indexOf("userno=")+7);
+		partnersId = partnersId.substr(0,partnersId.indexOf(","));
+		
+		if(partnersLat!=="null" && partnersLong!=="null"){
+			locationArr.push([partnersLat,partnersLong,partnersId])
+		}
+		
+		
+	}
+	console.log(locationArr)
 	
 	//let test = "[[],[],[]]";
 	let test = "[[37.391,126.9433688],[37.392,126.9433688],[37.393,126.9433688]]";
@@ -100,8 +182,8 @@
 	
 
 	function setUsersMarker(){
-		test.map(function(val,idx){
-			console.log(val[0])
+		locationArr.map(function(val,idx){
+			//console.log(val[0])
 			let markerPosition = new daum.maps.LatLng(val[0],val[1]);
 			//let markerIcon = new daum.maps.MarkerImage("${path}/resources/db.png");
 			var icon = new daum.maps.MarkerImage(
@@ -120,7 +202,7 @@
 				allModals.forEach((val)=>{
 					val.style.display="none"
 				})
-				document.querySelector(".modal"+idx).style.display="block";
+				document.querySelector(".modal"+val[2]).style.display="block";
 			});
 
 		});
@@ -162,6 +244,8 @@
 		navigator.geolocation.getCurrentPosition(function(pos){
 			userLat = pos.coords.latitude;
 			userLong = pos.coords.longitude;
+			const applyForm= document.querySelector("#locationApplyForm")
+			applyForm.innerHTML +=  "<input type='hidden' value='"+userLat+"' name='userLat'/><input type='hidden' value='"+userLong+"' name='userLong'/>"
 			//alert(userLat+":"+userLong);
 			function setCenter() {            
 			    // 이동할 위도 경도 위치를 생성합니다 
