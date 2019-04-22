@@ -32,6 +32,7 @@
 			    <div class="four wide column">
 			    	<img class="ui avatar image" src="/gymcarry/resources/profile.png" > 
 			    	<span>${dto.userid }</span>
+			    	
 			  	</div>
 			    <div class="ui four wide column"></div>
 			    <span class="ui four wide column">${dto.views } views</span>
@@ -128,7 +129,9 @@
 				  	<div class="item">
 				    	<img class="ui avatar image" src="${path}/resources/profile.png">
 						<div class="content">
-						    <a class="header">${dto.userid}</a>
+						<form action="${path}/community/prof/${dto.userid}" id="submit${dto.userid}" method="post" >
+						    <a class="header" onClick="proView('${dto.userid}')">${dto.userid}</a>
+						</form>
 						    <c:if test="${dto.userid==userid}">
 							    <a id=replyEdit onclick="editInputAppear(event)">수정</a>
 							    <a onClick="replyDeleteBtn(event)">삭제</a>
@@ -272,6 +275,11 @@ const replyDeleteBtn = (event) =>{
 
 }
 
+function proView(userid){
+	alert("dd")
+	
+ document.querySelector('#submit'+userid).submit(); 
+}
 
 
 </script>

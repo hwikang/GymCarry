@@ -25,8 +25,10 @@ import kr.goott.gymcarry.model.dao.CommunityDAO;
 import kr.goott.gymcarry.model.dao.CommunityDAOInterface;
 import kr.goott.gymcarry.model.dao.CommunityLikeDAO;
 import kr.goott.gymcarry.model.dao.CommunityReplyDAO;
+import kr.goott.gymcarry.model.dao.UserDAO;
 import kr.goott.gymcarry.model.dto.CommunityDTO;
 import kr.goott.gymcarry.model.dto.CommunityLikeDTO;
+import kr.goott.gymcarry.model.dto.UserDTO;
 
 @Controller
 public class CommunityController {
@@ -38,6 +40,8 @@ public class CommunityController {
 	CommunityReplyDAO communityReplyDao;
 	@Inject
 	CommunityLikeDAO communityLikeDAO;
+	@Inject
+	UserDAO userDAO;
 	
 	@Resource(name="uploadPath")
 	String uploadPath;
@@ -178,6 +182,17 @@ public class CommunityController {
 		}
 	
 	
+		
+		@RequestMapping(value= "community/prof/{userid}", method=RequestMethod.POST)
+		public ModelAndView prof(@PathVariable String userid ,ModelAndView mav) {
+			UserDTO dto = new UserDTO();
+			dto = userDAO.userInfo(userid);
+			mav.addObject("dto",dto);
+			
+			mav.setViewName("community/prof");
+		
+			return mav;
+		}
 
 }
 

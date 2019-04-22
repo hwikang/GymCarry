@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,13 +23,13 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import kr.goott.gymcarry.auth.NaverLoginBO;
 import kr.goott.gymcarry.model.dao.UserDAOInterface;
+import kr.goott.gymcarry.model.dto.CommunityDTO;
 import kr.goott.gymcarry.model.dto.UserDTO;
 
 @Controller
 @RequestMapping("/user/*")
 public class UserController {
 	final Logger logger = LoggerFactory.getLogger(UserController.class);
-	
 	
 	@Inject
 	UserDAOInterface userDAO;
@@ -65,8 +66,7 @@ public class UserController {
 			session.setAttribute("username", naverid.getUsername());
 			session.setAttribute("loginCheck", "Y");
 			return new ModelAndView("/home");			
-		}else {//아이디값이 null이면 아이디 생성해야지		
-			logger.info("registerNaver page view loading..");
+		}else {//아이디값이 null이면 아이디 생성해야지			
 			return new ModelAndView("user/registerNaver", "naverUser", naverUser);
 		}		
 	}
@@ -122,12 +122,20 @@ public class UserController {
 		return mav;
 	}
 
-	@RequestMapping(value = "myProfile.do")
-	public String myProfile() {
+	// 경호 안와서 멋쟁이 윤성이 수정
+	@RequestMapping(value = "myProfile.do", method = RequestMethod.GET)
+	public ModelAndView myProfile(HttpSession session) {
 		logger.info("myprofile page view...");
-		return "user/myProfile";
-	}
 
+			UserDTO dto = new UserDTO();
+			String userid = (String) session.getAttribute("userid");
+			logger.info(userid+"-------------------------------------");
+			dto = userDAO.userInfo(userid);
+			
+			return new ModelAndView("user/myProfile", "dto", dto);
+	}
+	//윤성이 끝
+	
 	@RequestMapping(value = "regAddInfo.do")
 	public ModelAndView regAddInfo(@RequestParam String userid) {
 		logger.info("regAddInfo page view...");
@@ -136,6 +144,7 @@ public class UserController {
 		dto = userDAO.userInfo(userid);
 		return new ModelAndView("user/regAddInfo", "userDTO", dto);
 	}
+
 
 	@RequestMapping(value="regAddDone.do", method = RequestMethod.POST) public
 	String regAddDone(@ModelAttribute UserDTO dto) {
