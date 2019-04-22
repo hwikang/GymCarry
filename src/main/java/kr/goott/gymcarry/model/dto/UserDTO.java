@@ -19,12 +19,16 @@ public class UserDTO {
 	private String gender;
 	private int userheight;
 	private int userweight;
-	private String purposeExe; // 운동 목적
-	private String stateExe; // 평소 운동량
-	private String goalExe; // 목표 체중
+	private String purposeExe; // �슫�룞 紐⑹쟻
+	private String stateExe; // �룊�냼 �슫�룞�웾
+	private String goalExe; // 紐⑺몴 泥댁쨷
 	private Date regdate;
 	private Date modifyDate;
-	private String naverid;//네이버로 로그인 할 시 아이디
+	private String naverid;//�꽕�씠踰꾨줈 濡쒓렇�씤 �븷 �떆 �븘�씠�뵒
+	
+	private Double userLat;
+	private Double userLong;
+	
 	
 	public UserDTO() {}
 
@@ -98,7 +102,7 @@ public class UserDTO {
 	public void setGoalExe(String goalExe) {
 		this.goalExe = goalExe;
 	}
-/* ~ 추가 회원 정보 기입 DTO */
+/* ~ 異붽� �쉶�썝 �젙蹂� 湲곗엯 DTO */
 	public int getUserno() {
 		return userno;
 	}
@@ -169,6 +173,31 @@ public class UserDTO {
 	}
 
 
+	public Double getUserLat() {
+		return userLat;
+	}
+
+
+	public void setUserLat(Double userLat) {
+		this.userLat = userLat;
+	}
+
+
+	public Double getUserLong() {
+		return userLong;
+	}
+
+
+	public void setUserLong(Double userLong) {
+		this.userLong = userLong;
+	}
+
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
+
+
 	@Override
 	public String toString() {
 		return "UserDTO [userno=" + userno + ", userid=" + userid + ", userpwd=" + userpwd + ", username=" + username
@@ -177,8 +206,11 @@ public class UserDTO {
 				+ ", birthDay=" + birthDay + ", birthDate=" + birthDate + ", gender=" + gender + ", userheight="
 				+ userheight + ", userweight=" + userweight + ", purposeExe=" + purposeExe + ", stateExe=" + stateExe
 				+ ", goalExe=" + goalExe + ", regdate=" + regdate + ", modifyDate=" + modifyDate + ", naverid="
-				+ naverid + "]";
+				+ naverid + ", userLat=" + userLat + ", userLong=" + userLong + "]";
 	}
+
+
+
 
 	
 	

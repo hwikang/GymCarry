@@ -47,5 +47,10 @@
 			<mapping path="/community.do"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
+				<interceptor>
+			<mapping path="/partner.do"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
 	</interceptors>
 </beans:beans>
