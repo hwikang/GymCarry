@@ -36,7 +36,7 @@
             <!-- top bar -->
             <div class="codrops-top">
                 <a href="#">
-                    <strong>&laquo; GYM CARRY 최고의 롤모델을 찾아서! </strong>
+                    <strong>&laquo; GYM CARRY 최고의 롤모델을 찾아서! Carry해 드립니다. </strong>
                 </a>
                 <span class="right">
                     <a href="#" target="_blank">GYM CARRY 앱 설치</a>
@@ -52,7 +52,7 @@
             	<!-- 상단 메뉴 -->
              <div id="menu"class="ui secondary right menu " style="font-family: 'Jua', sans-serif;font-size:18px;">
 			  <a class="item" href="${path }/"><img src="${path }/resources/gclogo.png" style="width:400px;height:250px"/></a>
-			  <a class="item active">파트너찾기 </a>
+			  <a href="${path }/partner.do" class="item" style="background-color:#890422;border-radius: 10px; border-style:inherit";>파트너찾기 </a>
 			  <a class="item" href="${path }/notice.do">공지사항</a>
 			  <a href="${path }/community.do" class="item">커뮤니티</a>
 			  <c:if test="${loginCheck==null}">
@@ -62,7 +62,6 @@
 			  <c:if test="${loginCheck=='Y'}">			  
 			 	 <a class="item" href="${path }/user/logout.do">로그아웃</a>
 			 	 <a class="item" href="${path }/user/myProfile.do">내 정보</a>			 	 
-			 	 <a class="item" style="background-color:#890422;border-radius: 10px; border-style:inherit;">파트너신청하기</a>
 			  </c:if>
 			  
 			</div>
@@ -74,97 +73,48 @@
                 <h2>&nbsp;&nbsp;&nbsp;&nbsp;  버튼을 누르면 해당 페이지로 이동합니다.</h2>
 				<p>
 					<button onclick="scrollTo1()">GYM CARRY 이용 방법</button>
-					<button onclick="scrollTo2()">트레이너가 되어 보세요.</button>  <!-- 트레이너신청하기페이지 -->
-					<button onclick="scrollTo3()">트레이너를 추천해 드려요!</button>
-					<button onclick="scrollTo4()">커뮤니티에 글 올리기!</button>
-					<button onclick="scrollTo5()">생활꿀팁</button>
+					<button onclick="scrollTo2()">파트너를 추천해 드려요!</button>
+					<button onclick="scrollTo3()">커뮤니티에 글 올리기!</button>
+					<button onclick="scrollTo4()">생활꿀팁</button>
 				</p>
             </header>
             
             <!-- 타이틀1 -->
-            <div id=title1>HOW TO USE GYM CARRY [user]</div>
+            <div id=title1>HOW TO USE GYM CARRY</div>
             <!--사용방법 첫번째줄 -->
             
             	<div class="ui steps">
 				  <div class="step">
 				    <i class="address card icon"></i>
 				    <div class="content">
-				      <div class="title"><a href="${path }/userJoin.do"class="item">회원가입 & 로그인</a></div>
+				      <div class="title">회원가입 & 로그인</div>
 				    </div>
 				  </div>
 				  <div class="step">
 				    <i class="search icon"></i>
 				    <div class="content">
-				      <div class="title">트레이너 찾기<button style="background-color:#890422;border-radius: 10px; border-style:inherit;color:white;cursor:pointer;">Go!</button></div>
+				      <div class="title">파트너 찾기<button style="background-color:#890422;border-radius: 10px; border-style:inherit;color:white;cursor:pointer;">Go!</button></div>
 				    </div>
 				  </div>
-				  <div class="active step">
-				    <i class="payment icon"></i>
+				  <div class="step">
+				    <i class="american sign language interpreting icon"></i>
 				    <div class="content">
-				      <div class="title">짐프로틴 구매 <button style="background-color:#890422;border-radius: 10px; border-style:inherit;color:white;cursor:pointer;">Go!</button> </div>
+				      <div class="title">(카카오톡 or 실시간채팅)PT 요청</div>
+				    </div>
+				  </div>
+				  <div class="step">
+				    <img src="${path }/resources/logoct.png" style="width:40px;"/>
+				    <div class="content">
+				      <div class="title">매칭된 파트너와 PT시작!</div>
 				    </div>
 				  </div>
 				</div>
 			
-				<!--사용방법 두번째줄 -->
-				<br/>
-				<div class="ui steps">
-				  <div class="step">
-				    <i class="american sign language interpreting icon"></i>
-				    <div class="content">
-				      <div class="title">pt요청 & 짐프로틴 지불</div>
-				    </div>
-				  </div>
-				  <div class="step">
-				    <img src="${path }/resources/logoct.png" style="width:40px;"/>
-				    <div class="content">
-				      <div class="title">매칭된 트레이너와 PT시작!</div>
-				    </div>
-				  </div>
-				</div>
+				
            
+
            	<!-- 타이틀 -->
-           	<div id= title2>HOW TO USE GYM CARRY [trainer]</div>
-           	
-           		<div class="ui steps">
-				  <div class="step">
-				    <i class="address card icon"></i>
-				    <div class="content">
-				      <div class="title"><a href="${path }/userJoin.do"class="item">회원가입 & 로그인</a></div>
-				    </div>
-				  </div>
-				  <div class="step">
-				    <i class="file alternate outline icon"></i>
-				    <div class="content">
-				      <div class="title">트레이너 신청하기<button style="background-color:#890422;border-radius: 10px; border-style:inherit;color:white;cursor:pointer;">Go!</button></div>
-				    </div>
-				  </div>
-				  <div class="active step">
-				    <i class="comments outline icon"></i>
-				    <div class="content">
-				      <div class="title">내 프로필에 요청이 들어오면 수락여부 결정<button style="background-color:#890422;border-radius: 10px; border-style:inherit;color:white;cursor:pointer;">Go!</button> </div>
-				    </div>
-				  </div>
-				</div>
-           		<br/>
-				<div class="ui steps">
-				  <div class="step">
-				    <i class="american sign language interpreting icon"></i>
-				    <div class="content">
-				      <div class="title">짐프로틴 수령 & 매칭성사</div>
-				    </div>
-				  </div>
-				  <div class="step">
-				    <img src="${path }/resources/logoct.png" style="width:40px;"/>
-				    <div class="content">
-				      <div class="title">매칭된 분과 PT시작!</div>
-				    </div>
-				  </div>
-				</div>
-           	
-           	
-           	<!-- 타이틀 -->
-           	<div id= title3>RECOMMENDED MONTHLY TRAINERS</div>
+           	<div id= title3>RECOMMENDED MONTHLY PARTNERS</div>
            	<!-- 추천트레이너 --> 
             <div id="trainers"> <!-- float-frame 과 unit의미없음   -->
        			<div class="container float-unit">
@@ -284,7 +234,7 @@
         	</div>
         	<div id=blank style="font-size:15px">Gym Carry 
         	대표:강휘<br/>
-        	공동대표: 지경호, 이윤성<br/>
+        	공동대표: 정연택, 지경호, 이윤성<br/>
         	주소:대한민국 서울시 구로구 구트아카데미 2층<br/>
         	연락처:010-2200-7646<br/>
         	이메일: goott@naver.com<br/>
@@ -311,13 +261,13 @@
 	#portal button{border-radius:10px;background:#890422;font-family: 'Jua', sans-serif;color:white; font-size:17px;border-style:inherit;cursor:pointer }
 	#portal a{font-size:15px}	
 	#com{clear:both;} /* float-left 종료시키기 */
-	#trainers{margin-left:220px }
-	#honeyTip{margin-left:330px;}
+	#trainers{margin-left:5% }
+	#honeyTip{margin-left:12%;}
 	#title1, #title2, #title3, #title5{text-algin:center;margin-top:500px;margin-bottom:50px;font-size:30px}
 	#title4{text-algin:center;margin-top:650px;font-size:30px}
 	#blank{margin-top:650px;}
 	
-	.float-unit{float:left;margin-left:10px;margin-bottom:10px;position: relative;width: 200px;}		
+	.float-unit{float:left;margin-left:50px;margin-bottom:10px;position: relative;width: 200px;}		
 	.image {
 	  display: block;
 	  width: 100%;
@@ -383,11 +333,9 @@
 		window.scrollTo(0,2300);	
 	}
 	function scrollTo4(){
-		window.scrollTo(0,2900);	
+		window.scrollTo(0,3100);	
 	}
-	function scrollTo5(){
-		window.scrollTo(0,3800);	
-	}
+	
 	function scrollToTop(){
 		window.scrollTo(0,0);	
 	}

@@ -50,7 +50,9 @@
 			</form>
 		</c:forEach>
 	</div>
-	<div class="ui pagination menu" style="margin-left:40%;margin-top:100px">
+	
+	<!-- 페이지네이션 -->
+	<!-- <div class="ui pagination menu" style="margin-left:40%;margin-top:100px">
 	  <a class="active item">
 	    1
 	  </a>
@@ -66,7 +68,8 @@
 	  <a class="item">
 	  	5
 	  </a>
-	</div>
+	</div> -->
+	
 	 <!-- 모달 -->
 		<div class="modal fade" id="myModal" role="dialog">
 	    <div class="modal-dialog">
@@ -79,9 +82,9 @@
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
 	        </div>
 	        <div class="modal-body">
-	        	<div>Title : <input type="text" name='title'></div><br/>
+	        	<div>Title : <input type="text" name='title' placeholder='제목 입력'></div><br/>
 	        	<div style="margin-top:20px">Description</div>
-	        	<textarea id="content" name="des" style="width:100%;height:300px;" placeholer='공지사항 입력'></textarea>
+	        	<textarea id="content" name="des" style="width:100%;height:300px;" placeholder='공지사항 입력'></textarea>
 	        </div>
 	        <div class="modal-footer">
 	        	<input type="submit" value="Submit" class="btn btn-default" style="width:80%;background:#890422;color:white"/>
