@@ -24,6 +24,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import kr.goott.gymcarry.auth.NaverLoginBO;
 import kr.goott.gymcarry.model.dao.UserDAOInterface;
 import kr.goott.gymcarry.model.dto.CommunityDTO;
+import kr.goott.gymcarry.model.dto.NoticeDTO;
 import kr.goott.gymcarry.model.dto.UserDTO;
 
 @Controller
@@ -122,7 +123,7 @@ public class UserController {
 		return mav;
 	}
 
-	// 경호 안와서 멋쟁이 윤성이 수정
+	// 멋쟁이 윤성이 
 	@RequestMapping(value = "myProfile.do", method = RequestMethod.GET)
 	public ModelAndView myProfile(HttpSession session) {
 		logger.info("myprofile page view...");
@@ -134,6 +135,38 @@ public class UserController {
 			
 			return new ModelAndView("user/myProfile", "dto", dto);
 	}
+	@RequestMapping(value= "myProfileEdit.do", method=RequestMethod.POST)
+	public String editProfile(HttpSession session, @ModelAttribute UserDTO userDTO ) {
+	
+		UserDTO dto = new UserDTO();
+		String userid = (String) session.getAttribute("userid");
+		dto.setUserid(userid);
+		dto.setUseremail(userDTO.getUseremail());
+		dto.setUserheight(userDTO.getUserheight());
+		dto.setUserweight(userDTO.getUserweight());
+		dto.setPurposeExe(userDTO.getPurposeExe());
+		dto.setStateExe(userDTO.getStateExe());
+		dto.setGoalExe(userDTO.getGoalExe());
+		dto.setBirthDate(userDTO.getBirthDate());
+		dto.setUsername(userDTO.getUsername());
+		dto.setUserphone(userDTO.getUserphone());
+		dto.setUserpwd(userDTO.getUserpwd());
+		dto.setPresentid(userDTO.getPresentid());
+		dto.setNaverid(userDTO.getNaverid());
+		dto.setGender(userDTO.getGender());
+		
+		userDAO.updateUser(dto);
+		return "redirect:myProfile.do";		
+		
+	}
+	@RequestMapping(value="delete.do" ,method=RequestMethod.POST)
+	public String deleteUser(HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		userDAO.deleteUser(userid);
+		return "redirect:/home";
+		
+	}
+
 	//윤성이 끝
 	
 	@RequestMapping(value = "regAddInfo.do")
