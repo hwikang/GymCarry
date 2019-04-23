@@ -187,3 +187,13 @@ header {
 .modal{
 	top:20%;
 }
+.btn-signup{
+	background: #89283e;
+	color: #fff;
+	font-size: 14px;
+	border:0 none;
+	height: 30px;
+	border-radius: 4px;
+	font-family: 'Jua', sans-serif;
+	width:100%;
+}

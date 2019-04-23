@@ -81,18 +81,12 @@ public class CommunityDAO implements CommunityDAOInterface {
 		sqlSession.update("community.likeCountSub", comNo);
 		
 	}
-/*
+
 	@Override
-	public void insertLike(int comNo, String userid) {
-		sqlSession.insert("community.insertLike", comNo,userid);
+	public List<CommunityDTO> userComList(String userid) {
+		return sqlSession.selectList("community.userComList", userid);
 		
-	}
-	@Override
-	public void deleteLike(int comNo, String userid) {
-		sqlSession.delete("community.deletetLike", comNo,userid);
-		
-	}
-*/	
+	}	
 
 
 

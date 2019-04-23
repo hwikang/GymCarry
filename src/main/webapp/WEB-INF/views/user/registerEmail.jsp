@@ -93,7 +93,7 @@
 										<span class="form-span-fnt3">수신동의 여부 및 설정은 회원정보 수정에서 확인할 수 있습니다.</span>
 									</div>
 								</div>
-								<button type="button" onclick="directSubmit();" class="btn_signup">회원 가입</button>
+								<button type="button" onclick="directSubmit();" class="btn-signup">회원 가입</button>
 							</div>					
 						</div>	
 					</form>	
@@ -241,8 +241,8 @@ function directSubmit(){ //submit 제어
 		$('#modal-btn').trigger('click');
 		return false;
 	}else{
-		alert('통과');
-		//document.querySelector('#directFrm').submit();
+		alert('회원가입 성공!');
+		document.querySelector('#directFrm').submit();
 		return true;
 	}	
 }

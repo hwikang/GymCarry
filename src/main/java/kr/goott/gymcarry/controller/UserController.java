@@ -1,15 +1,22 @@
 package kr.goott.gymcarry.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,14 +24,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import kr.goott.gymcarry.auth.NaverLoginBO;
 import kr.goott.gymcarry.model.dao.UserDAOInterface;
-import kr.goott.gymcarry.model.dto.CommunityDTO;
-import kr.goott.gymcarry.model.dto.NoticeDTO;
 import kr.goott.gymcarry.model.dto.UserDTO;
 
 @Controller
@@ -36,6 +42,9 @@ public class UserController {
 	UserDAOInterface userDAO;
 	@Inject
 	NaverLoginBO naverLoginBO;
+	
+	@Resource(name = "uploadPath2")	
+	String uploadPath2;
 	
 	@RequestMapping(value = "userJoin.do")
 	public ModelAndView userJoin(HttpSession session) {
@@ -147,7 +156,7 @@ public class UserController {
 		dto.setPurposeExe(userDTO.getPurposeExe());
 		dto.setStateExe(userDTO.getStateExe());
 		dto.setGoalExe(userDTO.getGoalExe());
-		dto.setBirthDate(userDTO.getBirthDate());
+		//dto.setBirthDate(userDTO.getBirthDate()); select로 !
 		dto.setUsername(userDTO.getUsername());
 		dto.setUserphone(userDTO.getUserphone());
 		dto.setUserpwd(userDTO.getUserpwd());
@@ -222,5 +231,41 @@ public class UserController {
 		map.put("cnt", cnt);
 		
 		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="changePImg.do", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public void  changeProfileImage(MultipartFile file, HttpServletRequest req) throws Exception {
+		logger.info("originalName : "+ file.getOriginalFilename());
+		logger.info("req="+req.getParameter("userid"));
+		int cnt = 0;
+		String userid = req.getParameter("userid");
+		String savedName = file.getOriginalFilename();
+		savedName = uploadFile(userid, savedName, file.getBytes());
+		UserDTO userDto = new UserDTO();
+		userDto.setUserid(userid);
+		userDto.setUserimage(savedName);
+		UserDTO userDto2 = new UserDTO();
+		userDto2.setUserid(userid);
+		userDto2 = userDAO.selectImg(userDto2);
+		if(!userDto2.getUserimage().equals(savedName)) {
+			File file2 = new File(uploadPath2,userDto2.getUserimage());
+			if(!userDto2.getUserimage().equals("avatar.png")) {
+				file2.delete();
+			}
+		}
+		cnt = userDAO.updateImg(userDto);
+	}
+	
+	private String uploadFile(String userid, String oriFilename, byte[] fileData) throws Exception {
+		String savedName = userid+"_"+oriFilename;
+		File target = new File(uploadPath2, savedName);
+		FileCopyUtils.copy(fileData, target);
+		return savedName;
+	}
+	//////////////////////
+	@RequestMapping(value="test.do")
+	public String test() {
+		return "user/regAddInfo";
 	}
 }

@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from usertbl
 		order by userid
 	</select>	
-	<select id="login_check" resultType="userDto">
+	<select id="login_check" resultType="userDto" parameterType="userDto">
 		select userid, username from userTbl
 		where userid=#{userid} and userpwd=#{userpwd}
 	</select>
@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into userTbl (userno, userid, username, userpwd, useremail, userphone, 
 		presentid, userimage, protein, regdate) 
 		values (user_Sq.nextVal, #{userid}, #{username}, #{userpwd}, #{useremail}, #{userphone},
-		#{presentid}, null, 0, sysdate)
+		#{presentid}, 'avatar.png', 0, sysdate)
 	</insert>
 	<insert id="insert_naver_user">
 		insert into userTbl (userno, userid, username, useremail, userphone, 
@@ -44,6 +44,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update userTbl set birthdate=#{birthDate}, gender=#{gender}, userheight=#{userheight},
 		userweight=#{userweight}, purposeExe=#{purposeExe}, stateExe=#{stateExe}, goalExe=#{goalExe}, modifyDate=sysdate where userid=#{userid}
 	</update>
+	<update id="update_img" parameterType="userDto">
+		update userTbl set userimage=#{userimage}
+		where userid=#{userid}
+	</update>
+	<select id="select_img" parameterType="userDto" resultType="userDto">
+		select userimage from userTbl
+		where userid=#{userid}
+	</select>
 	<update id="editUser" parameterType="userDto">
 		update userTbl set useremail=#{useremail}, userheight=#{userheight}, userweight=#{userweight}, purposeExe=#{purposeExe}, stateExe=#{stateExe}, goalExe=#{goalExe}, birthdate=#{birthDate}, username=#{username}, userphone=#{userphone}, userpwd=#{userpwd}, presentid=#{presentid}, naverid=#{naverid},  gender=#{gender} 
 		where userid=#{userid}

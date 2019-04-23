@@ -23,7 +23,59 @@ header{
 .paper-top{
 	font-size:20px;
 	line-height:25px;
+	color: #888;
+	font-weight: bolder;
+	margin-bottom:60px;
 }
 .ui.input > input{
-	width:90px;
+	width:100px;
+}
+.tp-fnt{
+	font-size: 14px;
+	font-family: 'Jua', sans-serif;
+	color: #89283e;
+}
+.label-fnt{
+	font-size:12px;
+	color: #888;
+}
+.bd-fnt{
+	font-size:12px;
+	color: #888;
+	font-family: 'Jua', sans-serif;
+}
+.frm-div{
+	margin-bottom: 10px;
+}
+.frm-sel{
+	width:100%;
+	border-radius: 4px;
+}
+.frm-sel2{
+	width: 100%;
+	border-radius: 4px;
+}
+.avatar-img{
+	width: 120px;
+	height: 120px;
+	border-radius:100px;
+}
+.img-div{
+	text-align: center;
+	margin: 30px;
+}
+.img-fnt{
+	font-size:12px;
+	font-weight: bold;
+}
+.sub-btn{
+	background: #89283e;
+	color: #fff;
+	font-size: 14px;
+	width:100%;
+	border:0 none;
+	height: 40px;
+	border-radius: 4px;
+	font-family: 'Jua', sans-serif;
+	width:100%;
 }

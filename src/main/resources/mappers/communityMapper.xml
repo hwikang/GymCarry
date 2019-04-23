@@ -41,6 +41,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteLike">
 		delete communitylike where comno=#{comNo} and userid=#{userid}
 	</delete>
+	<select id="userComList" resultType="kr.goott.gymcarry.model.dto.CommunityDTO">
+		select * from communitytbl where userid=#{userid}
+	</select>
 	
 </mapper>
 
