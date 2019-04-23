@@ -4,11 +4,12 @@ body{
 }
 header{
 	background-image:url('/gymcarry/resources/user/userjoin.jpg');
-	width:100%;
-	height:720px;
-	max-height:720px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
 	background-blend-mode: luminosity; /*여기서 조절*/
 	background-color: #A9A9A9;
+	height: 60%;
 }
 .paper{
 	margin-top:-50px;

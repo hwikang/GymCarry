@@ -18,7 +18,7 @@
 	<resources mapping="/js/**" location="/js/" ></resources>
 	
 	<resources mapping="/community/images/**" location="file:///d:/spring/GymCarry/src/main/webapp/resources/community/" />
-	<resources mapping="/profileImg/images/**" location="file:///Users/zkhcsh/Documents/workspace-spring/gymcarry/src/main/webapp/resources/profileImg/" />
+	<resources mapping="/profileImg/images/**" location="file:///d:/spring/GymCarry/src/main/webapp/resources/profileImg/" />
 	<!-- 메인화면 css -->
 
 	<resources mapping="/mainSlide/css/**" location="/mainSlide/css/" />
@@ -40,7 +40,7 @@
 		<beans:constructor-arg value="d:/spring/GymCarry/src/main/webapp/resources/community"/>	
 	</beans:bean>
 	<beans:bean id="uploadPath2" class="java.lang.String">
-		<beans:constructor-arg value="/Users/zkhcsh/Documents/workspace-spring/gymcarry/src/main/webapp/resources/profileImg/"/>	
+		<beans:constructor-arg value="d:/spring/GymCarry/src/main/webapp/resources/profileImg"/>	
 	</beans:bean>
 	
 	<beans:bean id="loginInterceptor" class="kr.goott.gymcarry.interceptor.LoginInterceptor"></beans:bean>

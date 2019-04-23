@@ -36,16 +36,20 @@
 								<div class="naver-ico"><a href="${url }"><img src="${path }/resources/user/naver-ico.png" width="30px" height="30px"/>네이버로 로그인</a></div>					
 							</div>	
 						</div>
-						<div class="col-xs-6 col-sm-6 col-md-6">
-							<div class="form-input"><input type="text" placeholder="아이디" name="userid"/></div>
-							<div class="form-input"><input type="password" placeholder="비밀번호" name="userpwd"/></div>
-							<label><input type="checkbox" name="remember_login" value="1"/>나를 기억해 주세요.</label>
-							<input type="submit" value="로그인"/>
-							<div>
-								<span>아직 계정이 없으신가요?</span><a href="${path }/user/userJoin.do">회원가입하기</a><br>
-								<span>아이디, 비밀번호가 생각나지 않으세요?</span><br>
-								<a href="${path }/user/findId.do">아이디 찾기</a><a href="${path }/user/findPwd.do">비밀번호 찾기</a>
-								
+						<div class="col-xs-6 col-sm-6 col-md-6 right-frm">
+							<div><input type="text" placeholder="아이디" name="userid" class="form-input"/></div>
+							<div style="margin-bottom:20px">
+								<input type="password" placeholder="비밀번호" name="userpwd" class="form-input"/>
+								<c:if test="${log=='N' }">
+									<label class="normal-fnt2">등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.</label>
+								</c:if>
+							</div>
+							<label class="normal-fnt"><input type="checkbox" name="remember_login" value="1"/>나를 기억해 주세요.</label><br>
+							<input type="submit" value="로그인" class="btn-login"/>
+							<div style="margin-top:25px">
+								<span class="normal-fnt2">아직 계정이 없으신가요?</span><a href="${path }/user/userJoin.do"> &nbsp;&nbsp;회원가입하기</a><br>
+								<div style="margin-top:10px;margin-bottom:5px"><span class="normal-fnt2">아이디, 비밀번호가 생각나지 않으세요?</span></div>
+								<a href="${path }/user/findId.do">아이디 찾기&nbsp;&nbsp;</a><a href="${path }/user/findPwd.do"> 비밀번호 찾기</a>
 							</div>
 						</div>
 					</div>	
