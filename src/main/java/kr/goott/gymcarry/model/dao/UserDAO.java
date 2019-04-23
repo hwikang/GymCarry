@@ -91,6 +91,16 @@ public class UserDAO implements UserDAOInterface {
 	public int idCheckCount(String userid) {		
 		return sqlSession.selectOne("user.id_check_count", userid);
 	}
+
+	@Override
+	public int updateImg(UserDTO dto) {
+		return sqlSession.update("user.update_img", dto);		
+	}
+
+	@Override
+	public UserDTO selectImg(UserDTO dto) {
+		return sqlSession.selectOne("user.select_img", dto);
+	}
 	
 
 }
