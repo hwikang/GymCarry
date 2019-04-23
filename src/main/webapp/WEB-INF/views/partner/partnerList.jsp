@@ -16,6 +16,9 @@
 		overflow-x:scroll;
 		overflow-y:hidden;
 	}
+	.ui.styled.accordion.items:hover{
+		background-color:red;
+	}
 
 </style>
 </head>
@@ -32,8 +35,10 @@
 		</div>
 		<!-- 왼쪽 리스트 -->
 		<div class="ui middle aligned animated list">
+			
 			<c:forEach var="dto" items="${list}">
-				<div class="ui styled accordion items" onClick="partnerClickEvent(${dto.userno})" style="width:95%;margin:3%">
+			<c:if test="${dto.userLat!=null }">
+				<div class="ui styled accordion items" onClick="partnerClickEvent(${dto.userno})" style="width:95%;margin:3%" >
 					<div class="ui title item">						
 						<!-- <i class="dropdown icon"></i> -->
 						<div class="image">
@@ -57,7 +62,9 @@
 						</div>		
 					</div>
 				</div>
+			</c:if>
 			</c:forEach>
+
 		</div>
 			
 		
@@ -74,7 +81,7 @@
 					</div>
 					<div class="content">
 						<div class="right floated" onClick="closeModal(${dto.userno})">
-							<button class="ui inverted olive black button">X</button>
+							<button class="ui inverted red button">X</button>
 						</div>						
 						<a class="header">${dto.userid}</a>
 						<div class="meta">${dto.gender}</div>
@@ -260,12 +267,14 @@
 	//클릭한거 윈도우 띄워주기
 	function targetInfo(targetLat,targetLong,LatLng){
 		infowindow.close();
-		let iwContent = '<div style="padding:5px;">상대방의 위치 <br><a href="http://map.daum.net/link/map/Hello World!,'+targetLat+","+targetLong+'" style="color:blue" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/Hello World!,'+targetLat+","+targetLong+'" style="color:blue" target="_blank">길찾기</a></div>',
+
+		let iwContent = '<div style="padding:5px;"><div><p class="ui red ribbon label">상대방의 위치</p></div><a class="ui inverted red button" href="http://map.daum.net/link/map/Hello World!,'+targetLat+","+targetLong+'" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/Hello World!,'+targetLat+","+targetLong+'"  class="ui inverted red button" target="_blank">길찾기</a></div>',
 		iwPosition = LatLng;
 		
 		infowindow = new daum.maps.InfoWindow({
 		    position : iwPosition, 
-		    content : iwContent 
+		    content : iwContent,
+		    removable : true
 		});
 
 		let marker = new daum.maps.Marker({
