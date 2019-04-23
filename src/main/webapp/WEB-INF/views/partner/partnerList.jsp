@@ -23,7 +23,7 @@
 </style>
 </head>
 <%@ include file="../include/menu.jsp" %>
-<body>
+<body onscroll="moveModal()">
 
 <div class="ui placeholder segment">
  <div class="ui two column very relaxed stackable grid">
@@ -42,7 +42,13 @@
 					<div class="ui title item">						
 						<!-- <i class="dropdown icon"></i> -->
 						<div class="image">
-							<img src="${path }/resources/profile.png" style="width:100%;height:100%"/>
+							<c:if test="${dto.userimage==null }">
+								<img src="${path }/resources/profile.png" style="width:100%;height:100%"/>
+							</c:if>
+							<c:if test="${dto.userimage!=null }">
+								<img src="${path }/profileImg/images/${dto.userimage}" style="width:100%;height:100%"/>
+							</c:if>
+							
 						</div>									
 						<div class="content">
 							<div class="header">${dto.username}</div>
@@ -77,7 +83,12 @@
 			<div style="width:25%;position:absolute;bottom:160px;right:70px;z-index:3;display:none" class="modal modal${dto.userno}">
 				<div class="ui card">
 					<div class="image" style="height:30%">
-						<img src="${path }/resources/profile.png" style="height:100%"/>
+							<c:if test="${dto.userimage==null }">
+								<img src="${path }/resources/profile.png" style="width:100%;height:100%"/>
+							</c:if>
+							<c:if test="${dto.userimage!=null }">
+								<img src="${path }/profileImg/images/${dto.userimage}" style="width:100%;height:100%"/>
+							</c:if>
 					</div>
 					<div class="content">
 						<div class="right floated" onClick="closeModal(${dto.userno})">
@@ -245,9 +256,8 @@
 		allModals.forEach((val)=>{
 			val.style.display="none"
 		})
+		
 		document.querySelector(".modal"+partnerNo).style.display="block";
-		//userno = partnerno 같은거 찾아서 위경도 구하기
-		//locationArr
 		let clickedLat = 0;
 		let clickedLong = 0;
 		locationArr.map((value)=>{
@@ -255,7 +265,7 @@
 				clickedLat = value[0];
 				clickedLong = value[1];
 			}
-			console.log("윅경도 =",clickedLat+","+clickedLong)
+		
 		})
 		let targetLatLng = new daum.maps.LatLng(clickedLat,clickedLong);
 		map.setCenter(targetLatLng)
@@ -355,6 +365,18 @@
 		  .accordion()
 		;
 	})
+	
+	const moveModal = () =>{
+		let positionY = 160 - window.scrollY;
+		positionY = positionY+"px";
+		let allModal = document.querySelectorAll(".modal");
+		allModal.forEach((val)=>{
+			val.style.bottom = positionY
+		});
+		
+		
+	}
+	
 </script>
 </body>
 </html>
