@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -54,7 +55,6 @@
 			  <a class="item" href="${path }/"><img src="${path }/resources/gclogo.png" style="width:400px;height:250px"/></a>
 			  <a href="${path }/partner.do" class="item" style="background-color:#890422;border-radius: 10px; border-style:inherit";>파트너찾기 </a>
 			  <a class="item" href="${path }/notice.do">공지사항</a>
-			  <a href="${path }/user/test.do">텟트</a>
 			  <a href="${path }/community.do" class="item">커뮤니티</a>
 			  <c:if test="${loginCheck==null}">
 			  	<a class="item" href="${path }/user/login.do">로그인</a>
@@ -94,7 +94,7 @@
 				  <div class="step">
 				    <i class="search icon"></i>
 				    <div class="content">
-				      <div class="title">파트너 찾기<button style="background-color:#890422;border-radius: 10px; border-style:inherit;color:white;cursor:pointer;">Go!</button></div>
+				      <div class="title">파트너 찾기<button style="background-color:#890422;border-radius: 10px; border-style:inherit;"><a href="${path }/partner.do" style=color:white;>Go!</a></button></div>
 				    </div>
 				  </div>
 				  <div class="step">
@@ -115,64 +115,22 @@
            
 
            	<!-- 타이틀 -->
-           	<div id= title3>RECOMMENDED MONTHLY PARTNERS</div>
+           	<div id= title3>FIND PARTNERS</div>
            	<!-- 추천트레이너 --> 
             <div id="trainers"> <!-- float-frame 과 unit의미없음   -->
-       			<div class="container float-unit">
-				  	<img src="${path }/resources/selfi1.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
-				  		<a href="#"><div class="overlay">
-					    <div class="text"><i class="user circle outline icon"></i>
-					    <span id="email">yslg86@naver.com</span><hr/> <!-- email적는란 -->
-					    <span id="comment">헬스 경력 2년차입니다. 처음 입문하시는 분들께 도움이 되고 싶어요!</span> <!-- 코멘트적는란 -->
-				    	</div>
-				  	</div></a>
-				</div>
-				<div class="container float-unit">
-				  	<img src="${path }/resources/selfi2.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
-				  		<a href="#"><div class="overlay">
-					    <div class="text"><i class="user circle outline icon"></i>
-					    <span id="email2">muscle12@gmail.com</span><hr/> <!-- email적는란 -->
-					    <span id="comment2">같이 운동하실분 찾아요.^ㅡ^ </span> <!-- 코멘트적는란 -->
-				    	</div>
-				  	</div></a>
-				</div>
-				<div class="container float-unit">
-				  	<img src="${path }/resources/selfi3.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
-				  	<a href="#"><div class="overlay">
-					    <div class="text"><i class="user circle outline icon"></i>
-					    <span id="email3">guenyuk@daum.net</span><hr/> <!-- email적는란 -->
-					    <span id="comment3">초보분들 하나부터 열까지 천천히 가르쳐드려요!</span> <!-- 코멘트적는란 -->
-				    	</div>
-				  	</div></a>
-				</div>
-				<div class="container float-unit">
-				  	<img src="${path }/resources/selfi4.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
-				  		<a href="#"><div class="overlay">
-					    <div class="text"><i class="user circle outline icon"></i>
-					    <span id="email4">lmsjz@naver.com</span><hr/> <!-- email적는란 -->
-					    <span id="comment4">1년차. 함께 성장하실분 찾아요</span> <!-- 코멘트적는란 -->
-				    	</div>
-				  	</div></a>
-				</div>
-				<div class="container float-unit">
-				  	<img src="${path }/resources/selfi5.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
-				  		<a href="#"><div class="overlay">
-					    <div class="text"><i class="user circle outline icon"></i>
-					    <span id="email5">zbass@gmail.com</span><hr/> <!-- email적는란 -->
-					    <span id="comment5">저와 같이 수다떨면서 몸매 가꾸실 여성분! </span> <!-- 코멘트적는란 -->
-				    	</div>
-				  	</div></a>
-				</div>
-				<div class="container float-unit">
-				  	<img src="${path }/resources/selfi6.jpg" alt="Avatar" class="image ui medium rounded" style="height:250px">
-				  		<a href="#"><div class="overlay">
-					    <div class="text"><i class="user circle outline icon"></i>
-					    <span id="email6">khdrogba@daum.net</span><hr/> <!-- email적는란 -->
-					    <span id="comment6">토요일에 하체 같이 조지실분</span> <!-- 코멘트적는란 -->
-				    	</div>
-				  	</div></a>
-				</div>
-	
+       			<c:forEach var="dto" items="${list}">
+					<div class="container float-unit">
+					<form action="${path}/community/prof/${dto.userid}" method="post" id="comSubmit${dto.userid}" >
+					  	<img src="${path }/community/images/${dto.comImage}" alt="Avatar" class="image ui medium rounded" style="height:250px">
+					  	<div class="overlay" onClick="comSubmit('${dto.userid}')">
+						    <div class="text" ><i class="user circle outline icon"></i>
+						    <span id="userid2">${dto.userid}</span><hr/> <!-- email적는란 -->
+						    <span id="comment2">${dto.comDes}</span> <!-- 코멘트적는란 -->
+					    	</div>
+					  	</div>
+					  </form>	
+					</div>
+				</c:forEach>
         	</div>
        
         	
@@ -340,6 +298,14 @@
 	function scrollToTop(){
 		window.scrollTo(0,0);	
 	}
+
+	 function comSubmit(userid){
+		document.querySelector('#comSubmit'+userid).submit();
+	 }
+	 
+
 	
 </script>
+
+
 </html>
