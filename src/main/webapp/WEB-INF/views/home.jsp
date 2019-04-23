@@ -58,7 +58,7 @@
 			  <a href="${path }/community.do" class="item">커뮤니티</a>
 			  <c:if test="${loginCheck==null}">
 			  	<a class="item" href="${path }/user/login.do">로그인</a>
-			  	<a href="${path }/user/userJoin.do"class="item">회원가입</a>
+			  	<a href="#">회원가입</a>
 			  </c:if>
 			  <c:if test="${loginCheck=='Y'}">			  
 			 	 <a class="item" href="${path }/user/logout.do">로그아웃</a>
