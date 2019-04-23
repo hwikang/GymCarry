@@ -28,7 +28,8 @@ public interface CommunityDAOInterface {
 	public void replyCountSub(int comNo);
 	//like 빼기
 	public void likeCountSub(int comNo);
-	
+	//그사람 글보기
+	public List<CommunityDTO> userComList(String userid);
 
 	
 	

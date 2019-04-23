@@ -10,24 +10,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.goott.gymcarry.model.dao.PartnerDAO; 
+import kr.goott.gymcarry.model.dao.CommunityDAO;
+import kr.goott.gymcarry.model.dao.PartnerDAO;
+import kr.goott.gymcarry.model.dto.CommunityDTO;
 import kr.goott.gymcarry.model.dto.UserDTO;
 @Controller 
 public class PartnerController {
 	private static final Logger logger = LoggerFactory.getLogger(CommunityController.class);
 	@Inject 
 	PartnerDAO partnerDAO;
+	@Inject 
+	CommunityDAO communityDAO;
 
 	@GetMapping(value="partner.do")
 	public ModelAndView viewPartner(ModelAndView mav) {
 		mav.setViewName("partner/partnerList"); 
+		
 		List<UserDTO> list = partnerDAO.getAllUser();
-		Double locationArr[]; 
-//		for(int i = 0; i<list.size();i++) {
-//			Double oneUserArr[];
-//			oneUserArr. list.get(i).getUserLat();	
-//		}
+		List<CommunityDTO> comList =  communityDAO.comList();
 		mav.addObject("list",list); 
+		mav.addObject("comList",comList);
 		return mav; 
 	
 	} 

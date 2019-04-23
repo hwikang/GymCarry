@@ -11,47 +11,71 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>    
+<style type="text/css">
+	.transition.visible{
+		overflow-x:scroll;
+		overflow-y:hidden;
+	}
+
+</style>
 </head>
 <%@ include file="../include/menu.jsp" %>
 <body>
+
 <div class="ui placeholder segment">
  <div class="ui two column very relaxed stackable grid">
-	<div class="column" style="width:30%;height:730px;overflow:scroll" >
+	<div class="column" style="width:30%;height:730px;overflow:scroll;padding-right:0px;padding-left:1.5%;" >
 		<div>
 			<form action="${path }/partner/locationApply" id="locationApplyForm">
-				<input type="submit" value="내위치 등록"/>				
+				<input class="ui inverted red button" type="submit" value="내위치 등록" style="width:100%"/>				
 			</form>
 		</div>
-		
+		<!-- 왼쪽 리스트 -->
 		<div class="ui middle aligned animated list">
 			<c:forEach var="dto" items="${list}">
-				<div class="ui style fluid accordion">
-					<div class="title">
-						<div class="item">
-							<img class="ui avatar image" src="" />
-							<div class="content">
-								<div class="header">{dto.username}</div>
-								<div class="meta">{dto.gender}</div>
-							</div>					
-						</div>
+				<div class="ui styled accordion items" onClick="partnerClickEvent(${dto.userno})" style="width:95%;margin:3%">
+					<div class="ui title item">						
+						<!-- <i class="dropdown icon"></i> -->
+						<div class="image">
+							<img src="${path }/resources/profile.png" style="width:100%;height:100%"/>
+						</div>									
+						<div class="content">
+							<div class="header">${dto.username}</div>
+							<div class="meta">${dto.gender}</div>
+						</div>					
+
 					</div>
-				</div>
-				<!-- dropdown -->
-				<div class="content">
-					<img src="" style="width:100%;"/>
+				
+					<!-- dropdown -->
+					<div class="content">
+						<div class="transition hidden" style="width:100%;">				
+						<c:forEach var="comDto" items="${comList}">
+							<c:if test="${dto.userid == comDto.userid}">
+								<img src="${path }/community/images/${comDto.comImage}" style="width:25%;height:130px;float:left;margin-left:10px;margin-bottom:10px; border-radius:12px"/>
+							</c:if>
+						</c:forEach>
+						</div>		
+					</div>
 				</div>
 			</c:forEach>
 		</div>
 			
 		
 	</div>
-	<div class="top aligned column" style="width:70%">
+	
+	<!-- 우측하단 모달 -->
+	<div class="top aligned column" style="width:70%;padding-left:0px;">
 		<div id="map" style="width:100%;height:700px;"></div>
 		<c:forEach var="dto" items="${list}">
-			<div style="width:25%;height:150px;position:absolute;bottom:300px;right:50px;z-index:3;display:none" class="modal modal${dto.userno}">
+			<div style="width:25%;position:absolute;bottom:160px;right:70px;z-index:3;display:none" class="modal modal${dto.userno}">
 				<div class="ui card">
+					<div class="image" style="height:30%">
+						<img src="${path }/resources/profile.png" style="height:100%"/>
+					</div>
 					<div class="content">
-						<div class="right floated" onClick="closeModal(${dto.userno})">X</div>						
+						<div class="right floated" onClick="closeModal(${dto.userno})">
+							<button class="ui inverted olive black button">X</button>
+						</div>						
 						<a class="header">${dto.userid}</a>
 						<div class="meta">${dto.gender}</div>
 					</div>
@@ -128,17 +152,17 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a2e4394625f5dca9ab561d855a1aa6f1"></script>
 
 <script>
-	
-let userLat =0;
-let userLong = 0;
-let partnersLat =0;
-let partnersLong = 0;
-let partnersId ="";
-	console.log("${list}")
+	//
+	let userLat =0;
+	let userLong = 0;
+	let partnersLat =0;
+	let partnersLong = 0;
+	let partnersId ="";
 	let list ="${list}";
 	list = list.split("UserDTO");
-	console.log(list)
 	let locationArr = [];
+	
+	let infowindow ="";
 	
 	for(let i =1; i<list.length;i++){
 		//"37.ddd,...."
@@ -157,11 +181,6 @@ let partnersId ="";
 		
 		
 	}
-	console.log(locationArr)
-	
-	//let test = "[[],[],[]]";
-	let test = "[[37.391,126.9433688],[37.392,126.9433688],[37.393,126.9433688]]";
-	test = JSON.parse(test);
 	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = { 
@@ -183,12 +202,12 @@ let partnersId ="";
 
 	function setUsersMarker(){
 		locationArr.map(function(val,idx){
-			//console.log(val[0])
+			//위도 , 경도 , 유저번호가 들어감
 			let markerPosition = new daum.maps.LatLng(val[0],val[1]);
 			//let markerIcon = new daum.maps.MarkerImage("${path}/resources/db.png");
 			var icon = new daum.maps.MarkerImage(
-			        '${path}/resources/db.png',
-			        new daum.maps.Size(31, 35));
+			        '${path}/resources/dumbellmarker.png',
+			        new daum.maps.Size(41, 45));
 			let marker = new daum.maps.Marker({
 				position:markerPosition,
 				image :icon,
@@ -196,46 +215,64 @@ let partnersId ="";
 			})
 			marker.setMap(map);	
 			daum.maps.event.addListener(marker, 'click', function(mouseEvent) {
-				console.log('click')
+				partnerClickEvent(val[2])
+			});
+			daum.maps.event.addListener(marker,'mouseover',function(){
+				let newIcon = new daum.maps.MarkerImage(
+				        '${path}/resources/dumbellmouse.png',
+				        new daum.maps.Size(81, 85));
+				marker.setImage(newIcon);
 				
-				let allModals=document.querySelectorAll('.modal')
-				allModals.forEach((val)=>{
-					val.style.display="none"
-				})
-				document.querySelector(".modal"+val[2]).style.display="block";
+			});
+			daum.maps.event.addListener(marker,'mouseout',function(){
+				marker.setImage(icon);
 			});
 
 		});
 	}
-	setUsersMarker();
 	
-	function setMarker(){
-		// 마커가 표시될 위치입니다 
-		if(userLat!==0){
-			var markerPosition  = new daum.maps.LatLng(userLat, userLong); 
-			// 마커를 생성합니다
-			var marker = new daum.maps.Marker({
-			    position: markerPosition
-			});
-			// 마커가 지도 위에 표시되도록 설정합니다
-			marker.setMap(map);
-		}
-		var iwContent = '<div style="padding:5px;">나의 위치 <br><a href="http://map.daum.net/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-	    iwPosition = new daum.maps.LatLng(userLat, userLong); //인포윈도우 표시 위치입니다
 	
-		// 인포윈도우를 생성합니다
-		var infowindow = new daum.maps.InfoWindow({
+	function partnerClickEvent(partnerNo){
+		partnerNo = partnerNo+"";
+		let allModals=document.querySelectorAll('.modal')
+		allModals.forEach((val)=>{
+			val.style.display="none"
+		})
+		document.querySelector(".modal"+partnerNo).style.display="block";
+		//userno = partnerno 같은거 찾아서 위경도 구하기
+		//locationArr
+		let clickedLat = 0;
+		let clickedLong = 0;
+		locationArr.map((value)=>{
+			if(value[2]===partnerNo){
+				clickedLat = value[0];
+				clickedLong = value[1];
+			}
+			console.log("윅경도 =",clickedLat+","+clickedLong)
+		})
+		let targetLatLng = new daum.maps.LatLng(clickedLat,clickedLong);
+		map.setCenter(targetLatLng)
+		targetInfo(clickedLat,clickedLong,targetLatLng)
+	}
+	
+
+
+	//클릭한거 윈도우 띄워주기
+	function targetInfo(targetLat,targetLong,LatLng){
+		infowindow.close();
+		let iwContent = '<div style="padding:5px;">상대방의 위치 <br><a href="http://map.daum.net/link/map/Hello World!,'+targetLat+","+targetLong+'" style="color:blue" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/Hello World!,'+targetLat+","+targetLong+'" style="color:blue" target="_blank">길찾기</a></div>',
+		iwPosition = LatLng;
+		
+		infowindow = new daum.maps.InfoWindow({
 		    position : iwPosition, 
 		    content : iwContent 
 		});
-		  
-		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+
+		let marker = new daum.maps.Marker({
+			position : iwPosition
+		})
 		infowindow.open(map, marker); 
-
 	}
-	
-
-	
 
 	
 
@@ -269,17 +306,46 @@ let partnersId ="";
 		});
 	}
 	
+	function setMarker(){
+		// 마커가 표시될 위치입니다 
+		if(userLat!==0){
+			var markerPosition  = new daum.maps.LatLng(userLat, userLong); 
+			// 마커를 생성합니다
+			var marker = new daum.maps.Marker({
+			    position: markerPosition
+			});
+			// 마커가 지도 위에 표시되도록 설정합니다
+			marker.setMap(map);
+		}
+		var iwContent = '<div style="padding:5px;">나의 위치</div>',
+	    iwPosition = new daum.maps.LatLng(userLat, userLong); //인포윈도우 표시 위치입니다
+	
+		// 인포윈도우를 생성합니다
+		infowindow = new daum.maps.InfoWindow({
+		    position : iwPosition, 
+		    content : iwContent 
+		});
+		  
+		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+		infowindow.open(map, marker); 
 
+	}
+	
 	const closeModal = (num) =>{
 		document.querySelector(".modal"+num).style.display ="none";
 	}
 	
 	function init(){
 		getLocation();
+		setUsersMarker();
 
 	}
 	init();
-	
+	$(function(){
+		$('.ui.accordion')
+		  .accordion()
+		;
+	})
 </script>
 </body>
 </html>

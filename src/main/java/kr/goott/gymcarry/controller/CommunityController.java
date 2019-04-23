@@ -58,10 +58,10 @@ public class CommunityController {
 
 
 	  @RequestMapping(value="community/upload.do" , method=RequestMethod.POST)
-	  public String insertCommunity(@RequestParam("comDes") String comDes , @RequestParam("userid") String userid ,  MultipartFile comImage)throws Exception {
+	  public String insertCommunity(@RequestParam("comDes") String comDes ,HttpSession session ,  MultipartFile comImage)throws Exception {
 		  System.out.println("========================");
 		  logger.info(comDes);
-		  logger.info(userid);
+	
 		  
 		  logger.info("file name="+comImage.getOriginalFilename());
 			logger.info("file size="+comImage.getSize());
@@ -70,6 +70,7 @@ public class CommunityController {
 			String savedName = comImage.getOriginalFilename(); //
 			savedName = uploadFile(savedName,comImage.getBytes());   //upload file at this time			
 			CommunityDTO dto = new CommunityDTO();
+			String userid = (String)session.getAttribute("userid");
 			dto.setUserid(userid);
 			dto.setComDes(comDes);
 			dto.setComImage(savedName);
