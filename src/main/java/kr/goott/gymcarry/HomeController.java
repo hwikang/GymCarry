@@ -28,10 +28,10 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		List<CommunityDTO> list = communityDAO.comList();
+		/*List<CommunityDTO> list = communityDAO.comList();
 		logger.info(list.get(0).getComImage()+"==========");
 		model.addAttribute("uploadPath", "");
-		model.addAttribute("list", list);  //占쏙옙占� 커占승댐옙티 占쏙옙占쏙옙트
+		model.addAttribute("list", list);  //占쏙옙占� 커占승댐옙티 占쏙옙占쏙옙트*/
 		
 	
 		return "home";

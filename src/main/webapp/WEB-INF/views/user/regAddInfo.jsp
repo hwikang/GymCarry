@@ -38,7 +38,7 @@
 									<img src="${path }/profileImg/images/${userDTO.userimage}" class="avatar-img" id="preView" name="preView"/><br>
 									<span class="img-fnt">${userDTO.userid }님</span><br>
 								</div>
-								<input hidden type="file" id="file-btn"/><br>
+								<input hidden="" type="file" id="file-btn"/><br>
 								<span class="bd-fnt">사진업로드에 문제가 있으신가요?<br>
 								보다 편리한 모바일 앱에서 업로드해주세요.</span>								
 							</div>	
