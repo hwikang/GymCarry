@@ -1,4 +1,5 @@
 package kr.goott.gymcarry.controller;
+
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -43,5 +44,6 @@ public class PartnerController {
 		
 		return "redirect:/partner.do";
 	}
+
 
 }

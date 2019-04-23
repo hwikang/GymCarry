@@ -39,14 +39,13 @@ public class UserDAO implements UserDAOInterface {
 
 	@Override
 	public void deleteUser(String userid) {
-		// TODO Auto-generated method stub
+		sqlSession.delete("user.deleteUser", userid);
 
 	}
 
 	@Override
-	public void updateUser(UserDTO vo) {
-		// TODO Auto-generated method stub
-
+	public int updateUser(UserDTO dto) {
+		return sqlSession.update("user.editUser", dto);
 	}
 
 	@Override

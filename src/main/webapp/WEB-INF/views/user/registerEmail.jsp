@@ -45,16 +45,23 @@
 									<input class="form-input" type="password" placeholder="비밀번호" id="userpwd" name="userpwd" maxlength="24" autocomplete="off" onblur="pwdCheck();" alt="pwd-label" onkeyup="kuEvent(this);"/>
 									<label class="warn-label" id="pwd-label1" style="display:none;font-size:10px;">비밀번호는 영문 대/소문자/숫자로 특수문자는 한 자리 이상 포함된 6~20자리입니다.</label>
 									<label class="succ-label" id="pwd-label2" style="display:none;">안전한 비밀번호입니다.</label>
+									<label class="warn-label" id="pwd-label4" style="display:none;">비밀번호를 입력해주세요.</label>
 								</div>
 								<div class="form-div">
 									<label class="form-label" id="email-label" style="display:none;">이메일</label>
 									<input class="form-input" type="email" placeholder="이메일" id="useremail" name="useremail" maxlength="24" autocomplete="off" onblur="emailCheck();" alt="email-label" onkeyup="kuEvent(this);"/>
+									<label class="warn-label" id="email-label1" style="display:none;">정상적인 이메일 양식이 아닙니다. 다시 입력해주세요!</label>
+									<label class="succ-label" id="email-label2" style="display:none;">정상적인 이메일 양식입니다!</label>
+									<label class="warn-label" id="email-label4" style="display:none;">이메일을 입력해주세요.</label>
 								</div>
 								<div class="form-div">
 									<label class="form-label" id="name-label" style="display:none;">이름</label>
 									<input class="form-input" type="text" placeholder="이름" id="username" name="username" maxlength="24" autocomplete="off" onblur="nameCheck();" alt="name-label" onkeyup="kuEvent(this);"/>
+									<label class="warn-label" id="name-label4" style="display:none;">이름을 입력해주세요.</label>
+									<label class="warn-label" id="name-label2" style="display:none;">이름은 한글 혹은 영문으로 구성된 0~12자리입니다.</label>
+									<label class="succ-label" id="name-label3" style="display:none;">정상적인 이름입니다.	</label>
 								</div>
-							</div>	
+							</div>
 							<div class="col-xs-6 col-sm-6 col-md-6 form-frm-right">			
 								<div style="margin-bottom: 10px;">
 									<strong class="form-strong-fnt">휴대전화번호 인증하기</strong><br>
@@ -86,7 +93,7 @@
 										<span class="form-span-fnt3">수신동의 여부 및 설정은 회원정보 수정에서 확인할 수 있습니다.</span>
 									</div>
 								</div>
-								<button type="button" onclick="directSubmit();">회원 가입</button>
+								<button type="button" onclick="directSubmit();" class="btn_signup">회원 가입</button>
 							</div>					
 						</div>	
 					</form>	
@@ -127,13 +134,14 @@
 let id_error_cnt = 0; 	//id 에러 체크 0=통과, 0<submit 안됨.
 let pwd_error_cnt = 0; //pwd 에러 체크
 let email_error_cnt = 0; //email 에러 체크
+let name_error_cnt = 0;
 
 
 function idCheck(path){	//id 체크
 const userid = document.querySelector('#userid').value;
 if(userid.search( /^[a-z0-9_]{6,15}$/)){
 	$('#id-label2').css('display','none');$('#id-label3').css('display','none');
-	$('#id-label1').css('display','block');
+	$('#id-label1').css('display','block');$('#id-label4').css('display','none');
 	id_error_cnt++;
 	}else{
 		$.ajax({
@@ -145,10 +153,10 @@ if(userid.search( /^[a-z0-9_]{6,15}$/)){
 			contentType : "application/json; charset=UTF-8",
 			success : function(data){
 				if(data.cnt>0){
-					$('#id-label1').css('display','none');$('#id-label3').css('display','none');
+					$('#id-label1').css('display','none');$('#id-label3').css('display','none');$('#id-label4').css('display','none');
 					$('#id-label2').css('display','block');id_error_cnt++;
 				}else{
-					$('#id-label1').css('display','none');$('#id-label2').css('display','none');
+					$('#id-label1').css('display','none');$('#id-label2').css('display','none');$('#id-label4').css('display','none');
 					$('#id-label3').css('display','block');id_error_cnt=0;
 				}
 			},
@@ -163,25 +171,34 @@ function pwdCheck(){ //pwd 체크
 	const userpwd = document.querySelector('#userpwd').value;
 	if(userpwd.search(/^(?=.*[a-zA-Z0-9])(?=.*\W).{6,20}$/)){
 		//alert('비밀번호는 영문 대/소문자+숫자로 구성, 특수문자 한 자리 이상 들어간 총 6~20자리입니다.');
-		$('#pwd-label1').css('display','block');$('#pwd-label2').css('display','none');
+		$('#pwd-label1').css('display','block');$('#pwd-label2').css('display','none');$('#pwd-label4').css('display','none');
 		pwd_error_cnt++;
 	}else{
 		//alert('훌륭하군');
-		$('#pwd-label2').css('display','block');$('#pwd-label1').css('display','none');
+		$('#pwd-label2').css('display','block');$('#pwd-label1').css('display','none');$('#pwd-label4').css('display','none');
 		pwd_error_cnt=0;
 	}
 }
 function nameCheck(){
 	const username = document.querySelector('#username').value;
+	if(username.length>0 && username.length<12){
+		$('#name-label3').css('display','block');$('#name-label4').css('display','none');$('#name-label2').css('display','none');
+	}else if(username.length===0){
+		$('#name-label4').css('display','block');$('#name-label2').css('display','none');$('#name-label3').css('display','none');
+	}else{
+		$('#name-label2').css('display','block');$('#name-label4').css('display','none');$('#name-label3').css('display','none');
+	}
 }
 
 function emailCheck(){ //email 체크
 	const useremail = document.querySelector('#useremail').value;
 	if(useremail.search(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)){
 		//alert('올바른 이메일 형식이 아닙니다.');
+		$('#email-label1').css('display','block');$('#email-label2').css('display','none');$('#email-label4').css('display','none');
 		email_error_cnt++;
 	}else{
 		email_error_cnt=0;
+		$('#email-label2').css('display','block');$('#email-label1').css('display','none');$('#email-label4').css('display','none');
 	}
 }
 
@@ -190,16 +207,36 @@ function directSubmit(){ //submit 제어
 	let pwdLength = $('#userpwd').val().length;
 	let emailLength = $('#useremail').val().length;
 	let nameLength = $('#username').val().length;
-	if(id_error_cnt+pwd_error_cnt+email_error_cnt>0){
-		alert('크네');
+	
+	let	idDisProp = $('#id-label4').css('display');
+	let	pwdDisProp = $('#pwd-label4').css('display');
+	let	emailDisProp = $('#email-label4').css('display');
+	let	nameDisProp = $('#name-label4').css('display');
+	
+	if(id_error_cnt+pwd_error_cnt+email_error_cnt+name_error_cnt>0){
 		return false;
+	}else if(idLength===0 && pwdLength===0 && emailLength===0 && nameLength===0){
+			$('#id-label2').css('display','none');$('#id-label3').css('display','none');$('#id-label1').css('display','none');$('#id-label4').css('display','block');
+			$('#pwd-label1').css('display','none');$('#pwd-label2').css('display','none');$('#pwd-label4').css('display','block');
+			$('#email-label4').css('display','block');$('#email-label1').css('display','none');$('#email-label2').css('display','none');
+			$('#name-label4').css('display','block');$('#name-label3').css('display','none');$('#name-label2').css('display','none');
+			return false;
 	}else if(idLength===0 || pwdLength===0 || emailLength===0 || nameLength===0){
 		if(idLength===0){
-			$('#id-label2').css('display','none');$('#id-label3').css('display','none');$('#id-label1').css('display','block');
-			return false;
-		}else if(pwdLength===0){
-			return false;
+			label_error('id-label');
 		}
+		if(pwdLength===0){
+			label_error('pwd-label');
+		}
+		if(emailLength===0){
+			label_error('email-label');
+		}
+		if(nameLength===0){
+			label_error('name-label');
+		}
+		return false;
+	}else if(idDisProp==='block' || pwdDisProp==='block' || emailDisProp==='block' || nameDisProp==='block'){
+		return false;
 	}else if($('#terms1').prop('checked')===false || $('#terms2').prop('checked')===false){
 		$('#modal-btn').trigger('click');
 		return false;
@@ -226,6 +263,15 @@ function kuEvent(c){
 	}
 }
 
+function label_error(tagName){
+	for(i=1;i<5;i++){
+		if(i===4){
+			$('#'+tagName+i).css('display','block');
+		}else{
+			$('#'+tagName+i).css('display','none');
+		}
+	}
+}
 </script>
 </header>
 <footer>
