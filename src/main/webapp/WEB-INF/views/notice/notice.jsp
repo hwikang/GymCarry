@@ -33,7 +33,7 @@
   	<div class=list-group style="font-size:23px">
   		<div style="font-size:40px;">공지사항 </div><br/>
   		<span>이벤트와 새로운 알림을 확인하세요! 
-  		 <c:if test="${loginCheck=='Y'}">
+  		 <c:if test="${loginCheck=='Y' && userid=='khdrogba'}">
   		<!-- 글쓰기버튼 -->
   		<button class="ui primary button" data-toggle="modal" data-target="#myModal" style="margin-left:690px;margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">Write</button>
   		</c:if>

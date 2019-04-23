@@ -32,7 +32,7 @@
     
     <tbody>
       <tr>
-        <td rowspan="4">Image : ${dto.userimage }</td>
+        <td rowspan="4">Image  ${dto.userimage }</td>
         <td>아이디 : ${dto.userid }</td>
         <td>이메일 : ${dto.useremail }</td>
       </tr>

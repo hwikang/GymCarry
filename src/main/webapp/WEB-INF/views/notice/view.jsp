@@ -33,7 +33,7 @@
 		<textarea disabled="disabled" style="width:100%;height:300px";>${dto.des}</textarea>
  		<%-- <div style="margin-top:65px;margin-bottom:100px;font-size:18px;color:#838383";>${dto.des}</div> --%>
  		<div style="margin-top:65px;border-top:1px solid #DDDDDD"><a href="${path}/notice.do"><button class="ui primary button" style="margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">Back</button></a>
- 		 <c:if test="${loginCheck=='Y'}">
+ 		 <c:if test="${loginCheck=='Y' && userid=='khdrogba'}">
  		<!-- 글수정버튼 --> <button class="ui primary button" data-toggle="modal" data-target="#editModal" style="margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">Edit</button>
  		<!-- 글삭제버튼 --> <button class="ui primary button" data-toggle="modal" data-target="#deleteModal" style="margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">Delete</button>
  		</c:if>

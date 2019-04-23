@@ -275,9 +275,8 @@ const replyDeleteBtn = (event) =>{
 
 }
 
-function proView(userid){
-	alert("dd")
-	
+//명함보기 
+function proView(userid){	
  document.querySelector('#submit'+userid).submit(); 
 }
 

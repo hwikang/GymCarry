@@ -1,6 +1,8 @@
 package kr.goott.gymcarry.model.dto;
 
 import java.util.Date;
+import java.util.List;
+
 
 public class UserDTO {
 	private int userno;
@@ -28,8 +30,7 @@ public class UserDTO {
 	
 	private Double userLat;
 	private Double userLong;
-	
-	
+
 	public UserDTO() {}
 
 	
@@ -193,11 +194,6 @@ public class UserDTO {
 	}
 
 
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
-	}
-
-
 	@Override
 	public String toString() {
 		return "UserDTO [userno=" + userno + ", userid=" + userid + ", userpwd=" + userpwd + ", username=" + username
@@ -210,8 +206,7 @@ public class UserDTO {
 	}
 
 
-
-
+	
 	
 	
 }
