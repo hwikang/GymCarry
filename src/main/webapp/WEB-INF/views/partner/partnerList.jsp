@@ -17,7 +17,7 @@
 		overflow-y:hidden;
 	}
 	.ui.styled.accordion.items:hover{
-		background-color:red;
+		background-color:#890422;
 	}
 
 </style>
