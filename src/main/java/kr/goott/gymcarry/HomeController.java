@@ -33,6 +33,7 @@ public class HomeController {
 		model.addAttribute("uploadPath", "");
 		model.addAttribute("list", list);  //占쏙옙占� 커占승댐옙티 占쏙옙占쏙옙트
 		session.setAttribute("log", "Y");
+		
 		return "home";
 	}
 	

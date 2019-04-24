@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"/>
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> <!-- 구글폰트 -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link rel="stylesheet" href="${path }/css/findId.css" type="text/css">
+<link rel="stylesheet" href="${path }/css/findPwdSuccess.css" type="text/css">
 </head>
 <body>
 <header>
@@ -25,23 +25,36 @@
 			<div class="col-xs-2 col-sm-2 col-md-2"></div>
 				<div class="col-xs-8 col-sm-8 col-md-8">
 					<div class="paper">
-						<b class="span-title">아이디 찾기</b><br>
-						<span class="span-title2">걱정마세요! 잊어버린 아이디를 찾아드려요.</span><br><br>
-						<form method="post" action="${path }/user/findIdresult.do">
+						<b class="span-title">비밀번호 찾기</b><br>
+						<span class="span-title2">저런.. 비밀번호가 생각나지 않으세요?</span><br><br>
+						<form method="post" action="${path }/user/findPwdResult.do">
+							<span class="label-fnt">아이디</span>
+							<div class="row" style="margin-bottom:30px;">
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<input type="text" name="userid" id="userid" value="${userDto.userid }" autocomplete="off"  placeholder="아이디를 입력하세요" class="form-input2"/>
+								</div>
+							</div>
 							<span class="label-fnt">이름</span>
 							<div class="row" style="margin-bottom:30px;">
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<input type="text" name="username" autocomplete="off"  placeholder="가입하신 분의 이름을 입력하세요" class="form-input2"/>
+									<input type="text" name="username" id="username" value="${userDto.username }" autocomplete="off"  placeholder="가입하신 분의 이름을 입력하세요" class="form-input2"/>
 								</div>
-							</div>
+							</div>		
 							<span class="label-fnt">이메일</span>
 							<div class="row" style="margin-bottom:30px;">
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<input type="email" name="useremail" autocomplete="off"  placeholder="이메일 주소를 입력하세요" class="form-input2"/>
+									<input type="email" name="useremail" id="useremail" value="${userDto.useremail }" autocomplete="off"  placeholder="가입하신 분의 이메일을 입력하세요" class="form-input2"/>
 								</div>
-							</div>
-							<button type="submit" class="btn-findid"><i class="fa fa-search"></i>아이디를 찾아주세요!</button>
+							</div>				
+							<button type="submit" class="btn-findid"><i class="fa fa-search"></i>비밀번호를 찾아주세요!</button>
 						</form>
+						<div class="result-div">
+							<div class="result-div-in">						
+								<i class="far fa-paper-plane big" aria-hidden="true"></i>
+								<span class="fnt1"><b>거의 다 됐습니다!</b><br>
+								임시 비밀번호를 <b>이메일</b>로 보내드렸습니다! 이메일을 확인해 주세요.</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			<div class="col-xs-2 col-sm-2 col-md-2"></div>

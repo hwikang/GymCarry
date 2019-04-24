@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"/>
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> <!-- 구글폰트 -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="${path }/css/findPwd.css" type="text/css">
 </head>
 <body>
@@ -21,13 +22,35 @@
 	<a href="${path }/"><img src="${path }/resources/logo.png" width="300px" height="200px"/></a>
 	<div class="container">
 		<div class="row">			
-			<div class="col-xs-4 col-sm-4 col-md-4"></div>
-			<div class="col-xs-4 col-sm-4 col-md-4">
-				<div class="paper">
-				비밀번호를 찾아달라규		
+			<div class="col-xs-2 col-sm-2 col-md-2"></div>
+				<div class="col-xs-8 col-sm-8 col-md-8">
+					<div class="paper">
+						<b class="span-title">비밀번호 찾기</b><br>
+						<span class="span-title2">저런.. 비밀번호가 생각나지 않으세요?</span><br><br>
+						<form method="post" action="${path }/user/findPwdResult.do">
+							<span class="label-fnt">아이디</span>
+							<div class="row" style="margin-bottom:30px;">
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<input type="text" name="userid" id="userid" autocomplete="off"  placeholder="아이디를 입력하세요" class="form-input2"/>
+								</div>
+							</div>
+							<span class="label-fnt">이름</span>
+							<div class="row" style="margin-bottom:30px;">
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<input type="text" name="username" id="username" autocomplete="off"  placeholder="가입하신 분의 이름을 입력하세요" class="form-input2"/>
+								</div>
+							</div>		
+							<span class="label-fnt">이메일</span>
+							<div class="row" style="margin-bottom:30px;">
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<input type="email" name="useremail" id="useremail" autocomplete="off"  placeholder="가입하신 분의 이메일을 입력하세요" class="form-input2"/>
+								</div>
+							</div>				
+							<button type="submit" class="btn-findid"><i class="fa fa-search"></i>비밀번호를 찾아주세요!</button>
+						</form>
+					</div>
 				</div>
-			</div>
-			<div class="col-xs-4 col-sm-4 col-md-4"></div>
+			<div class="col-xs-2 col-sm-2 col-md-2"></div>
 		</div>
 	</div>
 </header>

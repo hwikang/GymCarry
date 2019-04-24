@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"/>
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> <!-- 구글폰트 -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="${path }/css/findIdFail.css" type="text/css">
 </head>
 <body>
@@ -21,26 +22,37 @@
 	<a href="${path }/"><img src="${path }/resources/logo.png" width="300px" height="200px"/></a>
 	<div class="container">
 		<div class="row">			
-			<div class="col-xs-3 col-sm-3 col-md-3"></div>
-				<div class="col-xs-6 col-sm-6 col-md-6">
+			<div class="col-xs-2 col-sm-2 col-md-2"></div>
+				<div class="col-xs-8 col-sm-8 col-md-8">
 					<div class="paper">
-						<span>아이디 찾기<br>
-						걱정마세요! 잊어버린 아이디를 찾아드려요.</span>
+						<b class="span-title">아이디 찾기</b><br>
+						<span class="span-title2">걱정마세요! 잊어버린 아이디를 찾아드려요.</span><br><br>
 						<form method="post" action="${path }/user/findIdresult.do">
-							<label>
-								<span>이름</span>
-								<input type="text" name="username" placeholder="가입하신 분의 이름을 입력하세요"/>
-							</label>
-							<label>
-								<span>이메일</span>
-								<input type="email" name="useremail" placeholder="이메일 주소를 입력하세요"/>
-							</label>
-							<button type="submit">아이디를 찾아주세요!</button>
+							<span class="label-fnt">이름</span>
+							<div class="row" style="margin-bottom:30px;">
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<input type="text" name="username" value="${userDto.username }" autocomplete="off"  placeholder="가입하신 분의 이름을 입력하세요" class="form-input2"/>
+								</div>
+							</div>
+							<span class="label-fnt">이메일</span>
+							<div class="row" style="margin-bottom:30px;">
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<input type="email" name="useremail" value="${userDto.useremail }" autocomplete="off"  placeholder="이메일 주소를 입력하세요" class="form-input2"/>
+								</div>
+							</div>
+							<button type="submit" class="btn-findid"><i class="fa fa-search"></i>아이디를 찾아주세요!</button>
 						</form>
-						아이디 못찼음...
-					</div>
+						<div class="result-div">
+							<div class="result-div-in">							
+								<i class="fa fa-exclamation-triangle big" aria-hidden="true"></i>
+								<span class="fnt1"><b>죄송합니다. 가입된 정보를 찾을 수 없습니다.</b><br>
+								<b class="fnt1"> 입력하신 이름과 이메일이 맞는지 다시 한 번 학인해 주세요.</b><br>
+								</span>
+							</div>
+						</div>
+					</div>					
 				</div>
-			<div class="col-xs-3 col-sm-3 col-md-3"></div>
+			<div class="col-xs-2 col-sm-2 col-md-2"></div>
 		</div>
 	</div>
 </header>

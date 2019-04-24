@@ -9,7 +9,7 @@ header{
 	background-size: cover;
 	background-blend-mode: luminosity; /*여기서 조절*/
 	background-color: #A9A9A9;
-	height: 60%;
+	height: 75%;
 }
 .paper{
 	margin-top:-50px;

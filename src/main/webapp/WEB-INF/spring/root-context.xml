@@ -40,4 +40,19 @@
 	</bean>	
 	<bean id="naverLoginBO" class="kr.goott.gymcarry.auth.NaverLoginBO"/>
 	<mybatis-spring:scan base-package="kr.goott.gymcarry.model"/>
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com"/>
+		<property name="port" value="587"/>
+		<property name="username" value="zbass9019@gmail.com"/>
+		<property name="password" value="gymCarry3!"/>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
 </beans>

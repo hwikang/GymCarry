@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from userTbl
 		where userid=#{userid}
 	</select>
-	<select id="find_id" resultType="string" parameterType="userDto">
+	<select id="find_id" resultType="userDto" parameterType="userDto">
 		select userid from userTbl
 		where username=#{username} and useremail=#{useremail}
 	</select>
@@ -34,11 +34,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values (user_Sq.nextVal, #{userid}, #{username}, #{userpwd}, #{useremail}, #{userphone},
 		#{presentid}, 'avatar.png', 0, sysdate)
 	</insert>
-	<insert id="insert_naver_user">
-		insert into userTbl (userno, userid, username, useremail, userphone, 
+	<insert id="insert_naver_user" parameterType="userDto">
+		insert into userTbl (userno, userid, username, userphone, 
 		presentid, userimage, protein, regdate, naverid) 
-		values (user_Sq.nextVal, #{userid}, #{username}, #{useremail}, #{userphone},
-		#{presentid}, null, 0, sysdate, #{naverid})
+		values (user_Sq.nextVal, #{userid}, #{username}, #{userphone},
+		#{presentid}, 'avatar.png', 0, sysdate, #{naverid})
 	</insert>
 	<update id="addInfo_user" parameterType="userDto">
 		update userTbl set birthdate=#{birthDate}, gender=#{gender}, userheight=#{userheight},
@@ -59,4 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteUser">
 		delete from userTbl where userid=#{userid}
 	</delete>
+	<update id="find_pwd" parameterType="userDto">
+		update userTbl set userpwd = #{createPwd} where userid=#{userid} and username=#{username} and useremail=#{useremail}
+	</update>
 </mapper>

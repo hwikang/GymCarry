@@ -14,10 +14,11 @@ public interface UserDAOInterface {
 	public UserDTO loginCheck(UserDTO dto);
 	public UserDTO userInfo(String userid);
 	public int addInfoUser(UserDTO dto);
-	public String findId(UserDTO dto);
+	public UserDTO findId(UserDTO dto);
 	public UserDTO naverIdCheck(UserDTO dto);//네이버아이디체크
-	public void insertNaverUser(UserDTO dto); //네이버아이디로 계정생성
+	public int insertNaverUser(UserDTO dto); //네이버아이디로 계정생성
 	public int idCheckCount(String userid); //아이디 비동기식 중복 검사
 	public UserDTO selectImg(UserDTO dto);//userid로 profile img찾기
 	public int updateImg(UserDTO dto);//userid로 profile img 변경
+	public int findPwd(UserDTO dto);//이메일 전송시 강제 비밀번호 변경
 }

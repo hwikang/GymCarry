@@ -6,11 +6,15 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import kr.goott.gymcarry.auth.NaverLoginBO;
+import kr.goott.gymcarry.auth.TempKey;
 import kr.goott.gymcarry.model.dao.UserDAOInterface;
 import kr.goott.gymcarry.model.dto.UserDTO;
 
@@ -36,7 +41,9 @@ public class UserController {
 	@Inject
 	UserDAOInterface userDAO;
 	@Inject
-	NaverLoginBO naverLoginBO;
+	NaverLoginBO naverLoginBO;	
+	@Inject
+	JavaMailSender mailSender; //메일 발송 객체
 	
 	@Resource(name = "uploadPath2")	
 	String uploadPath2;
@@ -82,12 +89,17 @@ public class UserController {
 	@RequestMapping(value ="naverRegister.do", method = RequestMethod.POST)
 	public ModelAndView naverRegister(@ModelAttribute UserDTO dto) {
 		logger.info("naverRegister -> registerDone page view...");
-		userDAO.insertNaverUser(dto);
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("userid", dto.getUserid());
-		System.out.println(dto.getUserid());
-		mav.setViewName("user/registerDone");
-		return mav;
+		int cnt = userDAO.insertNaverUser(dto);
+			ModelAndView mav = new ModelAndView();
+		if(cnt>0) {
+			mav.addObject("userid", dto.getUserid());
+			System.out.println(dto.getUserid());
+			mav.setViewName("user/registerDone");
+			return mav;
+		}else {
+			mav.setViewName("redirect:naverRegister.do");
+			return mav;
+		}
 	}
 	
 	@RequestMapping(value = "loginChk.do", method = RequestMethod.POST)
@@ -209,17 +221,41 @@ public class UserController {
 	@RequestMapping(value = "findIdresult.do")
 	public ModelAndView findIdSuccess(@ModelAttribute UserDTO dto) {
 		logger.info("findIdresult page view");
-		String userid = userDAO.findId(dto);
-		if(userid!=null) {			
-			return new ModelAndView("user/findIdSuccess","userid",userid);
+		UserDTO userDto = userDAO.findId(dto);
+		if(userDto!=null) {		
+			userDto.setUsername(dto.getUsername());
+			userDto.setUseremail(dto.getUseremail());
+			return new ModelAndView("user/findIdSuccess","userDto",userDto);
 		}else {
-			return new ModelAndView("user/findIdFail");
+			UserDTO userDto2 = new UserDTO();
+			userDto2.setUsername(dto.getUsername());
+			userDto2.setUseremail(dto.getUseremail());
+			return new ModelAndView("user/findIdFail","userDto",userDto2);
 		}
 	}
 	@RequestMapping(value = "findPwd.do")
-	public String findPwd() {
+	public ModelAndView findPwd() {
 		logger.info("findPwd page view...");
-		return "user/findPwd";
+		return new ModelAndView("user/findPwd");
+	}
+	
+	@RequestMapping(value="findPwdResult.do",method = RequestMethod.POST)
+	public ModelAndView findPwd(@ModelAttribute UserDTO dto){
+		logger.info("findPwdResult page view...");
+		String createPwd = new TempKey().getKey(12, false);
+		dto.setCreatePwd(createPwd);
+		int cnt = userDAO.findPwd(dto);
+		ModelAndView mav = new ModelAndView();
+		if(cnt>0) {
+			sendMail(dto);
+			mav.addObject("userDto", dto);
+			mav.setViewName("user/findPwdSuccess");
+			return mav;
+		}else {
+			mav.addObject("userDto", dto);
+			mav.setViewName("user/findPwdFail");
+			return mav;
+		}				
 	}
 	
 	@RequestMapping(value="idcheck.do")
@@ -263,9 +299,29 @@ public class UserController {
 		FileCopyUtils.copy(fileData, target);
 		return savedName;
 	}
+	
+	private void sendMail(UserDTO userdto) {
+		try {
+			MimeMessage msg = mailSender.createMimeMessage();
+			msg.addRecipient(RecipientType.TO, new InternetAddress(userdto.getUseremail()));//이메일 수신자
+			msg.addFrom(new InternetAddress[] {//이메일 발신자
+				new InternetAddress("zbass9019@gmail.com", "GYM-CARRY ADMIN")
+			});
+			msg.setSubject("GYM-CARRY 비밀번호 안내입니다.", "UTF-8"); //이메일 제목
+			msg.setText(new StringBuffer().append("<h1>임시 비밀번호 안내</h1>"
+					+ "	<h3>"+userdto.getUsername()+"님의 임시비밀번호는 "+userdto.getCreatePwd()+"입니다. </h3>"
+					+ "	<h3>임시 비밀번호로 로그인 하신 후 프로필 - 회원정보 변경에서 앞으로 사용하실 새 비밀번호로 반드시 변경해주세요.</h3>"
+					+ "	<a href=\'http://localhost:9090/gymcarry/user/login.do\' style=\'display: inline-block; padding: 9px 30px 8px; border: 1px solid #aaa; color: #555;margin: 10px auto 0;text-decoration: none; border-radius: 100px;\'"
+					+ " target=\'_blank\'" 
+					+ ">로그인 하기</a>").toString(),"UTF-8","html");//이메일 본문
+			mailSender.send(msg);//전송
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//////////////////////
 	@RequestMapping(value="test.do")
 	public String test() {
-		return "user/regAddInfo";
+		return "user/userLogin2";
 	}
 }

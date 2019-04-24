@@ -38,9 +38,9 @@
 							</div>	
 						</div>
 						<div class="col-xs-6 col-sm-6 col-md-6 right-frm">
-							<div><input type="text" placeholder="아이디" name="userid" class="form-input"/></div>
+							<div><input type="text" placeholder="아이디" autocomplete="off" name="userid" class="form-input"/></div>
 							<div style="margin-bottom:20px">
-								<input type="password" placeholder="비밀번호" name="userpwd" class="form-input"/>
+								<input type="password" placeholder="비밀번호" autocomplete="off" name="userpwd" class="form-input"/>
 								<c:if test="${log=='N' }">
 									<label class="normal-fnt2">등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.</label>
 								</c:if>

@@ -30,10 +30,22 @@ public class UserDTO {
 	
 	private Double userLat;
 	private Double userLong;
+	private String createPwd; //새로운 비밀번호
 
 	public UserDTO() {}
 
 	
+	public String getCreatePwd() {
+		return createPwd;
+	}
+	public void setCreatePwd(String createPwd) {
+		this.createPwd = createPwd;
+	}
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
+
+
 	public String getNaverid() {
 		return naverid;
 	}
