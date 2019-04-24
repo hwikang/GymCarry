@@ -48,12 +48,9 @@ public class CommunityController {
 	
 	@RequestMapping(value = "community.do", method = RequestMethod.GET)
 	public String community(Model model) {
-		logger.info("getting");
 		List<CommunityDTO> list = communityDAO.comList();
-		logger.info(list.get(0).getComImage()+"==========");
 		model.addAttribute("uploadPath", "");
-		model.addAttribute("list", list);  //占쏙옙占� 커占승댐옙티 占쏙옙占쏙옙트
-		logger.info("get it");
+		model.addAttribute("list", list); 
 		return "community/list";
 	}
 	
@@ -64,13 +61,10 @@ public class CommunityController {
 
 	  @RequestMapping(value="community/upload.do" , method=RequestMethod.POST)
 	  public String insertCommunity(@RequestParam("comDes") String comDes ,HttpSession session ,  MultipartFile comImage)throws Exception {
-		  System.out.println("========================");
-		  logger.info(comDes);
-	
-		  
+		  logger.info(comDes);		  
 		  logger.info("file name="+comImage.getOriginalFilename());
-			logger.info("file size="+comImage.getSize());
-			logger.info("content type="+comImage.getContentType()); 
+		  logger.info("file size="+comImage.getSize());
+	      logger.info("content type="+comImage.getContentType()); 
 		  
 			String savedName = comImage.getOriginalFilename(); //
 			savedName = uploadFile(savedName,comImage.getBytes());   //upload file at this time			
@@ -81,11 +75,6 @@ public class CommunityController {
 			dto.setComImage(savedName);
 			
 			communityDAO.insertCommunity(dto); 
-//			mav.setViewName("community/list");
-//			mav.addObject("savedName",savedName); 
-			
-			
-		 // 
 		  return "redirect:/community.do"; 
 	  }
 	  
@@ -109,36 +98,26 @@ public class CommunityController {
 
 		@RequestMapping(value= "community/view/{comNo}", method=RequestMethod.GET)
 		public ModelAndView viewCommunity2(@PathVariable int comNo ,ModelAndView mav,HttpSession session) {
-//			logger.info("==========comNo="+comNo);
-			
-		
-			//get dto values
 			CommunityDTO dto = communityDAO.viewCommunity(comNo); 
-//			
 			mav.addObject("dto",dto);
 			//get reply dto values
 			mav.addObject("replyList",communityReplyDao.viewReply(comNo)); 
 			//view count++
 			communityDAO.viewCount(comNo);
-			//check like
+	
 			String userid = (String) session.getAttribute("userid"); 
 			logger.info("userid=="+userid);
 			mav.addObject("userid",userid); //login ID
+			//check like
 			int like = communityLikeDAO.checkLike(comNo,userid);
 			mav.addObject("like",like);
-
-			
-			
-			
-			mav.setViewName("community/view");
-		
+			mav.setViewName("community/view");		
 			return mav;
 		}
 
 		@RequestMapping(value= "community/edit/{comNo}", method=RequestMethod.POST)
 		public String editCommunity(@PathVariable int comNo ,@RequestParam("comDes") String comDes,@RequestParam("priorImage") String priorImage,MultipartFile comImage) throws Exception {
-//			logger.info("edit=======comNo="+comNo);
-//			logger.info("edit=======comDes="+comDes);
+
 			logger.info("file name="+comImage.getOriginalFilename());
 			CommunityDTO dto = new CommunityDTO();
 			
@@ -182,18 +161,14 @@ public class CommunityController {
 			String userid = (String) session.getAttribute("userid");
 			communityLikeDAO.deleteLike(comNo, userid);
 			return "redirect:/community/view/"+comNo;
-		}
-	
-	
+		}	
 		
 		@RequestMapping(value= "community/prof/{userid}", method=RequestMethod.POST)
 		public ModelAndView prof(@PathVariable String userid ,ModelAndView mav) {
 			UserDTO dto = new UserDTO();
 			dto = userDAO.userInfo(userid);
-			mav.addObject("dto",dto);
-			
-			mav.setViewName("community/prof");
-		
+			mav.addObject("dto",dto);			
+			mav.setViewName("community/prof");		
 			return mav;
 		}
 

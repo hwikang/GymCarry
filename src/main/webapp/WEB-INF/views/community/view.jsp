@@ -127,7 +127,7 @@
 			<div class="ui list">
 			  <c:forEach var="dto" items="${replyList}">
 				  	<div class="item">
-				    	<img class="ui avatar image" src="${path}/resources/profile.png">
+				    	<img class="ui avatar image" src="${path}/profileImg/images/${dto.userimage}">
 						<div class="content">
 						<form action="${path}/community/prof/${dto.userid}" id="submit${dto.userid}" method="post" >
 						    <a class="header" onClick="proView('${dto.userid}')">${dto.userid}</a>

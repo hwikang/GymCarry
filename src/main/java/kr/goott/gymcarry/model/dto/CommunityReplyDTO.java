@@ -8,13 +8,14 @@ public class CommunityReplyDTO {
 	private String replyDes;
 	private Date regdate;
 	private int comNo;
-
+	private String userimage;
 
 	
+
 	@Override
 	public String toString() {
-		return "CommunityReplyDTO [replyNo=" + replyNo + ", uerid=" + userid + ", replyDes=" + replyDes + ", regdate="
-				+ regdate + ", comNo=" + comNo + "]";
+		return "CommunityReplyDTO [replyNo=" + replyNo + ", userid=" + userid + ", replyDes=" + replyDes + ", regdate="
+				+ regdate + ", comNo=" + comNo + ", userimage=" + userimage + "]";
 	}
 	public int getReplyNo() {
 		return replyNo;
@@ -45,6 +46,12 @@ public class CommunityReplyDTO {
 	}
 	public void setComNo(int comNo) {
 		this.comNo = comNo;
+	}
+	public String getUserimage() {
+		return userimage;
+	}
+	public void setUserimage(String userimage) {
+		this.userimage = userimage;
 	}
 	
 	
