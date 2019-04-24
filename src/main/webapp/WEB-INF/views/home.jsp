@@ -57,7 +57,9 @@
 			  <a href="${path }/community.do" class="item">커뮤니티</a>
 			  <c:if test="${loginCheck==null}">
 			  	<a class="item" href="${path }/user/login.do">로그인</a>
+
 			  	<a class="item" href="${path }/user/userJoin.do">회원가입</a>
+
 			  </c:if>
 			  <c:if test="${loginCheck=='Y'}">			  
 			 	 <a class="item" href="${path }/user/logout.do">로그아웃</a>
@@ -99,7 +101,7 @@
 				  <div class="step">
 				    <i class="american sign language interpreting icon"></i>
 				    <div class="content">
-				      <div class="title">(카카오톡 or 실시간채팅)PT 요청</div>
+				      <div class="title">(Email정보확인) 양식에 맞춰 PT 요청</div>
 				    </div>
 				  </div>
 				  <div class="step">
@@ -114,7 +116,7 @@
            
 
            	<!-- 타이틀 -->
-           	<div id= title3>FIND PARTNERS</div>
+           	<div id= title3>Monthly PARTNERS</div>
            	<!-- 추천트레이너 --> 
             <div id="trainers"> <!-- float-frame 과 unit의미없음   -->
        			<c:forEach var="dto" items="${list}">
@@ -123,7 +125,7 @@
 					  	<img src="${path }/community/images/${dto.comImage}" alt="Avatar" class="image ui medium rounded" style="height:250px">
 					  	<div class="overlay" onClick="comSubmit('${dto.userid}')">
 						    <div class="text" ><i class="user circle outline icon"></i>
-						    <span id="userid2">${dto.userid}</span><hr/> <!-- email적는란 -->
+						    <span id="userid2">${dto.userid}</span><hr/> <!--email적는란 -->
 						    <span id="comment2">${dto.comDes}</span> <!-- 코멘트적는란 -->
 					    	</div>
 					  	</div>
@@ -135,7 +137,7 @@
         	
         	<div id="title4">JOIN COMMUNITY</div>
         	<div id="com" style="border:outset; margin-top:30px; padding:50px 0px 50px 0px">
-        		<h3>1. <a href="${path }/userJoin.do"class="item" style="color:red">회원가입 및 로그인.</a><h3/>
+        		<h3>1. <a href="#"class="item" style="color:red">회원가입 및 로그인.</a><h3/>
         		<h3>2. <a href="${path }/community.do" style="color:red">GYMCARRY 커뮤니티</a>에 입장!</h3>
         		<h3>3. 글이나 사진 올리기</h3>
         		<h3>4. 운동 외적인 글 또는 광고성 글은 제지 당할 수 있습니다.</h3>

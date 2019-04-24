@@ -29,8 +29,7 @@ public class CommunityDAO implements CommunityDAOInterface {
 	@Override
 	public List<CommunityDTO> comList() {
 		logger.info("community list called...");
-		return sqlSession.selectList("community.listCommunity");
-		
+		return sqlSession.selectList("community.listCommunity");		
 	}
 
 	@Override
@@ -86,8 +85,13 @@ public class CommunityDAO implements CommunityDAOInterface {
 	public List<CommunityDTO> userComList(String userid) {
 		return sqlSession.selectList("community.userComList", userid);
 		
-	}	
+	}
 
+	@Override
+	public List<CommunityDTO> monthlyList() {
+		return sqlSession.selectList("community.monthlyList");
+	}	
+	
 
 
 }

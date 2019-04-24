@@ -1,6 +1,8 @@
 
 package kr.goott.gymcarry.model.dto;
 
+import java.sql.Date;
+
 public class CommunityDTO {
 	private int comNo;
 	private String userid;
@@ -9,7 +11,7 @@ public class CommunityDTO {
 	private int views;
 	private int likes;
 	private int replys;
-	private String regdate;
+	private Date regdate;
 	
 	
 	public CommunityDTO() {
@@ -93,15 +95,14 @@ public class CommunityDTO {
 	public void setReplys(int replys) {
 		this.replys = replys;
 	}
-
-	public String getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
-
-	public void setRegdate(String regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	
+
+
 	
 	
 	
