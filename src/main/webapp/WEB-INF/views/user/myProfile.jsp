@@ -15,6 +15,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> <!-- 구글폰트 -->
+<link rel="stylesheet" href="${path }/css/myProfile.css" type="text/css">
 <style>
 	*{font-family: 'Jua', sans-serif;}
 	A:link{text-decoration: none; color:black}
@@ -35,9 +36,9 @@
  	<!-- 글삭제버튼 --> <button class="ui primary button" data-toggle="modal" data-target="#deleteModal" style="margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">탈퇴</button>
     <tbody>
       <tr>
-        <td rowspan="4">Image  ${dto.userimage }</td>
+        <td rowspan="4"><img src="${path }/profileImg/images/${dto.userimage}" class="avatar-img" id="preView" name="preView"/></td>
         <td>아이디 : ${dto.userid }</td>
-        <td>이메일 : ${dto.useremail }</td>
+        <td>이메일 : <c:if test="${dto.useremail!=null}">${dto.useremail }</c:if><c:if test="${dto.naverid!=null}">${dto.naverid }</c:if></td>
       </tr>
       <tr>
         <td>신장 : ${dto.userheight } </td>
@@ -108,13 +109,10 @@
       	 휴대폰 : ${dto.userphone  }
       	</td>
       	<td>
-      	 성별 : ${dto.gender  }
+      	 성별 : <c:if test="${dto.gender=='male'}">남자</c:if><c:if test="${dto.gender=='female'}">여자</c:if>
       	</td>
       </tr>
       <tr>
-      	<td>
-      	 네이버아이디 : ${dto.naverid  }
-      	</td>
       	<td>
       	 추천인 : ${dto.presentid}
       	</td>

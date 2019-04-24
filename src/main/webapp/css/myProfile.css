@@ -1,0 +1,6 @@
+@charset "UTF-8";
+.avatar-img{
+	width: 120px;
+	height: 120px;
+	border-radius:100px;
+}
