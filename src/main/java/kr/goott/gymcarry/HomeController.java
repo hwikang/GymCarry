@@ -1,9 +1,6 @@
 package kr.goott.gymcarry;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -30,7 +27,6 @@ public class HomeController {
 	public String home(Model model, HttpSession session) {
 		List<CommunityDTO> list = communityDAO.monthlyList();
 		logger.info(list.get(0).getComImage()+"==========");
-		model.addAttribute("uploadPath", "");
 		model.addAttribute("list", list);  //占쏙옙占� 커占승댐옙티 占쏙옙占쏙옙트
 		session.setAttribute("log", "Y");
 		

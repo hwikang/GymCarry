@@ -36,9 +36,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<insert id="insert_naver_user" parameterType="userDto">
 		insert into userTbl (userno, userid, username, userphone, 
-		presentid, userimage, protein, regdate, naverid) 
+		presentid, userimage, protein, regdate, naverid, naverAccessToken) 
 		values (user_Sq.nextVal, #{userid}, #{username}, #{userphone},
-		#{presentid}, 'avatar.png', 0, sysdate, #{naverid})
+		#{presentid}, 'avatar.png', 0, sysdate, #{naverid}, #{naverAccessToken})
 	</insert>
 	<update id="addInfo_user" parameterType="userDto">
 		update userTbl set birthdate=#{birthDate}, gender=#{gender}, userheight=#{userheight},

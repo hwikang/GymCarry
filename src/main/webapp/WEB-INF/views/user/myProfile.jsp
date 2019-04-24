@@ -14,6 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> <!-- 구글폰트 -->
 <link rel="stylesheet" href="${path }/css/myProfile.css" type="text/css">
 <style>
@@ -28,21 +29,19 @@
 <body>
 <!-- 멋쟁이윤성 -->
 <div class="container">
-
+	<input type="hidden" id="userid" value="${dto.userid }"/>
   <h1>Profile</h1>
-  <p style="font-size:18px">${dto.userid} 님의 프로필</p>            
+  <p style="font-size:18px">${dto.userid} 님의 프로필</p>         
   <table class="table table-condensed">
-    <!-- 글수정버튼 --> <button class="ui primary button" data-toggle="modal" data-target="#editModal" style="margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">수정</button>
- 	<!-- 글삭제버튼 --> <button class="ui primary button" data-toggle="modal" data-target="#deleteModal" style="margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">탈퇴</button>
     <tbody>
       <tr>
-        <td rowspan="4"><img src="${path }/profileImg/images/${dto.userimage}" class="avatar-img" id="preView" name="preView"/></td>
+        <td rowspan="4" style="text-align: center;"><img src="${path }/profileImg/images/${dto.userimage}" class="avatar-img" id="preView" name="preView"/></td>
         <td>아이디 : ${dto.userid }</td>
         <td>이메일 : <c:if test="${dto.useremail!=null}">${dto.useremail }</c:if><c:if test="${dto.naverid!=null}">${dto.naverid }</c:if></td>
       </tr>
       <tr>
-        <td>신장 : ${dto.userheight } </td>
-        <td>체중 : ${dto.userweight } </td>
+        <td>신장 : ${dto.userheight } cm</td>
+        <td>체중 : ${dto.userweight } kg</td>
       </tr>
       <tr>
         <td>가입목적 : 
@@ -109,37 +108,61 @@
       	 휴대폰 : ${dto.userphone  }
       	</td>
       	<td>
-      	 성별 : <c:if test="${dto.gender=='male'}">남자</c:if><c:if test="${dto.gender=='female'}">여자</c:if>
+      	 성별 : <c:if test="${dto.gender=='male'}">남성 <i class="fas fa-mars"></i></c:if><c:if test="${dto.gender=='female'}">여성 <i class="fas fa-venus"></i></c:if>
       	</td>
       </tr>
       <tr>
       	<td>
       	 추천인 : ${dto.presentid}
       	</td>
-      	<td>
-      	
-      	</td>
-      	
+      	<td></td>
+      	<td></td>
+      </tr>
+      <tr>
+      	<td></td>
+      	<td></td>
+      	<td></td>
       </tr>
      
     </tbody>
   </table>
+  <div>
+    <!-- 글수정버튼 --> <button class="ui primary button" data-toggle="modal" data-target="#editModal" style="margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">수정</button>
+    <!--개인정보수정버튼 --> <c:if test="${dto.naverid==null }"><button class="ui primary button" data-toggle="modal" data-target="#editModal2" style="margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">개인정보수정</button></c:if>
+ 	<!-- 글삭제버튼 --> <button class="ui primary button" data-toggle="modal" data-target="#deleteModal" style="margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">탈퇴</button>
+  </div>
    <!-- Edit Modal -->
 	      <div class="modal fade" id="editModal" role="dialog">
 	  	 	<div class="modal-dialog">	
-		      <div class="modal-content">
-		      <form action="${path}/user/myProfileEdit.do" method="post">
+		      <div class="modal-content edit_modal">
 		        <div class="modal-header">
 		          <h4 class="modal-title">Profile Edit</h4>
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        </div>
-		        <div class="modal-body">		        	
+		        <div class="modal-body">
+		        <div class="row img-div">
+		        	<div class="col-xs-4 col-sm-4 col-md-4"></div>
+		        	<div class="col-xs-4 col-sm-4 col-md-4">
+		        		<img src="${path }/profileImg/images/${dto.userimage}" class="avatar-img" id="preView-modal" name="preView-modal"/><br>
+		        		<input hidden="" type="file" id="file-btn"/>
+		        	</div>
+		        	<div class="col-xs-4 col-sm-4 col-md-4"></div>
+		        </div>	
+		        <div class="row img-div">
+		        	<div class="col-xs-4 col-sm-4 col-md-4"></div>
+		        	<div class="col-xs-4 col-sm-4 col-md-4">
+		        		<label class="warn-label" id="img-label" style="display:none">확장자는 이미지 확장자만 가능합니다! 다시 업로드해주세요!</label>
+		        		<label class="succ-label" id="img-label2" style="display:none">사용가능한 이미지 확장자입니다.</label>
+		        	</div>
+		        	<div class="col-xs-4 col-sm-4 col-md-4"></div>
+		        </div>
+		     	 <form action="${path}/user/myProfileEdit.do" method="post" id="mpEdit">	        	
 		        	<label class="label-fnt">생일</label>	
 						<div class="birthFrm frm-div row">
 							<div class="col-xs-4 col-sm-4 col-md-4">
 								<select class="ui dropdown frm-sel2" name="birthYear">
 								  <c:forEach var="i" begin="1930" end="2019" step="1">
-								  	<option value="${i}"<c:if test="${i==dto.birthYear }"> selected</c:if>>${i }</option>
+								  	<option value="${i}"<c:if test="${i==dto.birthYear }"> selected</c:if><c:if test="${dto.birthYear==null && i==1990}">selected</c:if>>${i }</option>
 								  </c:forEach>
 								</select>
 							</div>
@@ -168,17 +191,17 @@
 						<div class="row physicalFrm frm-div">
 							<div class="col-xs-6 col-sm-6 col-md-6">
 								<label class="label-fnt">키</label><br>
-								<div class="ui right labeled input">
-								  <input type="text" name="userheight" value="${dto.userheight }" placeholder="키를 입력하세요">
+								<div class="ui right labeled input frm-div2">
+								  <input type="text" name="userheight" value="${dto.userheight }" autocomplete="off" placeholder="키를 입력하세요">
 								  <div class="ui basic label">
 								    cm
 								  </div>
 								</div>
 							</div>
-							<div class="col-xs-6 col-sm-6 col-md-6 frm-div">
+							<div class="col-xs-6 col-sm-6 col-md-6">
 								<label class="label-fnt">몸무게</label><br>
-								<div class="ui right labeled input">
-								  <input type="text" name="userweight" value="${dto.userweight }" placeholder="몸무게를 입력하세요">
+								<div class="ui right labeled input frm-div2">
+								  <input type="text" name="userweight" value="${dto.userweight }" autocomplete="off" placeholder="몸무게를 입력하세요">
 								  <div class="ui basic label">
 								    kg
 								  </div>
@@ -216,31 +239,114 @@
 							  	<option value="goal7" <c:if test="${dto.goalExe=='goal7' }">selected</c:if>>일주일에 1kg 찌우기</option>
 							</select>
 						</div>
-		        </div>
+					</form>
+		      	  </div>
 		        <div class="modal-footer">
-		        	<input type="submit" value="Edit" class="btn btn-default" style="width:80%;background:#890422;color:white"/>
+		        	<button type="button" id="fake-btn" class="btn btn-default sub-btn">Edit</button>
 		         	 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		        </div>
-		        </form>
 		      </div>
 		     </div>
 	      </div>
+	      <!-- 개인정보수정모달 -->
+	       <div class="modal fade" id="editModal2" role="dialog">
+	   		<div class="modal-dialog">
+		      <div class="modal-content">
+		      	<form action="${path}/user/userEdit.do" method="post">
+			        <div class="modal-body">
+			        	<div>Id/Password edit</div>
+			        </div>
+			        <div class="modal-footer">
+				       <input type="submit" value="가입수정완료" class="btn btn-default sub-btn"/>
+				       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				    </div>
+		        </form>
+		      </div>
+	   	 	</div>
+	 	 </div>
 	      <!-- 삭제모달 -->
 	      <div class="modal fade" id="deleteModal" role="dialog">
 	   		<div class="modal-dialog">
-	      	<div class="modal-content">
-	      		<form action="${path}/user/delete.do" method="post">
-	        <div class="modal-body">
-	        	<div>정말로 탈퇴하시겠습니까?</div>
-	        </div>
-	        <div class="modal-footer">
-		        	<input type="submit" value="탈퇴" class="btn btn-default" style="width:80%;background:#890422;color:white"/>
-		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		    </div>
-	        </form>
-	      </div>
-	   	 </div>
+		      <div class="modal-content">
+		      	<form action="${path}/user/delete.do" method="post">
+			        <div class="modal-body">
+			        	<div>정말로 탈퇴하시겠습니까?</div>
+			        </div>
+			        <div class="modal-footer">
+				       <input type="submit" value="탈퇴" class="btn btn-default sub-btn"/>
+				       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				    </div>
+		        </form>
+		      </div>
+	   	 	</div>
 	 	 </div>
 </div>
+<script>
+
+	let img_error_cnt=0;
+	let sel_file;
+ 	function fileUpload(e){
+ 		e.preventDefault();
+ 		let files = e.target.files;
+ 		let filesArr = Array.prototype.slice.call(files);
+ 		filesArr.forEach(function(f){
+ 	 		if(!f.type.match("image.*")){
+ 	 			$('#img-label').css('display','block');$('#img-label2').css('display','none');
+ 	 			img_error_cnt++;
+ 	 			return;
+ 	 		}else{	 		
+	 	 		sel_file = f;
+	 	 		
+	 	 		let reader = new FileReader();
+	 	 		reader.onload = function(e){
+	 	 			$('#preView-modal').attr('src',e.target.result);
+	 	 		}
+	 	 		reader.readAsDataURL(f);
+	 	 		
+	 	 		let file = files[0];
+	 	 		//ajax로 전달할 폼 객체
+	 	 		let formData = new FormData();
+	 	 		formData.append('file',file);
+	 	 		let userid = $('#userid').val();
+	 			formData.append('userid',userid);
+	 	 		//processData: false => post방식
+	 	 		//contentType: false => multipart/form-data
+	 	 		$.ajax({
+	 	 			type: 'POST',
+	 	 			url: path()+'/user/changePImg.do',
+	 	 			data: formData,
+	 	 			dataType: 'text',
+	 	 			processData: false,
+	 	 			contentType: false,
+	 	 			success: function(data){
+	 	 				$('#img-label2').css('display','block');$('#img-label').css('display','none');
+	 	 				img_error_cnt=0;
+	 	 			}
+	 	 		});  
+ 	 		}
+ 		}); 	
+ 		
+ 	}
+ 	function path() {
+		var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+		return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+	}
+ 	
+
+	$(function(){
+		$('#fake-btn').click(function(){
+			if(img_error_cnt>0){
+				return false;
+			}else{
+				$('#mpEdit').submit();
+			}
+		});
+		
+		$('#preView-modal').click(function(){
+			$('#file-btn').click();
+		});
+		$('#file-btn').on('change',fileUpload);
+	});
+</script>
 </body>
 </html>

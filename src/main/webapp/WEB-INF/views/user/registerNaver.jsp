@@ -30,6 +30,7 @@
 						<span class="paper-fnt">지금부터 <b>계정</b>을 만들게요!</span>
 					</div>
 					<form id="directFrm" action="${path}/user/naverRegister.do" method="post">
+						<input type="hidden" name="naverAccessToken" value="${naverUser.naverAccessToken }"/>
 						<div class="row form-frm">
 							<div class="col-xs-6 col-sm-6 col-md-6 form-frm-left">
 								<div class="form-div">
