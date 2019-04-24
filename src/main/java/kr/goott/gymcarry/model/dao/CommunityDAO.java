@@ -29,8 +29,7 @@ public class CommunityDAO implements CommunityDAOInterface {
 	@Override
 	public List<CommunityDTO> comList() {
 		logger.info("community list called...");
-		return sqlSession.selectList("community.listCommunity");
-		
+		return sqlSession.selectList("community.listCommunity");		
 	}
 
 	@Override
