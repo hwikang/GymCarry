@@ -58,8 +58,11 @@ public class UserController {
 	public ModelAndView userLogin(HttpSession session) {
 		logger.info("userLogin page view...");
 		/* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
-		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);	
-		return new ModelAndView("user/userLogin","url",naverAuthUrl);
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("url", naverAuthUrl);
+		mav.setViewName("user/userLogin");
+		return mav;
 	}
 	
 	@RequestMapping(value = "naverLogin.do")
@@ -106,8 +109,10 @@ public class UserController {
 			session.setAttribute("userid", dto2.getUserid());
 			session.setAttribute("username", dto2.getUsername());
 			session.setAttribute("loginCheck", "Y");
+			session.setAttribute("log", "Y");
 			return new ModelAndView("/home");
 		}else {
+			session.setAttribute("log", "N");
 			return new ModelAndView("redirect:login.do");
 		}
 	}

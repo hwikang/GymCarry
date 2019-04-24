@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -53,12 +52,14 @@
             	<!-- 상단 메뉴 -->
              <div id="menu"class="ui secondary right menu " style="font-family: 'Jua', sans-serif;font-size:18px;">
 			  <a class="item" href="${path }/"><img src="${path }/resources/gclogo.png" style="width:400px;height:250px"/></a>
-			  <a href="${path }/partner.do" class="item" style="background-color:#890422;border-radius: 10px; border-style:inherit";>파트너찾기 </a>
+			  <a href="${path }/partner.do" class="item" style="background-color:#890422;border-radius: 10px; border-style:inherit">파트너찾기 </a>
 			  <a class="item" href="${path }/notice.do">공지사항</a>
 			  <a href="${path }/community.do" class="item">커뮤니티</a>
 			  <c:if test="${loginCheck==null}">
 			  	<a class="item" href="${path }/user/login.do">로그인</a>
-			  	<a class="item"href="${path }/user/userJoin.do">회원가입</a>
+
+			  	<a class="item" href="${path }/user/userJoin.do">회원가입</a>
+
 			  </c:if>
 			  <c:if test="${loginCheck=='Y'}">			  
 			 	 <a class="item" href="${path }/user/logout.do">로그아웃</a>
