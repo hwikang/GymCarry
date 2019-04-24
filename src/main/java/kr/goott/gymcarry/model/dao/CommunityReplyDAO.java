@@ -16,9 +16,7 @@ public interface CommunityReplyDAO {
 	public void insertReply(@Param("userid") String userid, @Param("replyDes") String replyDes ,@Param("comNo") int comNo);
 	
 	//��ۺ���
-	@Select("select * from communityreply where comno=#{comNo} order by replyno desc")
-	//select comm.replyno,comm.userid,comm.replydes,comm.regdate,comm.comno,usertbl.userimage from communityreply comm ,usertbl where comm.userid=usertbl.userid and comno=1;
-
+	@Select("select comm.replyno,comm.userid,comm.replydes,comm.regdate,comm.comno,usertbl.userimage from communityreply comm ,usertbl where comm.userid=usertbl.userid and comno=#{comNo} order by replyno desc")
 	public List<CommunityReplyDTO> viewReply(@Param("comNo") int comNo);
 	
 	//����
