@@ -4,9 +4,16 @@ body{
 }
 header{
 	background-image:url('/gymcarry/resources/user/userjoin.jpg');
+<<<<<<< HEAD
 	width:100%;
+=======
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+>>>>>>> branch 'master' of https://github.com/hwikang/GymCarry.git
 	background-blend-mode: luminosity; /*여기서 조절*/
 	background-color: #A9A9A9;
+	height: 60%;
 }
 .paper{
 	margin-top:-120px;
@@ -143,6 +150,7 @@ header{
 	background-color:#89283e;
 	background-blend-mode: luminosity; /*여기서 조절*/
 }
+<<<<<<< HEAD
 .right-frm{
 	margin-top:50px;
 	padding:25px;
@@ -199,4 +207,12 @@ header{
 	border-radius: 4px;
 	font-family: 'Jua', sans-serif;
 	width:100%;
+.normal-fnt{
+	font-size: 13px;
+    font-weight: 400;
+    color: #666;
+}
+.normal-fnt2{
+	font-size: 12px;
+    color: #888;
 }

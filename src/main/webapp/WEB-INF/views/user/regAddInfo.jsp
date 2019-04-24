@@ -38,7 +38,7 @@
 									<img src="${path }/profileImg/images/${userDTO.userimage}" class="avatar-img" id="preView" name="preView"/><br>
 									<span class="img-fnt">${userDTO.userid }님</span><br>
 								</div>
-								<input hidden type="file" id="file-btn"/><br>
+								<input hidden="" type="file" id="file-btn"/><br>
 								<span class="bd-fnt">사진업로드에 문제가 있으신가요?<br>
 								보다 편리한 모바일 앱에서 업로드해주세요.</span>								
 							</div>	
@@ -161,38 +161,40 @@
  	 			alert("확장자는 이미지 확장자만 가능합니다!");
  	 			img_error_cnt++;
  	 			alert(img_error_cnt);
- 	 			return ;
- 	 		} 	 		
- 	 		sel_file = f;
- 	 		
- 	 		let reader = new FileReader();
- 	 		reader.onload = function(e){
- 	 			$('#preView').attr('src',e.target.result);
+ 	 			return;
+ 	 		}else{	 		
+	 	 		sel_file = f;
+	 	 		
+	 	 		let reader = new FileReader();
+	 	 		reader.onload = function(e){
+	 	 			$('#preView').attr('src',e.target.result);
+	 	 		}
+	 	 		reader.readAsDataURL(f);
+	 	 		
+	 	 		let file = files[0];
+	 	 		//ajax로 전달할 폼 객체
+	 	 		let formData = new FormData();
+	 	 		formData.append('file',file);
+	 	 		let userid = $('#userid').val();
+	 			formData.append('userid',userid);
+	 	 		//processData: false => post방식
+	 	 		//contentType: false => multipart/form-data
+	 	 		$.ajax({
+	 	 			type: 'POST',
+	 	 			url: path()+'/user/changePImg.do',
+	 	 			data: formData,
+	 	 			dataType: 'text',
+	 	 			processData: false,
+	 	 			contentType: false,
+	 	 			success: function(data){
+	 	 				alert("프로필 이미지가 변경 되었습니다!");
+	 	 				img_error_cnt=0;
+	 	 				alert(img_error_cnt);
+	 	 			}
+	 	 		});  
  	 		}
- 	 		reader.readAsDataURL(f); 	 		
  		}); 	
- 		let file = files[0];
- 		//ajax로 전달할 폼 객체
- 		let formData = new FormData();
- 		formData.append('file',file);
- 		let userid = $('#userid').val();
- 		console.log(userid);
-		formData.append('userid',userid);
- 		//processData: false => post방식
- 		//contentType: false => multipart/form-data
- 		$.ajax({
- 			type: 'POST',
- 			url: path()+'/user/changePImg.do',
- 			data: formData,
- 			dataType: 'text',
- 			processData: false,
- 			contentType: false,
- 			success: function(data){
- 				alert("프로필 이미지가 변경 되었습니다!");
- 				img_error_cnt=0;
- 				alert(img_error_cnt);
- 			}
- 		});  
+ 		
  	}
  	function path() {
 		var hostIndex = location.href.indexOf( location.host ) + location.host.length;

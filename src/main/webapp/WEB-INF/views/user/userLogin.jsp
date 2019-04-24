@@ -38,14 +38,19 @@
 							</div>	
 						</div>
 						<div class="col-xs-6 col-sm-6 col-md-6 right-frm">
-							<div><input class="form-input" type="text" placeholder="아이디" autocomplete="off" name="userid"/></div>
-							<div style="margin-bottom:30px;"><input class="form-input" type="password" placeholder="비밀번호" autocomplete="off" name="userpwd"/></div>
-							<div><label class="bd-fnt2"><input type="checkbox" name="remember_login" id="remember_login" value="1"/>나를 기억해 주세요.</label></div>
-							<input type="submit" value="로그인" class="btn-signup"/>
-							<div style="margin-top:15px;">
-								<span class="span-fnt">아직 계정이 없으신가요?</span><a href="${path }/user/userJoin.do" class="bd-fnt"> 회원가입하기</a><br><br>
-								<span class="span-fnt">아이디, 비밀번호가 생각나지 않으세요?</span><br>
-								<a href="${path }/user/findId.do" class="bd-fnt"> 아이디 찾기 </a><a href="${path }/user/findPwd.do" class="bd-fnt"> 비밀번호 찾기</a>
+							<div><input type="text" placeholder="아이디" name="userid" class="form-input"/></div>
+							<div style="margin-bottom:20px">
+								<input type="password" placeholder="비밀번호" name="userpwd" class="form-input"/>
+								<c:if test="${log=='N' }">
+									<label class="normal-fnt2">등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.</label>
+								</c:if>
+							</div>
+							<label class="normal-fnt"><input type="checkbox" name="remember_login" value="1"/>나를 기억해 주세요.</label><br>
+							<input type="submit" value="로그인" class="btn-login"/>
+							<div style="margin-top:25px">
+								<span class="normal-fnt2">아직 계정이 없으신가요?</span><a href="${path }/user/userJoin.do"> &nbsp;&nbsp;회원가입하기</a><br>
+								<div style="margin-top:10px;margin-bottom:5px"><span class="normal-fnt2">아이디, 비밀번호가 생각나지 않으세요?</span></div>
+								<a href="${path }/user/findId.do">아이디 찾기&nbsp;&nbsp;</a><a href="${path }/user/findPwd.do"> 비밀번호 찾기</a>
 							</div>
 						</div>
 					</div>	
