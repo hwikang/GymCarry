@@ -11,7 +11,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listCommunity" resultType="kr.goott.gymcarry.model.dto.CommunityDTO">
 		select * from communitytbl order by comno desc
 	</select>
-		
+	<select id="monthlyList" resultType="kr.goott.gymcarry.model.dto.CommunityDTO">
+		<![CDATA[select * from communitytbl where rownum < 13 order by views desc]]>
+	</select>
 	<select id="viewCommunity" resultType="kr.goott.gymcarry.model.dto.CommunityDTO">
 		select * from communitytbl where comno=#{comNo}
 	</select>
@@ -45,9 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="userComList" resultType="kr.goott.gymcarry.model.dto.CommunityDTO">
 		select * from communitytbl where userid=#{userid}
 	</select>	
-	<!-- <select id="monthlyList" resultType="kr.goott.gymcarry.model.dto.CommunityDTO">
-		select * from communitytbl where rownum<13 order by views desc
-	</select> -->	
+	
 </mapper>
 
 

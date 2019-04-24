@@ -31,7 +31,7 @@ public interface CommunityDAOInterface {
 	//�׻�� �ۺ���
 	public List<CommunityDTO> userComList(String userid);
 
-	public List<CommunityDTO> monthlyList(String userid);
+	public List<CommunityDTO> monthlyList();
 	
 	
 }
