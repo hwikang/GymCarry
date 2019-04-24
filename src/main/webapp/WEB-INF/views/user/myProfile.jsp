@@ -133,22 +133,89 @@
 		          <h4 class="modal-title">Profile Edit</h4>
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        </div>
-		        <div class="modal-body">
-		        	<div>이미지 : <input type="text" name='userimage' value='${dto.userimage}'></div><br/>
-		        	<div>이메일 : <input type="text" name='useremail' value='${dto.useremail}'></div><br/>
-		        	<div>신장 : <input type="text" name='userheight' value='${dto.userheight}'></div><br/>
-		        	<div>체중 : <input type="text" name='userweight' value='${dto.userweight}'></div><br/>
-		        	<div>성별 : <input type="text" name='gender' value='${dto.gender}'></div><br/>
-		        	<div>가입목적 : <input type="text" name='purposeExe' value='${dto.purposeExe}'></div><br/>
-		        	<div>평소운동량 : <input type="text" name='stateExe' value='${dto.stateExe}'></div><br/>
-		        	<div>목표 : <input type="text" name='goalExe' value='${dto.goalExe}'></div><br/>
-		        	<div>생년월일 : <input type="text" name='birthDate' value='${dto.birthDate}'></div><br/>
-		        	<div>이름 : <input type="text" name='username' value='${dto.username}'></div><br/>
-                    <div>휴대폰 : <input type="text" name='userphone' value='${dto.userphone}'></div><br/>
-		        	<div>비밀번호 : <input type="password" name='userpwd' placeholder="네이버나 페이스북 로그인시 불필요" value='${dto.userpwd}' style="width:250px"></div><br/>
-		        	<div>추천인 : <input type="text" name='presentid' value='${dto.presentid}'></div><br/>
-		        	<div>네이버아이디 : <input type="text" name='naverid' value='${dto.naverid}'></div><br/>
-		        	
+		        <div class="modal-body">		        	
+		        	<label class="label-fnt">생일</label>	
+						<div class="birthFrm frm-div row">
+							<div class="col-xs-4 col-sm-4 col-md-4">
+								<select class="ui dropdown frm-sel2" name="birthYear">
+								  <c:forEach var="i" begin="1930" end="2019" step="1">
+								  	<option value="${i}"<c:if test="${i==dto.birthYear }"> selected</c:if>>${i }</option>
+								  </c:forEach>
+								</select>
+							</div>
+							<div class="col-xs-4 col-sm-4 col-md-4">
+								<select class="ui dropdown frm-sel2" name="birthMonth">
+								  <c:forEach var="i" begin="1" end="12" step="1">
+								  	<option value="${i}" <c:if test="${i==dto.birthMonth }"> selected</c:if>>${i }</option>
+								  </c:forEach>
+								</select>
+							</div>
+							<div class="col-xs-4 col-sm-4 col-md-4">
+								<select class="ui dropdown frm-sel2" name="birthDay">
+								  <c:forEach var="i" begin="1" end="31" step="1">
+								  	<option value="${i}" <c:if test="${i==dto.birthDay }"> selected</c:if>>${i }</option>
+								  </c:forEach>
+								</select>
+							</div>
+						</div>
+						<div class="genderFrm frm-div">
+							<label class="label-fnt">성별</label><br>
+							<select class="ui dropdown frm-sel" name="gender">
+							  	<option value="male" <c:if test="${dto.gender=='male'}">selected</c:if>>남성</option>
+							  	<option value="female" <c:if test="${dto.gender=='female'}">selected</c:if>>여성</option>
+							</select>
+						</div>
+						<div class="row physicalFrm frm-div">
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<label class="label-fnt">키</label><br>
+								<div class="ui right labeled input">
+								  <input type="text" name="userheight" value="${dto.userheight }" placeholder="키를 입력하세요">
+								  <div class="ui basic label">
+								    cm
+								  </div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-6 frm-div">
+								<label class="label-fnt">몸무게</label><br>
+								<div class="ui right labeled input">
+								  <input type="text" name="userweight" value="${dto.userweight }" placeholder="몸무게를 입력하세요">
+								  <div class="ui basic label">
+								    kg
+								  </div>
+								</div>
+							</div>
+						</div>
+						<div class="frm-div">
+							<label class="label-fnt">왜 운동하시나요?</label><br>									
+							<select class="ui dropdown frm-sel" name="purposeExe">
+							  	<option value="purpose1" <c:if test="${dto.purposeExe=='purpose1' }">selected</c:if>>체력과 건강을 위해</option>
+							  	<option value="purpose2" <c:if test="${dto.purposeExe=='purpose2' }">selected</c:if>>다이어트, 몸매관리를 위해</option>
+							  	<option value="purpose3" <c:if test="${dto.purposeExe=='purpose3' }">selected</c:if>>스트레스 해소를 위해</option>
+							  	<option value="purpose4" <c:if test="${dto.purposeExe=='purpose4' }">selected</c:if>>기타</option>
+							</select>
+						</div>
+						<div class="frm-div">
+							<label class="label-fnt">평소에 얼마나 운동하시나요?</label><br>									
+							<select class="ui dropdown frm-sel" name="stateExe">
+							  	<option value="state1" <c:if test="${dto.stateExe=='state1' }">selected</c:if>>전혀 운동하지 않음</option>
+							  	<option value="state2" <c:if test="${dto.stateExe=='state2' }">selected</c:if>>가벼운 운동 (주1~3일)</option>
+							  	<option value="state3" <c:if test="${dto.stateExe=='state3' }">selected</c:if>>적당한 운동 (주3~5일)</option>
+							  	<option value="state4" <c:if test="${dto.stateExe=='state4' }">selected</c:if>>열심히 운동 (주6~7일)</option>
+							  	<option value="state5" <c:if test="${dto.stateExe=='state5' }">selected</c:if>>아주 열심히 운동 (매일 2회이상)</option>
+							</select>
+						</div>
+						<div class="frm-div">
+							<label class="label-fnt">목표 체중이 어떻게 되세요?</label><br>									
+							<select class="ui dropdown frm-sel" name="goalExe">
+							  	<option value="goal1" <c:if test="${dto.goalExe=='goal1' }">selected</c:if>>일주일에 1kg 감량</option>
+							  	<option value="goal2" <c:if test="${dto.goalExe=='goal2' }">selected</c:if>>일주일에 0.5kg 감량</option>
+							  	<option value="goal3" <c:if test="${dto.goalExe=='goal3' }">selected</c:if>>일주일에 0.25kg 감량</option>
+							  	<option value="goal4" <c:if test="${dto.goalExe=='goal4' }">selected</c:if>>현재 체중 유지</option>									  	
+							  	<option value="goal5" <c:if test="${dto.goalExe=='goal5' }">selected</c:if>>일주일에 0.25kg 찌우기</option>
+							  	<option value="goal6" <c:if test="${dto.goalExe=='goal6' }">selected</c:if>>일주일에 0.5kg 찌우기</option>
+							  	<option value="goal7" <c:if test="${dto.goalExe=='goal7' }">selected</c:if>>일주일에 1kg 찌우기</option>
+							</select>
+						</div>
 		        </div>
 		        <div class="modal-footer">
 		        	<input type="submit" value="Edit" class="btn btn-default" style="width:80%;background:#890422;color:white"/>

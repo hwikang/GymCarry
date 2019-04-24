@@ -41,11 +41,6 @@ public class UserDTO {
 	public void setCreatePwd(String createPwd) {
 		this.createPwd = createPwd;
 	}
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
-	}
-
-
 	public String getNaverid() {
 		return naverid;
 	}
@@ -58,6 +53,7 @@ public class UserDTO {
 	public void setBirthYear(String birthYear) {
 		this.birthYear = birthYear;
 		setBirthDate(birthYear,this.birthMonth,this.birthDay);
+				
 	}
 	public String getBirthMonth() {
 		return birthMonth;
@@ -74,10 +70,13 @@ public class UserDTO {
 		setBirthDate(this.birthYear,this.birthMonth,birthDay);
 	}
 	public String getBirthDate() {
+		String bd = this.birthDate;
+		String[] array = bd.split("/");
+		setBirthYear(array[0]);setBirthMonth(array[1]);setBirthDay(array[2]);
 		return birthDate;
 	}
 	public void setBirthDate(String birthYear, String birthMonth, String birthDay) {
-		this.birthDate = birthYear+birthMonth+birthDay;
+		this.birthDate = birthYear+"/"+birthMonth+"/"+birthDay;
 	}
 	public String getGender() {
 		return gender;

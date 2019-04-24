@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where userid=#{userid}
 	</select>
 	<update id="editUser" parameterType="userDto">
-		update userTbl set useremail=#{useremail}, userheight=#{userheight}, userweight=#{userweight}, purposeExe=#{purposeExe}, stateExe=#{stateExe}, goalExe=#{goalExe}, birthdate=#{birthDate}, username=#{username}, userphone=#{userphone}, userpwd=#{userpwd}, presentid=#{presentid}, naverid=#{naverid},  gender=#{gender} 
+		update userTbl set userheight=#{userheight}, userweight=#{userweight}, purposeExe=#{purposeExe}, stateExe=#{stateExe}, goalExe=#{goalExe}, birthdate=#{birthDate}, gender=#{gender} 
 		where userid=#{userid}
 	</update>
 	<delete id="deleteUser">
