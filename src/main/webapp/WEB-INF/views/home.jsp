@@ -101,7 +101,7 @@
 				  <div class="step">
 				    <i class="american sign language interpreting icon"></i>
 				    <div class="content">
-				      <div class="title">(카카오톡 or 실시간채팅)PT 요청</div>
+				      <div class="title">(Email정보확인) 양식에 맞춰 PT 요청</div>
 				    </div>
 				  </div>
 				  <div class="step">
