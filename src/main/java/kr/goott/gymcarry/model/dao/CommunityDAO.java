@@ -86,8 +86,13 @@ public class CommunityDAO implements CommunityDAOInterface {
 	public List<CommunityDTO> userComList(String userid) {
 		return sqlSession.selectList("community.userComList", userid);
 		
-	}	
+	}
 
+	@Override
+	public List<CommunityDTO> monthlyList(String userid) {
+		return sqlSession.selectList("community.monthlyList", userid);
+	}	
+	
 
 
 }

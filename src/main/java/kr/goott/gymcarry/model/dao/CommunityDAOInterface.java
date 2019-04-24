@@ -8,30 +8,30 @@ import org.apache.ibatis.annotations.Select;
 import kr.goott.gymcarry.model.dto.CommunityDTO;
 
 public interface CommunityDAOInterface {
-	//µî·Ï
+	//ï¿½ï¿½ï¿½
 	public void insertCommunity(CommunityDTO dto); 
-	//´Ùº¸±â
+	//ï¿½Ùºï¿½ï¿½ï¿½
 	public List<CommunityDTO> comList();
-	//ÇØ´ç ±Û º¸±â
+	//ï¿½Ø´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public CommunityDTO viewCommunity(int comNo) ;
-	//±Û¼öÁ¤
+	//ï¿½Û¼ï¿½ï¿½ï¿½
 	public CommunityDTO editCommunity(CommunityDTO dto) ;
-	//±Û»èÁ¦
+	//ï¿½Û»ï¿½ï¿½ï¿½
 	public void deleteCommunity(int comNo);
-	// view ¼ö µé¸®±â
+	// view ï¿½ï¿½ ï¿½é¸®ï¿½ï¿½
 	public void viewCount(int comNo);
-	//reply ¼ö´Ã¸®±â
+	//reply ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½
 	public void replyCount(int comNo);
-	//like ´Ã¸®±â
+	//like ï¿½Ã¸ï¿½ï¿½ï¿½
 	public void likeCount(int comNo);
-	//reply»©±â
+	//replyï¿½ï¿½ï¿½ï¿½
 	public void replyCountSub(int comNo);
-	//like »©±â
+	//like ï¿½ï¿½ï¿½ï¿½
 	public void likeCountSub(int comNo);
-	//±×»ç¶÷ ±Ûº¸±â
+	//ï¿½×»ï¿½ï¿½ ï¿½Ûºï¿½ï¿½ï¿½
 	public List<CommunityDTO> userComList(String userid);
 
-	
+	public List<CommunityDTO> monthlyList(String userid);
 	
 	
 }

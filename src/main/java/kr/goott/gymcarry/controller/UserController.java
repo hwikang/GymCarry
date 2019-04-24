@@ -2,6 +2,7 @@ package kr.goott.gymcarry.controller;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +27,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import kr.goott.gymcarry.auth.NaverLoginBO;
+import kr.goott.gymcarry.model.dao.CommunityDAO;
 import kr.goott.gymcarry.model.dao.UserDAOInterface;
+import kr.goott.gymcarry.model.dto.CommunityDTO;
 import kr.goott.gymcarry.model.dto.UserDTO;
 
 @Controller
@@ -37,7 +41,8 @@ public class UserController {
 	UserDAOInterface userDAO;
 	@Inject
 	NaverLoginBO naverLoginBO;
-	
+	@Inject
+	CommunityDAO communityDAO;
 	@Resource(name = "uploadPath2")	
 	String uploadPath2;
 	
@@ -58,7 +63,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "naverLogin.do")
-	public ModelAndView naverLogin(@RequestParam String code, @RequestParam String state, HttpSession session) throws Exception{
+	public ModelAndView naverLogin(@RequestParam String code, @RequestParam String state, HttpSession session, Model model) throws Exception{
 		
 		/* 네이버 아이디로 로그인 인증이 끝나면 callback 처리 과정에서 AccessToken을 발급 받을 수 있다.*/
 		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
@@ -70,6 +75,10 @@ public class UserController {
 			session.setAttribute("userid", naverid.getUserid());
 			session.setAttribute("username", naverid.getUsername());
 			session.setAttribute("loginCheck", "Y");
+			List<CommunityDTO> list = communityDAO.comList();
+			logger.info(list.get(0).getComImage()+"==========");
+			model.addAttribute("uploadPath", "");
+			model.addAttribute("list", list);  //占쏙옙占� 커占승댐옙티 占쏙옙占쏙옙트
 			return new ModelAndView("/home");			
 		}else {//아이디값이 null이면 아이디 생성해야지			
 			return new ModelAndView("user/registerNaver", "naverUser", naverUser);
@@ -107,7 +116,7 @@ public class UserController {
 	public String logout(HttpSession session) {
 		logger.info("logout success...");
 		session.invalidate();
-		return "/home";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "registerEmail.do")
@@ -167,10 +176,10 @@ public class UserController {
 	public String deleteUser(HttpSession session) {
 		String userid = (String)session.getAttribute("userid");
 		userDAO.deleteUser(userid);
-		return "redirect:/home";
+		session.invalidate();
+		return "redirect:/";
 		
 	}
-
 	//윤성이 끝
 	
 	@RequestMapping(value = "regAddInfo.do")
@@ -184,11 +193,15 @@ public class UserController {
 
 
 	@RequestMapping(value="regAddDone.do", method = RequestMethod.POST) public
-	String regAddDone(@ModelAttribute UserDTO dto) {
+	String regAddDone(@ModelAttribute UserDTO dto, Model model) {
 	logger.info("regAddDone page view"); 
 	logger.info(dto.toString());
 	int cnt = userDAO.addInfoUser(dto);
 		if(cnt==1) { 
+			List<CommunityDTO> list = communityDAO.comList();
+			logger.info(list.get(0).getComImage()+"==========");
+			model.addAttribute("uploadPath", "");
+			model.addAttribute("list", list);  //占쏙옙占� 커占승댐옙티 占쏙옙占쏙옙트
 			return "/home";
 		}
 		else { 
