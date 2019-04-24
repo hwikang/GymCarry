@@ -56,6 +56,7 @@
 						<div class="content">
 							<div class="header">${dto.username}</div>
 							<div class="meta">${dto.gender}</div>
+							<div class="meta">${dto.useremail}</div>
 						</div>					
 
 					</div>
@@ -98,7 +99,7 @@
 							<button class="ui inverted red button">X</button>
 						</div>						
 						<a class="header">${dto.userid}</a>
-						<div class="meta">${dto.gender}</div>
+						<div class="meta">${dto.gender} / ${dto.useremail}</div>
 					</div>
 					<div class="extra content">
 						

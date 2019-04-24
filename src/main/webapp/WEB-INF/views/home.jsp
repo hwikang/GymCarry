@@ -137,7 +137,7 @@
         	
         	<div id="title4">JOIN COMMUNITY</div>
         	<div id="com" style="border:outset; margin-top:30px; padding:50px 0px 50px 0px">
-        		<h3>1. <a href="${path }/user/userJoin.do"class="item" style="color:red">회원가입 및 로그인.</a><h3/>
+        		<h3>1. <a href="#"class="item" style="color:red">회원가입 및 로그인.</a><h3/>
         		<h3>2. <a href="${path }/community.do" style="color:red">GYMCARRY 커뮤니티</a>에 입장!</h3>
         		<h3>3. 글이나 사진 올리기</h3>
         		<h3>4. 운동 외적인 글 또는 광고성 글은 제지 당할 수 있습니다.</h3>
