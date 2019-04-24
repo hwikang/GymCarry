@@ -101,6 +101,9 @@ public class CommunityController {
 			CommunityDTO dto = communityDAO.viewCommunity(comNo); 
 			mav.addObject("dto",dto);
 			//get reply dto values
+			
+			
+			
 			mav.addObject("replyList",communityReplyDao.viewReply(comNo)); 
 			//view count++
 			communityDAO.viewCount(comNo);
