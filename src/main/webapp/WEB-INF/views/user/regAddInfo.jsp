@@ -202,10 +202,6 @@
 	}
 </script>
 </header>
-<footer>
-	<div>
-	중요하지 않지만 재밌다 -풋터
-	</div>
-</footer>
+<%@ include file="../include/foot.jsp" %>
 </body>
 </html>

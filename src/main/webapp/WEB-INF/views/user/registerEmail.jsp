@@ -84,11 +84,11 @@
 								<div class="ui card">
 									<div class="content">
 										<div style="font-size:12px;margin-bottom:10px;"><strong>약관 동의</strong></div>
-										<div class="form-strong-fnt2"><input type="checkbox" id="terms0" class="checkbox-mg" onclick="allCheck();"/><b> <a id="chk0">아래 약관에 모두 동의 합니다.</a></b></div>						
+										<div class="form-strong-fnt2"><input type="checkbox" id="terms0" class="checkbox-mg" onclick="allCheck();"/><b> <span id="chk0" >아래 약관에 모두 동의 합니다.</span></b></div>						
 									</div>
 									<div class="content">
-										<div class="form-span-fnt2"><input type="checkbox" id="terms1" name="terms" class="checkbox-mg"/> <a id="chk1"><ins>이용약관</ins> 동의 (필수)</a></div>
-										<div class="form-span-fnt2"><input type="checkbox" id="terms2" name="terms" class="checkbox-mg"/> <a id="chk2"><ins>개인정보취급방침</ins> 동의 (필수)</a></div>
+										<div class="form-span-fnt2"><input type="checkbox" id="terms1" name="terms" class="checkbox-mg"/> <a id="chk1" class="chk" href="${path }/terms/terms.do"><ins>이용약관</ins></a> 동의 (필수)</div>
+										<div class="form-span-fnt2"><input type="checkbox" id="terms2" name="terms" class="checkbox-mg"/> <a id="chk2" class="chk" href="${path }/terms/privacy.do"><ins>개인정보취급방침</ins></a> 동의 (필수)</div>
 										<div class="form-span-fnt2"><input type="checkbox" id="terms3" name="terms" class="checkbox-mg"/> <a id="chk3">마케팅 정보 수신 동의 (선택)</a></div>
 										<span class="form-span-fnt3">수신동의 여부 및 설정은 회원정보 수정에서 확인할 수 있습니다.</span>
 									</div>
@@ -274,10 +274,6 @@ function label_error(tagName){
 }
 </script>
 </header>
-<footer>
-	<div>
-	중요하지 않지만 재밌다 -풋터
-	</div>
-</footer>
+<%@ include file="../include/foot.jsp" %>
 </body>
 </html>
