@@ -250,9 +250,12 @@
 	       <div class="modal fade" id="editModal2" role="dialog">
 	   		<div class="modal-dialog">
 		      <div class="modal-content">
-		      	<form action="${path}/user/userEdit.do" method="post">
+		      	<form action="${path}/user/userEdit.do" method="post">		      		
+		      		<div class="modal-header">
+		      			<div class="modal-title">Password edit</div>
+		      		</div>
 			        <div class="modal-body">
-			        	<div>Id/Password edit</div>
+			        	<div></div>
 			        </div>
 			        <div class="modal-footer">
 				       <input type="submit" value="가입수정완료" class="btn btn-default sub-btn"/>
