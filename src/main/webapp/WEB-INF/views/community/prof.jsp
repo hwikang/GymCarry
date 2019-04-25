@@ -32,7 +32,7 @@
     
     <tbody>
       <tr>
-        <td rowspan="4">Image  ${dto.userimage }</td>
+        <td rowspan="4" style="text-align: center;"><img src="${path }/profileImg/images/${dto.userimage}" width="200" height="200" style="border-radius: 200px"/></td>
         <td>아이디 : ${dto.userid }</td>
         <td>이메일 : ${dto.useremail }</td>
       </tr>
