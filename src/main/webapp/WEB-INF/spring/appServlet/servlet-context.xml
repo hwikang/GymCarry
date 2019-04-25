@@ -40,7 +40,7 @@
 		<beans:constructor-arg value="d:/spring/GymCarry/src/main/webapp/resources/community"/>	
 	</beans:bean>
 	<beans:bean id="uploadPath2" class="java.lang.String">
-		<beans:constructor-arg value="d:/spring/GymCarry/src/main/webapp/resources/profileImg"/>	
+		<beans:constructor-arg value="d:/spring/GymCarry/src/main/webapp/resources/profileImg"/>
 	</beans:bean>
 	
 	<beans:bean id="loginInterceptor" class="kr.goott.gymcarry.interceptor.LoginInterceptor"></beans:bean>
