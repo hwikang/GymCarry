@@ -22,7 +22,7 @@ import kr.goott.gymcarry.model.dto.UserDTO;
 public class NaverLoginBO {
 	private final static String CLIENT_ID = "BeYVCP07cxMmbpBrcYcg";
 	private final static String CLIENT_SECRET = "NSC3e2ICFd";
-	private final static String REDIRECT_URI = "http://localhost:8080/gymcarry/user/naverLogin.do";
+	private final static String REDIRECT_URI = "http://localhost:9090/gymcarry/user/naverLogin.do";
 	private final static String SESSION_STATE = "oauth_state";
 	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
 	/* 네아로 인증 URL 생성 method */
@@ -90,7 +90,7 @@ public class NaverLoginBO {
 		
 		ObjectMapper mapper = new ObjectMapper(); //json->object로 매핑
 		JsonNode rootNode = mapper.readTree(body);
-		
+		System.out.println(rootNode.toString());
 		JsonNode resNode = rootNode.get("response");
 		userDto.setNaverid(resNode.get("email").asText());
 		return userDto;

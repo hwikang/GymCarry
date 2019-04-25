@@ -9,7 +9,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>유저정보</title>
-
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
@@ -17,119 +16,118 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> <!-- 구글폰트 -->
 <link rel="stylesheet" href="${path }/css/myProfile.css" type="text/css">
-<style>
-	*{font-family: 'Jua', sans-serif;}
-	A:link{text-decoration: none; color:black}
-	A:hover{text-decoration:none;color:black}
-	A:visited{text-decoration: none;color:black}
-	A:active{text-decoration: none;color:black}
-</style>
 <%@ include file="../include/menu.jsp" %>
 </head>
 <body>
 <!-- 멋쟁이윤성 -->
-<div class="container">
+<div class="container-fluid">
+	<div class="row">
+	<div class="col-xs-2 col-sm-2 col-md-2"></div>
+	<div class="col-xs-8 col-sm-8 col-md-8">
 	<input type="hidden" id="userid" value="${dto.userid }"/>
   <h1>Profile</h1>
   <p style="font-size:18px">${dto.userid} 님의 프로필</p>         
-  <table class="table table-condensed">
-    <tbody>
-      <tr>
-        <td rowspan="4" style="text-align: center;"><img src="${path }/profileImg/images/${dto.userimage}" class="avatar-img" id="preView" name="preView"/></td>
-        <td>아이디 : ${dto.userid }</td>
-        <td>이메일 : <c:if test="${dto.useremail!=null}">${dto.useremail }</c:if><c:if test="${dto.naverid!=null}">${dto.naverid }</c:if></td>
-      </tr>
-      <tr>
-        <td>신장 : ${dto.userheight } cm</td>
-        <td>체중 : ${dto.userweight } kg</td>
-      </tr>
-      <tr>
-        <td>가입목적 : 
-        	<c:if test="${dto.purposeExe eq 'purpose1'}">
-        	 체력과 건강을 위해
-        	 </c:if>
-        	<c:if test="${dto.purposeExe eq 'purpose2'}">
-                         다이어트 , 몸매 관리를위해
-            </c:if>   
-        	<c:if test="${dto.purposeExe eq 'purpose3'}">
-                        스트레스 해소를 위해
-            </c:if>
-        </td>
-        <td>평소운동량 :   <c:if test="${dto.stateExe  eq 'state1'}">
-                        전혀 운동하지 않음
-                        </c:if>
-                        <c:if test="${dto.stateExe eq 'state2'}">
-                        가벼운 운동 (주 1~3일)
-                        </c:if>   
-                        <c:if test="${dto.stateExe eq 'state3'}">
-                        적당한 운동 (주 3~5일)
-                        </c:if>
-                        <c:if test="${dto.stateExe eq 'state4'}">
-                        열심히 운동(주 6~7일)
-                        </c:if>
-                        <c:if test="${dto.stateExe eq 'state5'}">
-                        아주 열심히 운동(매일 2회 이상)
-                        </c:if>
-        </td>
-      </tr>
-      <tr>
-        <td>목표 :  <c:if test="${dto.goalExe  eq 'goal1'}">
-                        1주일에 1kg 감량
-                        </c:if>
-                        <c:if test="${dto.goalExe  eq 'goal2'}">
-                        1주일에 0.5kg 감량
-                        </c:if>
-                        <c:if test="${dto.goalExe  eq 'goal3'}">
-                        1주일에 0.25kg 감량
-                        </c:if>
-                        <c:if test="${dto.goalExe  eq 'goal4'}">
-                      	  현재 체중 유지
-                        </c:if>
-                        <c:if test="${dto.goalExe  eq 'goal5'}">
-                        1주일에 0.25kg 찌우기
-                        </c:if>
-                        <c:if test="${dto.goalExe  eq 'goal6'}">
-                        1주일에 0.5kg 찌우기
-                        </c:if>
-                        <c:if test="${dto.goalExe  eq 'goal7'}">
-                        1주일에 1kg 찌우기
-                        </c:if>
-		</td>
-        <td>생년월일 : ${dto.birthDate}</td>
-      </tr>
-      <tr>
-      	<td colspan="3">[Additional Info]</td>
-      </tr>
-      <tr>
-      	<td>
-      	 이름 : ${dto.username  }
-      	</td>
-      	<td>
-      	 휴대폰 : ${dto.userphone  }
-      	</td>
-      	<td>
-      	 성별 : <c:if test="${dto.gender=='male'}">남성 <i class="fas fa-mars"></i></c:if><c:if test="${dto.gender=='female'}">여성 <i class="fas fa-venus"></i></c:if>
-      	</td>
-      </tr>
-      <tr>
-      	<td>
-      	 추천인 : ${dto.presentid}
-      	</td>
-      	<td></td>
-      	<td></td>
-      </tr>
-      <tr>
-      	<td></td>
-      	<td></td>
-      	<td></td>
-      </tr>
-     
-    </tbody>
-  </table>
-  <div>
-    <!-- 글수정버튼 --> <button class="ui primary button" data-toggle="modal" data-target="#editModal" style="margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">수정</button>
+	  <table class="table table-condensed">
+	    <tbody>
+	      <tr>
+	        <td rowspan="4" style="text-align: center;"><img src="${path }/profileImg/images/${dto.userimage}" class="avatar-img" id="preView" name="preView"/></td>
+	        <td>아이디 : ${dto.userid }</td>
+	        <td>이메일 : <c:if test="${dto.useremail!=null}">${dto.useremail }</c:if><c:if test="${dto.naverid!=null}">${dto.naverid }</c:if></td>
+	      </tr>
+	      <tr>
+	        <td>신장 : ${dto.userheight } cm</td>
+	        <td>체중 : ${dto.userweight } kg</td>
+	      </tr>
+	      <tr>
+	        <td>가입목적 : 
+	        	<c:if test="${dto.purposeExe eq 'purpose1'}">
+	        	 체력과 건강을 위해
+	        	 </c:if>
+	        	<c:if test="${dto.purposeExe eq 'purpose2'}">
+	                         다이어트 , 몸매 관리를위해
+	            </c:if>   
+	        	<c:if test="${dto.purposeExe eq 'purpose3'}">
+	                        스트레스 해소를 위해
+	            </c:if>
+	        </td>
+	        <td>평소운동량 :   <c:if test="${dto.stateExe  eq 'state1'}">
+	                        전혀 운동하지 않음
+	                        </c:if>
+	                        <c:if test="${dto.stateExe eq 'state2'}">
+	                        가벼운 운동 (주 1~3일)
+	                        </c:if>   
+	                        <c:if test="${dto.stateExe eq 'state3'}">
+	                        적당한 운동 (주 3~5일)
+	                        </c:if>
+	                        <c:if test="${dto.stateExe eq 'state4'}">
+	                        열심히 운동(주 6~7일)
+	                        </c:if>
+	                        <c:if test="${dto.stateExe eq 'state5'}">
+	                        아주 열심히 운동(매일 2회 이상)
+	                        </c:if>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td>목표 :  <c:if test="${dto.goalExe  eq 'goal1'}">
+	                        1주일에 1kg 감량
+	                        </c:if>
+	                        <c:if test="${dto.goalExe  eq 'goal2'}">
+	                        1주일에 0.5kg 감량
+	                        </c:if>
+	                        <c:if test="${dto.goalExe  eq 'goal3'}">
+	                        1주일에 0.25kg 감량
+	                        </c:if>
+	                        <c:if test="${dto.goalExe  eq 'goal4'}">
+	                      	  현재 체중 유지
+	                        </c:if>
+	                        <c:if test="${dto.goalExe  eq 'goal5'}">
+	                        1주일에 0.25kg 찌우기
+	                        </c:if>
+	                        <c:if test="${dto.goalExe  eq 'goal6'}">
+	                        1주일에 0.5kg 찌우기
+	                        </c:if>
+	                        <c:if test="${dto.goalExe  eq 'goal7'}">
+	                        1주일에 1kg 찌우기
+	                        </c:if>
+			</td>
+	        <td>생년월일 : ${dto.birthDate}</td>
+	      </tr>
+	      <tr>
+	      	<td colspan="3">[Additional Info]</td>
+	      </tr>
+	      <tr>
+	      	<td>
+	      	 이름 : ${dto.username  }
+	      	</td>
+	      	<td>
+	      	 휴대폰 : ${dto.userphone  }
+	      	</td>
+	      	<td>
+	      	 성별 : <c:if test="${dto.gender=='male'}">남성 <i class="fas fa-mars"></i></c:if><c:if test="${dto.gender=='female'}">여성 <i class="fas fa-venus"></i></c:if>
+	      	</td>
+	      </tr>
+	      <tr>
+	      	<td>
+	      	 추천인 : ${dto.presentid}
+	      	</td>
+	      	<td></td>
+	      	<td></td>
+	      </tr>
+	      <tr>
+	      	<td></td>
+	      	<td></td>
+	      	<td></td>
+	      </tr>
+	     
+	    </tbody>
+	  </table>
+	<!-- 글수정버튼 --> <button class="ui primary button" data-toggle="modal" data-target="#editModal" style="margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">수정</button>
     <!--개인정보수정버튼 --> <c:if test="${dto.naverid==null }"><button class="ui primary button" data-toggle="modal" data-target="#editModal2" style="margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">개인정보수정</button></c:if>
  	<!-- 글삭제버튼 --> <button class="ui primary button" data-toggle="modal" data-target="#deleteModal" style="margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">탈퇴</button>
+	  </div>
+	  <div class="col-xs-2 col-sm-2 col-md-2"></div>
+	</div>
+  <div>
   </div>
    <!-- Edit Modal -->
 	      <div class="modal fade" id="editModal" role="dialog">
@@ -281,6 +279,26 @@
 	   	 	</div>
 	 	 </div>
 </div>
+	<footer class="foot container-fluid">
+		<div class="row">			
+			<div class="col-xs-2 col-sm-2 col-md-2"></div>
+			<div class="col-xs-8 col-sm-8 col-md-8">
+				 <div class="">
+				 	<a href="${path }/"><img src="${path }/resources/logo-string.png" width="140" height="20" class="img-a"/></a><br><br>
+				 </div>
+				 <span class="foot-span-fnt"><b>© 2019~ GYM CARRY.</b><br><br>
+				 (주)짐캐리 대표이사: 강휘 / 공동대표: 정연택, 이윤성, 지경호<br>
+				 주소: 대한민국 서울시 구로구 구트아카데미 2층<br>
+				 연락처:010-2200-7646<br>
+				 이메일: goott@naver.com<br>		 
+				 </span>
+				 <div class="foot-a-div">
+					 <a href="${path }/terms/terms.do">이용약관</a><a href="${path }/terms/privacy.do">개인정보취급방침</a><a href="${path }/notice.do">공지사항</a>
+				 </div>
+			</div>
+			<div class="col-xs-2 col-sm-2 col-md-2"></div>
+		</div>
+	</footer>
 <script>
 
 	let img_error_cnt=0;

@@ -1,4 +1,19 @@
 @charset "UTF-8";
+*{
+	font-family: 'Jua', sans-serif;
+}
+A:link{
+	text-decoration: none; color:black
+}
+A:hover{
+	text-decoration:none;color:black
+}	
+A:visited{
+	text-decoration: none;color:black
+}
+A:active{
+	text-decoration: none;color:black
+}
 .avatar-img{
 	width: 120px;
 	height: 120px;
@@ -43,4 +58,27 @@ select.ui.dropdown{
 }
 .img-div{
 	margin-bottom: 20px;
+}
+.foot{
+	width:100%;
+	height:300px;
+	background-color: #fff;
+}
+.img-a{
+	margin-top:30px;
+	margin-bottom:10px;
+}
+.foot-span-fnt{
+	color: #777
+}
+.foot-a-div{
+	margin:10px;
+}
+.foot-a-div a{
+	margin:25px;
+	color: #890422;
+}
+.foot-a-div a:hover{
+	margin:25px;
+	color: #890422;
 }
