@@ -77,8 +77,11 @@ public class UserController {
 		
 		/* 네이버 아이디로 로그인 인증이 끝나면 callback 처리 과정에서 AccessToken을 발급 받을 수 있다.*/
 		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
+		String naverAccessToken = oauthToken.getAccessToken();
+		logger.info(oauthToken.toString());
 		/* 발급 받은 AccessToken을 이용하여 현재 로그인한 네이버의 사용자 프로필 정보를 조회할 수 있다. */
 		UserDTO naverUser = naverLoginBO.getUserProfile(oauthToken);
+		naverUser.setNaverAccessToken(naverAccessToken);
 		/* 네이버 사용자 프로필 정보를 이용하여 가입되어 있는 사용자를 DB에서 조회하여 가져온다. */
 		UserDTO naverid = userDAO.naverIdCheck(naverUser);
 		if(naverid!=null) { //기존 사용자가 존재하면 강제 로그인!
@@ -87,9 +90,8 @@ public class UserController {
 			session.setAttribute("loginCheck", "Y");
 			List<CommunityDTO> list = communityDAO.comList();
 			logger.info(list.get(0).getComImage()+"==========");
-			model.addAttribute("uploadPath", "");
 			model.addAttribute("list", list);  //占쏙옙占� 커占승댐옙티 占쏙옙占쏙옙트
-			return new ModelAndView("/home");			
+			return new ModelAndView("redirect:/");			
 		}else {//아이디값이 null이면 아이디 생성해야지			
 			return new ModelAndView("user/registerNaver", "naverUser", naverUser);
 		}		
@@ -167,25 +169,9 @@ public class UserController {
 	}
 	@RequestMapping(value= "myProfileEdit.do", method=RequestMethod.POST)
 	public String editProfile(HttpSession session, @ModelAttribute UserDTO userDTO ) {
-	
-		UserDTO dto = new UserDTO();
 		String userid = (String) session.getAttribute("userid");
-		dto.setUserid(userid);
-		dto.setUseremail(userDTO.getUseremail());
-		dto.setUserheight(userDTO.getUserheight());
-		dto.setUserweight(userDTO.getUserweight());
-		dto.setPurposeExe(userDTO.getPurposeExe());
-		dto.setStateExe(userDTO.getStateExe());
-		dto.setGoalExe(userDTO.getGoalExe());
-		//dto.setBirthDate(userDTO.getBirthDate()); select로 !
-		dto.setUsername(userDTO.getUsername());
-		dto.setUserphone(userDTO.getUserphone());
-		dto.setUserpwd(userDTO.getUserpwd());
-		dto.setPresentid(userDTO.getPresentid());
-		dto.setNaverid(userDTO.getNaverid());
-		dto.setGender(userDTO.getGender());
-		
-		userDAO.updateUser(dto);
+		userDTO.setUserid(userid);		
+		userDAO.updateUser(userDTO);
 		return "redirect:myProfile.do";		
 		
 	}
@@ -217,7 +203,6 @@ public class UserController {
 		if(cnt==1) { 
 			List<CommunityDTO> list = communityDAO.comList();
 			logger.info(list.get(0).getComImage()+"==========");
-			model.addAttribute("uploadPath", "");
 			model.addAttribute("list", list);  //占쏙옙占� 커占승댐옙티 占쏙옙占쏙옙트
 			return "/home";
 		}

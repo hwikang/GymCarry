@@ -63,7 +63,15 @@ public class NaverLoginBO {
 		}
 		return null;
 	}
-	
+	public String test() {
+		OAuth20Service oauthService = new ServiceBuilder()
+				.apiKey(CLIENT_ID)
+				.apiSecret(CLIENT_SECRET)
+				.callback(REDIRECT_URI)
+				.build(NaverLoginApi.instance());
+		
+		return "";
+	}
 	/* Access Token을 이용하여 네이버 사용자 프로필 API를 호출 */
 	public UserDTO getUserProfile(OAuth2AccessToken oauthToken)throws Exception{
 		
@@ -82,7 +90,7 @@ public class NaverLoginBO {
 		
 		ObjectMapper mapper = new ObjectMapper(); //json->object로 매핑
 		JsonNode rootNode = mapper.readTree(body);
-		
+		System.out.println(rootNode.toString());
 		JsonNode resNode = rootNode.get("response");
 		userDto.setNaverid(resNode.get("email").asText());
 		return userDto;
@@ -101,4 +109,6 @@ public class NaverLoginBO {
 	private String getSession(HttpSession session) {
 		return(String)session.getAttribute(SESSION_STATE);
 	}
+	
+	
 }

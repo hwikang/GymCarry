@@ -31,21 +31,28 @@ public class UserDTO {
 	private Double userLat;
 	private Double userLong;
 	private String createPwd; //새로운 비밀번호
-
+	private String naverAccessToken;
 	public UserDTO() {}
 
 	
+	public String getNaverAccessToken() {
+		return naverAccessToken;
+	}
+
+	public void setNaverAccessToken(String naverAccessToken) {
+		this.naverAccessToken = naverAccessToken;
+	}
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
+
 	public String getCreatePwd() {
 		return createPwd;
 	}
 	public void setCreatePwd(String createPwd) {
 		this.createPwd = createPwd;
 	}
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
-	}
-
-
 	public String getNaverid() {
 		return naverid;
 	}
@@ -58,6 +65,7 @@ public class UserDTO {
 	public void setBirthYear(String birthYear) {
 		this.birthYear = birthYear;
 		setBirthDate(birthYear,this.birthMonth,this.birthDay);
+				
 	}
 	public String getBirthMonth() {
 		return birthMonth;
@@ -74,10 +82,16 @@ public class UserDTO {
 		setBirthDate(this.birthYear,this.birthMonth,birthDay);
 	}
 	public String getBirthDate() {
+		if(this.birthDate!=null) {
+			String bd = this.birthDate;
+			String[] array = bd.split("/");
+			setBirthYear(array[0]);setBirthMonth(array[1]);setBirthDay(array[2]);
+			return birthDate;
+		}
 		return birthDate;
 	}
 	public void setBirthDate(String birthYear, String birthMonth, String birthDay) {
-		this.birthDate = birthYear+birthMonth+birthDay;
+		this.birthDate = birthYear+"/"+birthMonth+"/"+birthDay;
 	}
 	public String getGender() {
 		return gender;
@@ -214,7 +228,8 @@ public class UserDTO {
 				+ ", birthDay=" + birthDay + ", birthDate=" + birthDate + ", gender=" + gender + ", userheight="
 				+ userheight + ", userweight=" + userweight + ", purposeExe=" + purposeExe + ", stateExe=" + stateExe
 				+ ", goalExe=" + goalExe + ", regdate=" + regdate + ", modifyDate=" + modifyDate + ", naverid="
-				+ naverid + ", userLat=" + userLat + ", userLong=" + userLong + "]";
+				+ naverid + ", userLat=" + userLat + ", userLong=" + userLong + ", createPwd=" + createPwd
+				+ ", naverAccessToken=" + naverAccessToken + "]";
 	}
 
 
