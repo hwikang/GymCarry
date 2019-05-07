@@ -1,6 +1,8 @@
 package kr.goott.gymcarry.model.dto;
 
 import java.util.Date;
+import java.util.List;
+
 
 public class UserDTO {
 	private int userno;
@@ -25,9 +27,31 @@ public class UserDTO {
 	private Date modifyDate;
 	private String naverid;//�꽕�씠踰꾨줈 濡쒓렇�씤 �븷 �떆 �븘�씠�뵒
 	
+	private Double userLat;
+	private Double userLong;
+	private String createPwd; //새로운 비밀번호
+	private String naverAccessToken;
 	public UserDTO() {}
 
 	
+	public String getNaverAccessToken() {
+		return naverAccessToken;
+	}
+
+	public void setNaverAccessToken(String naverAccessToken) {
+		this.naverAccessToken = naverAccessToken;
+	}
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public String getCreatePwd() {
+		return createPwd;
+	}
+	public void setCreatePwd(String createPwd) {
+		this.createPwd = createPwd;
+	}
 	public String getNaverid() {
 		return naverid;
 	}
@@ -40,6 +64,7 @@ public class UserDTO {
 	public void setBirthYear(String birthYear) {
 		this.birthYear = birthYear;
 		setBirthDate(birthYear,this.birthMonth,this.birthDay);
+				
 	}
 	public String getBirthMonth() {
 		return birthMonth;
@@ -56,10 +81,16 @@ public class UserDTO {
 		setBirthDate(this.birthYear,this.birthMonth,birthDay);
 	}
 	public String getBirthDate() {
+		if(this.birthDate!=null) {
+			String bd = this.birthDate;
+			String[] array = bd.split("/");
+			setBirthYear(array[0]);setBirthMonth(array[1]);setBirthDay(array[2]);
+			return birthDate;
+		}
 		return birthDate;
 	}
 	public void setBirthDate(String birthYear, String birthMonth, String birthDay) {
-		this.birthDate = birthYear+birthMonth+birthDay;
+		this.birthDate = birthYear+"/"+birthMonth+"/"+birthDay;
 	}
 	public String getGender() {
 		return gender;
@@ -163,6 +194,26 @@ public class UserDTO {
 	}
 
 
+	public Double getUserLat() {
+		return userLat;
+	}
+
+
+	public void setUserLat(Double userLat) {
+		this.userLat = userLat;
+	}
+
+
+	public Double getUserLong() {
+		return userLong;
+	}
+
+
+	public void setUserLong(Double userLong) {
+		this.userLong = userLong;
+	}
+
+
 	@Override
 	public String toString() {
 		return "UserDTO [userno=" + userno + ", userid=" + userid + ", userpwd=" + userpwd + ", username=" + username
@@ -170,10 +221,10 @@ public class UserDTO {
 				+ userimage + ", birthYear=" + birthYear + ", birthMonth=" + birthMonth + ", birthDay=" + birthDay
 				+ ", birthDate=" + birthDate + ", gender=" + gender + ", userheight=" + userheight + ", userweight="
 				+ userweight + ", purposeExe=" + purposeExe + ", stateExe=" + stateExe + ", goalExe=" + goalExe
-				+ ", regdate=" + regdate + ", modifyDate=" + modifyDate + ", naverid=" + naverid + "]";
+				+ ", regdate=" + regdate + ", modifyDate=" + modifyDate + ", naverid=" + naverid + ", userLat="
+				+ userLat + ", userLong=" + userLong + ", createPwd=" + createPwd + ", naverAccessToken="
+				+ naverAccessToken + "]";
 	}
-
-
 
 
 	

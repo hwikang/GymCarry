@@ -29,8 +29,7 @@ public class CommunityDAO implements CommunityDAOInterface {
 	@Override
 	public List<CommunityDTO> comList() {
 		logger.info("community list called...");
-		return sqlSession.selectList("community.listCommunity");
-		
+		return sqlSession.selectList("community.listCommunity");		
 	}
 
 	@Override
@@ -81,19 +80,18 @@ public class CommunityDAO implements CommunityDAOInterface {
 		sqlSession.update("community.likeCountSub", comNo);
 		
 	}
-/*
-	@Override
-	public void insertLike(int comNo, String userid) {
-		sqlSession.insert("community.insertLike", comNo,userid);
-		
-	}
-	@Override
-	public void deleteLike(int comNo, String userid) {
-		sqlSession.delete("community.deletetLike", comNo,userid);
-		
-	}
-*/	
 
+	@Override
+	public List<CommunityDTO> userComList(String userid) {
+		return sqlSession.selectList("community.userComList", userid);
+		
+	}
+
+	@Override
+	public List<CommunityDTO> monthlyList() {
+		return sqlSession.selectList("community.monthlyList");
+	}	
+	
 
 
 }

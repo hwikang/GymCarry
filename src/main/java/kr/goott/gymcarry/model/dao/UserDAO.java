@@ -39,14 +39,13 @@ public class UserDAO implements UserDAOInterface {
 
 	@Override
 	public void deleteUser(String userid) {
-		// TODO Auto-generated method stub
+		sqlSession.delete("user.deleteUser", userid);
 
 	}
 
 	@Override
-	public void updateUser(UserDTO vo) {
-		// TODO Auto-generated method stub
-
+	public int updateUser(UserDTO dto) {
+		return sqlSession.update("user.editUser", dto);
 	}
 
 	@Override
@@ -72,7 +71,7 @@ public class UserDAO implements UserDAOInterface {
 	}
 
 	@Override
-	public String findId(UserDTO dto) {		
+	public UserDTO findId(UserDTO dto) {		
 		return sqlSession.selectOne("user.find_id", dto);
 	}
 
@@ -82,14 +81,29 @@ public class UserDAO implements UserDAOInterface {
 	}
 
 	@Override
-	public void insertNaverUser(UserDTO dto) {
-		sqlSession.insert("user.insert_naver_user",dto);
+	public int insertNaverUser(UserDTO dto) {
+		return sqlSession.insert("user.insert_naver_user",dto);
 		
 	}
 
 	@Override
 	public int idCheckCount(String userid) {		
 		return sqlSession.selectOne("user.id_check_count", userid);
+	}
+
+	@Override
+	public int updateImg(UserDTO dto) {
+		return sqlSession.update("user.update_img", dto);		
+	}
+
+	@Override
+	public UserDTO selectImg(UserDTO dto) {
+		return sqlSession.selectOne("user.select_img", dto);
+	}
+
+	@Override
+	public int findPwd(UserDTO dto) {
+		return sqlSession.update("user.find_pwd", dto);
 	}
 	
 

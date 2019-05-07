@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
@@ -18,8 +18,7 @@
 	<resources mapping="/js/**" location="/js/" ></resources>
 	
 	<resources mapping="/community/images/**" location="file:///d:/spring/GymCarry/src/main/webapp/resources/community/" />
-
-
+	<resources mapping="/profileImg/images/**" location="file:///d:/spring/GymCarry/src/main/webapp/resources/profileImg/" />
 	<!-- 메인화면 css -->
 
 	<resources mapping="/mainSlide/css/**" location="/mainSlide/css/" />
@@ -40,6 +39,9 @@
 	<beans:bean id="uploadPath" class="java.lang.String">
 		<beans:constructor-arg value="d:/spring/GymCarry/src/main/webapp/resources/community"/>	
 	</beans:bean>
+	<beans:bean id="uploadPath2" class="java.lang.String">
+		<beans:constructor-arg value="d:/spring/GymCarry/src/main/webapp/resources/profileImg"/>
+	</beans:bean>
 	
 	<beans:bean id="loginInterceptor" class="kr.goott.gymcarry.interceptor.LoginInterceptor"></beans:bean>
 	<interceptors>
@@ -47,5 +49,10 @@
 			<mapping path="/community.do"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
+				<interceptor>
+			<mapping path="/partner.do"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
 	</interceptors>
 </beans:beans>

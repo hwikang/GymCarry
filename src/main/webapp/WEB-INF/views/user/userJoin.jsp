@@ -49,10 +49,6 @@
 		</div>
 	</div>
 </header>
-<footer>
-	<div>
-		
-	</div>
-</footer>
+<%@ include file="../include/foot.jsp" %>
 </body>
 </html>

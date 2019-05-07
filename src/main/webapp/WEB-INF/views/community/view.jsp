@@ -32,6 +32,7 @@
 			    <div class="four wide column">
 			    	<img class="ui avatar image" src="/gymcarry/resources/profile.png" > 
 			    	<span>${dto.userid }</span>
+			    	
 			  	</div>
 			    <div class="ui four wide column"></div>
 			    <span class="ui four wide column">${dto.views } views</span>
@@ -47,6 +48,9 @@
 	</div>
 <!-- 오른쪽 -->	
  	<div class="nine wide column" style="margin-top:3%">
+ 		<c:if test="${userid=='khdrogba'}">
+ 			<div class="ui button" onClick="clickDeleteBtn()">Delete this Content X</div>
+ 		</c:if>
  			<div class="ui divider"></div>
  			Writer's Comment
  			<div class="ui raised very padded text segment" style="background:#FFF6B2">			  
@@ -126,27 +130,51 @@
 			<div class="ui list">
 			  <c:forEach var="dto" items="${replyList}">
 				  	<div class="item">
-				    	<img class="ui avatar image" src="${path}/resources/profile.png">
+				    	<img class="ui avatar image" src="${path}/profileImg/images/${dto.userimage}">
 						<div class="content">
-						    <a class="header">${dto.userid}</a>
+							<span id="replyDate">${dto.regdate}</span>
+							
+							<form action="${path}/community/prof/${dto.userid}" id="submit${dto.userid}" method="post" >
+							    <a class="header" onClick="proView('${dto.userid}')">${dto.userid}</a>
+							</form>
 						    <c:if test="${dto.userid==userid}">
-							    <a id=replyEdit onclick="editInputAppear(event)">수정</a>
-							    <a onClick="replyDeleteBtn(event)">삭제</a>
+							    <a id=replyEdit onclick="editInputAppear(${dto.replyNo})">
+							    	<button class="ui inverted red button mini animated">							    
+										<div class="hidden content">수정</div>
+										<div class="visible content">
+										    <i class="eraser icon"></i>										
+										</div>
+									</button>		
+								</a>
+							    <a onClick="replyDeleteBtn(${dto.replyNo})">
+									<button class="ui inverted red button mini animated">							    
+										<div class="hidden content">삭제</div>
+										<div class="visible content">
+										    <i class="file excel icon"></i>										
+										</div>
+									</button>
+									
+								</a>
 						    </c:if>
 						    <div class="description">
-						    	<p id="replyDes">${dto.replyDes }</p>
-						    	<div id="replyDesInput" style="display:none;">
-						    		<form name="form2" method="post" id="form2" onSubmit="replyEditBtn(event)">
-							    		<input type="text" name="replyDes" value="${dto.replyDes }" />
+						    	<p id="replyDes${dto.replyNo}">${dto.replyDes }</p>
+						    	<div id="replyDesInput${dto.replyNo}" style="display:none;">
+						    		<form name="form2" method="post" id="form${dto.replyNo }" onSubmit="replyEditBtn(event)">
+							    		<div class="ui action input">
+							    			<input type="text" name="replyDes" value="${dto.replyDes }" />
+							    		</div>
+							    		
 							    		<input type="hidden" name="replyNo" value="${dto.replyNo}"/>
 							    		<input type="hidden" name="comNo" value="${dto.comNo}"/>
-							    		<input type="submit" value="수정" onclick="replyEditBtn(event)"/>								    								    									    		
+							    		<input type="submit" value="수정" onclick="replyEditBtn(event)" class="ui button mini"/>								    								    									    		
 						    		</form>
-						    	</div>
-						    	
+						    	</div>						    	
 						    </div>
+						    <c:if test="${userid=='khdrogba'}">
+					 			<div class="ui button" onClick="replyDeleteBtn(event)">Delete this Reply X</div>
+					 		</c:if>
 						    <div class="ui divider"></div>
-						    <span>${dto.regdate}</span>
+						    
 				   		</div>
 			  		</div>			  
 			  </c:forEach>			 
@@ -192,10 +220,8 @@
 
 console.log("${path}")
 const clickLike = () =>{
-	const likeIcon = document.querySelector("#likeIcon");
-	
-	//likeIcon.classList.toggle("outline") //하트모양바꾸기
-	
+	const likeIcon = document.querySelector("#likeIcon");	
+	//likeIcon.classList.toggle("outline") //하트모양바꾸기	
 	if(likeIcon.classList.contains("outline")){
 		//like
 		document.form.action="${path}/community/like/${dto.comNo}"
@@ -210,15 +236,11 @@ const clickLike = () =>{
 	
 }
 
-const editInputAppear = (event) =>{
-	console.log(event)
-	console.log(event.target.parentElement)
-	const editInputDiv = event.target.parentElement;
-	
-	const replyDes = editInputDiv.querySelector("#replyDes");		//댓글내용
-	const replyDesInput = editInputDiv.querySelector("#replyDesInput"); //수정인풋
-	
-	console.log(replyDes)
+const editInputAppear = (replyNo) =>{
+
+	const replyDes = document.querySelector("#replyDes"+replyNo);		//댓글내용
+	const replyDesInput = document.querySelector("#replyDesInput"+replyNo); //수정인풋
+
 	if(replyDes.style.display==="none"){
 		replyDes.style.display="block";
 		replyDesInput.style.display="none";
@@ -238,14 +260,13 @@ const clickEditBtn = () =>{
 	}else{
 		alert("니 글이 아니잔니?");
 	}
-
 }
 const clickDeleteBtn = () =>{
 	console.log("elete btn clicked");
-	if("${userid}"==="${dto.userid}"){
+	if("${userid}"==="${dto.userid}" ||"${userid}"==="khdrogba"){
 		if(confirm("are you sure?")){
 			document.form.action="${path}/community/delete/${dto.comNo}";		
-			document.form.submit();
+			document.form.submit();			
 		}
 	}else{
 		alert("니 글이 아니잔니?");
@@ -261,10 +282,10 @@ const clickDeleteBtn = () =>{
 	eventForm.submit();
 }
  
-const replyDeleteBtn = (event) =>{
+const replyDeleteBtn = (replyNo) =>{
 	if(confirm("진짜 삭제할거에여?")){
 		console.log(event.target.parentElement)
-		const eventForm = event.target.parentElement.querySelector("#form2");
+		const eventForm = document.querySelector("#form"+replyNo);
 		eventForm.action="${path}/community/replyDelete"
 		eventForm.submit();
 	
@@ -272,7 +293,10 @@ const replyDeleteBtn = (event) =>{
 
 }
 
-
+//명함보기 
+function proView(userid){	
+ document.querySelector('#submit'+userid).submit(); 
+}
 
 </script>
 </html>

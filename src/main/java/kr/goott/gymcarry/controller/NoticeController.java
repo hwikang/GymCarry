@@ -74,6 +74,7 @@ public class NoticeController{
 	@RequestMapping(value= "notice/edit/{noticeno}", method=RequestMethod.POST)
 	public String editNotice(@PathVariable int noticeno ,@RequestParam("des") String des, @RequestParam("title") String title) throws Exception {
 		NoticeDTO dto = new NoticeDTO();
+		logger.info("=====des"+des);
 		
 		dto.setNoticeno(noticeno);
 		dto.setTitle(title);

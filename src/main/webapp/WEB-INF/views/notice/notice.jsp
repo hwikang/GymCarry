@@ -33,7 +33,7 @@
   	<div class=list-group style="font-size:23px">
   		<div style="font-size:40px;">공지사항 </div><br/>
   		<span>이벤트와 새로운 알림을 확인하세요! 
-  		 <c:if test="${loginCheck=='Y'}">
+  		 <c:if test="${loginCheck=='Y' && userid=='khdrogba'}">
   		<!-- 글쓰기버튼 -->
   		<button class="ui primary button" data-toggle="modal" data-target="#myModal" style="margin-left:690px;margin-top:25px;font-family: 'Jua', sans-serif;font-size:16px;background-color:#890422">Write</button>
   		</c:if>
@@ -51,26 +51,21 @@
 		</c:forEach>
 	</div>
 	
-	<!-- 페이지네이션 -->
-	<!-- <div class="ui pagination menu" style="margin-left:40%;margin-top:100px">
-	  <a class="active item">
-	    1
-	  </a>
-	  <a class="item">
-	    2
-	  </a>
-	  <a class="item">
-	    3
-	  </a>
-	  <a class="item">
-	    4
-	  </a>
-	  <a class="item">
-	  	5
-	  </a>
-	</div> -->
 	
-	 <!-- 모달 -->
+	
+	<div class="row" style="margin-left:35%;margin-top:100px">
+		<div class="col">
+			<ul class="pagination">
+				<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+				<li class="page-item active"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item"><a class="page-link" href="#">Next</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	 <!-- 글쓰기 모달 -->
 		<div class="modal fade" id="myModal" role="dialog">
 	    <div class="modal-dialog">
 	    
