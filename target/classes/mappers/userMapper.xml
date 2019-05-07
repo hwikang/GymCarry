@@ -30,9 +30,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<insert id="insertUser">
 		insert into userTbl (userno, userid, username, userpwd, useremail, userphone, 
-		presentid, userimage, protein, regdate) 
+		presentid, userimage, regdate) 
 		values (user_Sq.nextVal, #{userid}, #{username}, #{userpwd}, #{useremail}, #{userphone},
-		#{presentid}, null, 0, sysdate)
+		#{presentid}, null, sysdate)
 	</insert>
 	<insert id="insert_naver_user">
 		insert into userTbl (userno, userid, username, useremail, userphone, 

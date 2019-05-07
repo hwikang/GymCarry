@@ -11,7 +11,6 @@ public class UserDTO {
 	private String userphone;
 	private String presentid;
 	private String userimage;
-	private int protein;
 	private String birthYear;
 	private String birthMonth;
 	private String birthDay;	
@@ -19,12 +18,12 @@ public class UserDTO {
 	private String gender;
 	private int userheight;
 	private int userweight;
-	private String purposeExe; // 운동 목적
-	private String stateExe; // 평소 운동량
-	private String goalExe; // 목표 체중
+	private String purposeExe; // �슫�룞 紐⑹쟻
+	private String stateExe; // �룊�냼 �슫�룞�웾
+	private String goalExe; // 紐⑺몴 泥댁쨷
 	private Date regdate;
 	private Date modifyDate;
-	private String naverid;//네이버로 로그인 할 시 아이디
+	private String naverid;//�꽕�씠踰꾨줈 濡쒓렇�씤 �븷 �떆 �븘�씠�뵒
 	
 	public UserDTO() {}
 
@@ -98,7 +97,7 @@ public class UserDTO {
 	public void setGoalExe(String goalExe) {
 		this.goalExe = goalExe;
 	}
-/* ~ 추가 회원 정보 기입 DTO */
+/* ~ 異붽� �쉶�썝 �젙蹂� 湲곗엯 DTO */
 	public int getUserno() {
 		return userno;
 	}
@@ -129,12 +128,7 @@ public class UserDTO {
 	public void setUserimage(String userimage) {
 		this.userimage = userimage;
 	}
-	public int getProtein() {
-		return protein;
-	}
-	public void setProtein(int protein) {
-		this.protein = protein;
-	}
+
 	public Date getRegdate() {
 		return regdate;
 	}
@@ -173,12 +167,14 @@ public class UserDTO {
 	public String toString() {
 		return "UserDTO [userno=" + userno + ", userid=" + userid + ", userpwd=" + userpwd + ", username=" + username
 				+ ", useremail=" + useremail + ", userphone=" + userphone + ", presentid=" + presentid + ", userimage="
-				+ userimage + ", protein=" + protein + ", birthYear=" + birthYear + ", birthMonth=" + birthMonth
-				+ ", birthDay=" + birthDay + ", birthDate=" + birthDate + ", gender=" + gender + ", userheight="
-				+ userheight + ", userweight=" + userweight + ", purposeExe=" + purposeExe + ", stateExe=" + stateExe
-				+ ", goalExe=" + goalExe + ", regdate=" + regdate + ", modifyDate=" + modifyDate + ", naverid="
-				+ naverid + "]";
+				+ userimage + ", birthYear=" + birthYear + ", birthMonth=" + birthMonth + ", birthDay=" + birthDay
+				+ ", birthDate=" + birthDate + ", gender=" + gender + ", userheight=" + userheight + ", userweight="
+				+ userweight + ", purposeExe=" + purposeExe + ", stateExe=" + stateExe + ", goalExe=" + goalExe
+				+ ", regdate=" + regdate + ", modifyDate=" + modifyDate + ", naverid=" + naverid + "]";
 	}
+
+
+
 
 	
 	
